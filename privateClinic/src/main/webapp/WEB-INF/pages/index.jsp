@@ -3,7 +3,7 @@
     Created on : Jul 12, 2023, 1:43:08 PM
     Author     : user
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +13,12 @@
     </head>
     <body>
         <h1>Hello World hahaha !</h1>
-        <<h2>${msg}</h2>
+        <ul>
+            <c:forEach items="${QuiDinh}" var="p">
+                <li>${p.maQD} - ${p.tenQD} - ${p.giaTri}</li>
+            </c:forEach>
+        </ul>
+
+
     </body>
 </html>
