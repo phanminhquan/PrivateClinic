@@ -13,8 +13,10 @@ import java.util.List;
 public class QuiDinhServiceImpl implements QuiDinhService {
     @Autowired
     QuiDinhRepository quiDinhRepository;
+
     @Override
     public List<QuiDinh> getQuiDinhs() {
         return quiDinhRepository.getQuiDinhs();
     }
+
 }

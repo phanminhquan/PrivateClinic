@@ -4,8 +4,11 @@
  */
 package com.springmvc.controller;
 
+import com.springmvc.dto.ThuocDTO;
 import com.springmvc.pojo.QuiDinh;
+import com.springmvc.pojo.Thuoc;
 import com.springmvc.service.QuiDinhService;
+import com.springmvc.service.ThuocService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,12 +24,13 @@ import java.util.List;
 @Controller
 public class HomeController {
     @Autowired
-    private QuiDinhService quiDinhService;
+    private ThuocService thuocService;
+
     @RequestMapping("/")
     public String index(Model model)
     {
-        List<QuiDinh> q = quiDinhService.getQuiDinhs();
-        model.addAttribute("QuiDinh", q);
+        List<ThuocDTO> q = thuocService.getListThuoc();
+        model.addAttribute("thuoc", q);
         return "index";
     }
 }

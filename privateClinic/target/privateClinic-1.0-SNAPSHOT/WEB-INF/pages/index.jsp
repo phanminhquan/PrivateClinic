@@ -14,8 +14,8 @@
     <body>
         <h1>Hello World hahaha !</h1>
         <ul>
-            <c:forEach items="${QuiDinh}" var="p">
-                <li>${p.maQD} - ${p.tenQD} - ${p.giaTri}</li>
+            <c:forEach items="${thuoc}" var="p">
+                <li>${p.maThuoc} - ${p.tenThuoc} - ${p.donVi}</li>
             </c:forEach>
         </ul>
 
