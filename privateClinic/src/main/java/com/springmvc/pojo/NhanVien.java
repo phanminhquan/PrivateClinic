@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author DELL
+ * @author user
  */
 @Entity
 @Table(name = "nhan_vien")
@@ -79,12 +79,12 @@ public class NhanVien implements Serializable {
     @Size(max = 200)
     @Column(name = "hinhAnh")
     private String hinhAnh;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "nhanVien")
-    private Yta yta;
+    @OneToMany(mappedBy = "maNV")
+    private Set<Yta> ytaSet;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "maNV")
     private TaiKhoan taiKhoan;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "nhanVien")
-    private BacSi bacSi;
+    @OneToMany(mappedBy = "maNV")
+    private Set<BacSi> bacSiSet;
     @OneToMany(mappedBy = "idNV")
     private Set<NhanvienCatruc> nhanvienCatrucSet;
 
@@ -160,12 +160,13 @@ public class NhanVien implements Serializable {
         this.hinhAnh = hinhAnh;
     }
 
-    public Yta getYta() {
-        return yta;
+    @XmlTransient
+    public Set<Yta> getYtaSet() {
+        return ytaSet;
     }
 
-    public void setYta(Yta yta) {
-        this.yta = yta;
+    public void setYtaSet(Set<Yta> ytaSet) {
+        this.ytaSet = ytaSet;
     }
 
     public TaiKhoan getTaiKhoan() {
@@ -176,12 +177,13 @@ public class NhanVien implements Serializable {
         this.taiKhoan = taiKhoan;
     }
 
-    public BacSi getBacSi() {
-        return bacSi;
+    @XmlTransient
+    public Set<BacSi> getBacSiSet() {
+        return bacSiSet;
     }
 
-    public void setBacSi(BacSi bacSi) {
-        this.bacSi = bacSi;
+    public void setBacSiSet(Set<BacSi> bacSiSet) {
+        this.bacSiSet = bacSiSet;
     }
 
     @XmlTransient

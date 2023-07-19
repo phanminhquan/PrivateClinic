@@ -4,6 +4,7 @@ public class BacSiDTO {
     private Long maBs;
     private String chungChi;
     private String chuyenMon;
+    private Long maNv;
 
     public Long getMaBs() {
         return this.maBs;
@@ -27,5 +28,13 @@ public class BacSiDTO {
 
     public void setChuyenMon(String chuyenMon) {
         this.chuyenMon = chuyenMon;
+    }
+
+    public Long getMaNv() {
+        return this.maNv;
+    }
+
+    public void setMaNv(Long maNv) {
+        this.maNv = maNv;
     }
 }

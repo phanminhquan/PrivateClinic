@@ -26,6 +26,19 @@ public class ThuocServiceImpl implements ThuocService {
         t.setSoLuong(thuoc.getSoLuong());
         return t;
     }
+    public Thuoc toEntity(ThuocDTO thuocDTO)
+    {
+        Thuoc t = new Thuoc();
+        t.setDonVi(thuocDTO.getDonVi());
+        t.setMaThuoc(thuocDTO.getMaThuoc());
+        t.setHinhAnh(thuocDTO.getHinhAnh());
+        t.setMoTa(thuocDTO.getMoTa());
+        t.setIsActive(thuocDTO.getIsActive());
+        t.setGiaBan(thuocDTO.getGiaBan());
+        t.setTenThuoc(thuocDTO.getTenThuoc());
+        t.setSoLuong(thuocDTO.getSoLuong());
+        return t;
+    }
     public List<ThuocDTO> toThuocDTOList(List<Thuoc> t){
         List<ThuocDTO> thuocDTOS = new ArrayList<>();
         for (Thuoc thuoc: t)
@@ -39,5 +52,13 @@ public class ThuocServiceImpl implements ThuocService {
     public List<ThuocDTO> getListThuoc() {
         List<Thuoc> thuoc = thuocrepository.getListThuoc();
         return toThuocDTOList(thuoc);
+    }
+
+    @Override
+    public ThuocDTO createThuoc( ThuocDTO thuocDTO) {
+        Thuoc thuoc = new Thuoc();
+        thuoc = toEntity(thuocDTO);
+        thuoc = thuocrepository.createThuoc(thuoc);
+        return toDto(thuoc);
     }
 }

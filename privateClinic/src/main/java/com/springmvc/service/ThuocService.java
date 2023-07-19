@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ThuocService {
     List<ThuocDTO> getListThuoc();
+
+    ThuocDTO createThuoc(ThuocDTO thuocDTO);
 }

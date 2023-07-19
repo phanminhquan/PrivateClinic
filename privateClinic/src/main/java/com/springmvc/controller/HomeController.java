@@ -5,13 +5,9 @@
 package com.springmvc.controller;
 
 import com.springmvc.dto.ThuocDTO;
-import com.springmvc.pojo.QuiDinh;
-import com.springmvc.pojo.Thuoc;
-import com.springmvc.service.QuiDinhService;
 import com.springmvc.service.ThuocService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 

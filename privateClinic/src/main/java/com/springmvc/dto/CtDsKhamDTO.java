@@ -5,7 +5,7 @@ public class CtDsKhamDTO {
     private Long maBn;
     private Long maDs;
     private Long maTg;
-    private Byte trangthai;
+    private Boolean trangthai;
 
     public Long getMaCtds() {
         return this.maCtds;
@@ -39,11 +39,11 @@ public class CtDsKhamDTO {
         this.maTg = maTg;
     }
 
-    public Byte getTrangthai() {
+    public Boolean getTrangthai() {
         return this.trangthai;
     }
 
-    public void setTrangthai(Byte trangthai) {
+    public void setTrangthai(Boolean trangthai) {
         this.trangthai = trangthai;
     }
 }

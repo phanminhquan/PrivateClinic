@@ -6,7 +6,7 @@ public class TaiKhoanDTO {
     private String username;
     private String password;
     private String avatar;
-    private Byte isActive;
+    private Boolean isActive;
     private String userRole;
     private Long maNv;
 
@@ -50,11 +50,11 @@ public class TaiKhoanDTO {
         this.avatar = avatar;
     }
 
-    public Byte getIsActive() {
+    public Boolean getIsActive() {
         return this.isActive;
     }
 
-    public void setIsActive(Byte isActive) {
+    public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
 

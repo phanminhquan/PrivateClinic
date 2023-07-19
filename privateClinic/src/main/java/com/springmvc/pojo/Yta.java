@@ -8,11 +8,13 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -20,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author DELL
+ * @author user
  */
 @Entity
 @Table(name = "yta")
@@ -33,18 +35,18 @@ public class Yta implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "maYT")
     private Long maYT;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "bangCap")
+    @Column(name = "BangCap")
     private String bangCap;
-    @JoinColumn(name = "maYT", referencedColumnName = "maNV", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private NhanVien nhanVien;
+    @JoinColumn(name = "maNV", referencedColumnName = "maNV")
+    @ManyToOne
+    private NhanVien maNV;
 
     public Yta() {
     }
@@ -74,12 +76,12 @@ public class Yta implements Serializable {
         this.bangCap = bangCap;
     }
 
-    public NhanVien getNhanVien() {
-        return nhanVien;
+    public NhanVien getMaNV() {
+        return maNV;
     }
 
-    public void setNhanVien(NhanVien nhanVien) {
-        this.nhanVien = nhanVien;
+    public void setMaNV(NhanVien maNV) {
+        this.maNV = maNV;
     }
 
     @Override

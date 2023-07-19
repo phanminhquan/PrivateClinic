@@ -8,7 +8,7 @@ public class PhieuKhamDTO {
     private String trieuChung;
     private String chuanDoan;
     private Long maBn;
-    private Byte xacnhan;
+    private Boolean xacnhan;
 
     public Long getMaPk() {
         return this.maPk;
@@ -50,11 +50,11 @@ public class PhieuKhamDTO {
         this.maBn = maBn;
     }
 
-    public Byte getXacnhan() {
+    public Boolean getXacnhan() {
         return this.xacnhan;
     }
 
-    public void setXacnhan(Byte xacnhan) {
+    public void setXacnhan(Boolean xacnhan) {
         this.xacnhan = xacnhan;
     }
 }

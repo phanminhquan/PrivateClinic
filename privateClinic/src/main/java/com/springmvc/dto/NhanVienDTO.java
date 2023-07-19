@@ -1,6 +1,5 @@
 package com.springmvc.dto;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 
 public class NhanVienDTO {
