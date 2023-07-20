@@ -21,8 +21,8 @@ public class ApiThuocController {
                 HttpStatus.OK);
     }
     @PostMapping("/api/thuoc")
-    public ThuocDTO createThuoc(@RequestBody ThuocDTO thuocDTO)
+    public ResponseEntity<ThuocDTO> createThuoc(@RequestBody ThuocDTO thuocDTO)
     {
-        return thuocService.createThuoc(thuocDTO);
+        return new ResponseEntity<>(this.thuocService.createThuoc(thuocDTO),HttpStatus.CREATED);
     }
 }

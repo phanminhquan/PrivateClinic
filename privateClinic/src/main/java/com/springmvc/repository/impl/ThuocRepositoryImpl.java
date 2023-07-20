@@ -2,7 +2,6 @@ package com.springmvc.repository.impl;
 
 import com.springmvc.pojo.Thuoc;
 import com.springmvc.repository.Thuocrepository;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +28,7 @@ public class ThuocRepositoryImpl implements Thuocrepository {
     @Override
     public Thuoc createThuoc(Thuoc thuoc) {
         Session s = factoryBean.getObject().getCurrentSession();
-        try {
-            s.save(thuoc);
-            return thuoc;
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            return null;
-        }
+        s.save(thuoc);
+        return thuoc;
     }
 }

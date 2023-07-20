@@ -4,6 +4,7 @@
  */
 package com.springmvc.configs;
 
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -15,8 +16,8 @@ public class DispatcherServletInit extends AbstractAnnotationConfigDispatcherSer
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class[] {
-                HibernateConfig.class,
-                SpringSecurityConfig.class
+                HibernateConfig.class
+
         };
     }
 

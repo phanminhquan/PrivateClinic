@@ -1,6 +1,8 @@
 package com.springmvc.repository.impl;
 
 import com.springmvc.dto.BacSiDTO;
+import com.springmvc.pojo.BacSi;
+import com.springmvc.pojo.NhanVien;
 import com.springmvc.repository.BacSiRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,15 @@ public class BacSiRepositoryImpl implements BacSiRepository {
     @Autowired
     private LocalSessionFactoryBean factory;
     @Override
-    public List<BacSiDTO> getListBS() {
+    public List<BacSi> getListBS() {
         Session s = factory.getObject().getCurrentSession();
         Query q = s.createQuery("from BacSi");
         return q.getResultList();
+    }
+
+    @Override
+    public Long findUserById() {
+        NhanVien nv = new NhanVien();
+        return nv.getMaNV();
     }
 }
