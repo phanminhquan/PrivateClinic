@@ -26,8 +26,45 @@ public class BacSiRepositoryImpl implements BacSiRepository {
     }
 
     @Override
-    public Long findUserById() {
+    public NhanVien findUserById(Long id) {
         NhanVien nv = new NhanVien();
-        return nv.getMaNV();
+        Session s = factory.getObject().getCurrentSession();
+        nv = s.get(NhanVien.class,id);
+        return nv;
     }
+
+    @Override
+    public BacSi createBS(BacSi bacSi) {
+        Session s = factory.getObject().getCurrentSession();
+        s.save(bacSi);
+        return bacSi;
+    }
+
+    @Override
+    public void deleteBS(Long id) {
+        BacSi bs = new BacSi();
+        Session s = factory.getObject().getCurrentSession();
+        bs = s.get(BacSi.class,id);
+        s.delete(bs);
+    }
+
+    @Override
+    public BacSi findBacSiById(Long id) {
+        BacSi bs = new BacSi();
+        Session s = factory.getObject().getCurrentSession();
+        bs = s.get(BacSi.class,id);
+        return  bs;
+    }
+
+    @Override
+    public BacSi updateBS(BacSi bacSi) {
+        BacSi bs = new BacSi();
+        Session s = factory.getObject().getCurrentSession();
+        bs = s.get(BacSi.class, bacSi.getMaBS());
+        bs.setChungChi(bacSi.getChungChi());
+        bs.setChuyenMon(bacSi.getChuyenMon());
+        s.update(bs);
+        return  bs;
+    }
+
 }

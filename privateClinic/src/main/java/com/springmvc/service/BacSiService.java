@@ -6,4 +6,12 @@ import java.util.List;
 
 public interface BacSiService {
     List<BacSiDTO> getListBS();
+
+    BacSiDTO createBS (BacSiDTO bacSiDTO);
+
+    void deleteBS(Long id);
+
+    BacSiDTO updateBS (BacSiDTO bacSiDTO);
+
+    BacSiDTO findBSByID (Long id);
 }

@@ -20,10 +20,28 @@ public class BacSiServiceImpl implements BacSiService {
     public BacSiDTO toDto (BacSi bacSi)
     {
         BacSiDTO bs = new BacSiDTO();
-        bs.setMaBs(bacSi.getMaBS());
+        if(bacSi.getMaBS() != null) {
+            bs.setMaBs(bacSi.getMaBS());
+        }
         bs.setChungChi(bacSi.getChungChi());
         bs.setChuyenMon(bacSi.getChuyenMon());
         bs.setMaNv(bacSi.getMaNV().getMaNV());
+        return bs;
+    }
+
+    public BacSi toEntity (BacSiDTO bacSi)
+    {
+        BacSi bs = new BacSi();
+        bs.setMaBS(bacSi.getMaBs());
+        bs.setChungChi(bacSi.getChungChi());
+        bs.setChuyenMon(bacSi.getChuyenMon());
+        return bs;
+    }
+    public BacSi toEntity (BacSiDTO bacSi, BacSi bs)
+    {
+        bs.setMaBS(bacSi.getMaBs());
+        bs.setChungChi(bacSi.getChungChi());
+        bs.setChuyenMon(bacSi.getChuyenMon());
         return bs;
     }
     public List<BacSiDTO> toBacSiDTO(List<BacSi> t) {
@@ -40,5 +58,36 @@ public class BacSiServiceImpl implements BacSiService {
     public List<BacSiDTO> getListBS() {
         List<BacSi> bs = bacSiRepository.getListBS();
         return toBacSiDTO(bs);
+    }
+
+    @Override
+    public BacSiDTO createBS(BacSiDTO bacSiDTO) {
+        BacSi bacSi = new BacSi();
+        bacSi = toEntity(bacSiDTO);
+        NhanVien nhanVien = bacSiRepository.findUserById(bacSiDTO.getMaNv());
+        bacSi.setMaNV(nhanVien);
+        bacSi = bacSiRepository.createBS(bacSi);
+        return toDto(bacSi);
+    }
+
+    @Override
+    public void deleteBS(Long id) {
+        bacSiRepository.deleteBS(id);
+    }
+
+    @Override
+    public BacSiDTO updateBS(BacSiDTO bacSiDTO) {
+        BacSi bacSi = new BacSi();
+        bacSi = toEntity(bacSiDTO);
+        NhanVien nhanVien = bacSiRepository.findUserById(bacSiDTO.getMaNv());
+        bacSi.setMaNV(nhanVien);
+        bacSi = bacSiRepository.updateBS(bacSi);
+        return toDto(bacSi);
+    }
+
+    @Override
+    public BacSiDTO findBSByID(Long id) {
+        BacSi bs = bacSiRepository.findBacSiById(id);
+        return toDto(bs);
     }
 }
