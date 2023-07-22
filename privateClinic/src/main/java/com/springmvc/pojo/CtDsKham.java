@@ -38,7 +38,7 @@ public class CtDsKham implements Serializable {
     @Column(name = "maCTDS")
     private Long maCTDS;
     @Column(name = "trangthai")
-    private Short trangthai;
+    private Boolean trangthai;
     @JoinColumn(name = "maBN", referencedColumnName = "maBN")
     @ManyToOne(optional = false)
     private BenhNhan maBN;
@@ -64,11 +64,11 @@ public class CtDsKham implements Serializable {
         this.maCTDS = maCTDS;
     }
 
-    public Short getTrangthai() {
+    public boolean getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(Short trangthai) {
+    public void setTrangthai(boolean trangthai) {
         this.trangthai = trangthai;
     }
 

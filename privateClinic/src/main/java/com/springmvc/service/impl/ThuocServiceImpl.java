@@ -4,6 +4,7 @@ import com.springmvc.dto.ThuocDTO;
 import com.springmvc.pojo.Thuoc;
 import com.springmvc.repository.Thuocrepository;
 import com.springmvc.service.ThuocService;
+import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,9 @@ public class ThuocServiceImpl implements ThuocService {
     {
         Thuoc t = new Thuoc();
         t.setDonVi(thuocDTO.getDonVi());
-        t.setMaThuoc(thuocDTO.getMaThuoc());
+        if(thuocDTO.getMaThuoc()!=null){
+            t.setMaThuoc(thuocDTO.getMaThuoc());
+        }
         t.setHinhAnh(thuocDTO.getHinhAnh());
         t.setMoTa(thuocDTO.getMoTa());
         t.setIsActive(thuocDTO.getIsActive());
@@ -60,5 +63,22 @@ public class ThuocServiceImpl implements ThuocService {
         thuoc = toEntity(thuocDTO);
         thuoc = thuocrepository.createThuoc(thuoc);
         return toDto(thuoc);
+    }
+
+    @Override
+    public ThuocDTO updateThuoc(ThuocDTO thuoc) {
+        Thuoc t = toEntity(thuoc);
+        t = thuocrepository.updateThuoc(t);
+        return toDto(t);
+    }
+
+    @Override
+    public ThuocDTO getThuocById(long id) {
+        return toDto(thuocrepository.getThuocById(id));
+    }
+
+    @Override
+    public void deleteThuoc(long id) {
+        thuocrepository.deleteThuoc(id);
     }
 }

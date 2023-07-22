@@ -1,5 +1,7 @@
 package com.springmvc.dto;
 
+import com.springmvc.pojo.NhanVien;
+
 public class YtaDTO {
     private Long maYt;
     private String bangCap;
