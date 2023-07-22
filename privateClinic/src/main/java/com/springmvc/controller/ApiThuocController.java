@@ -25,4 +25,20 @@ public class ApiThuocController {
     {
         return new ResponseEntity<>(this.thuocService.createThuoc(thuocDTO),HttpStatus.CREATED);
     }
+
+    @GetMapping("/api/thuoc/{id}")
+    public  ResponseEntity<ThuocDTO> getThuocById(@PathVariable("id") long id){
+        return  new ResponseEntity<>(this.thuocService.getThuocById(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/api/thuoc/{id}")
+    public ResponseEntity<ThuocDTO> updateThuoc(@PathVariable("id") long id, @RequestBody ThuocDTO t){
+        t.setMaThuoc(id);
+        return new ResponseEntity<>(this.thuocService.updateThuoc(t) ,HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/api/thuoc/{id}")
+    public void deleteThuoc(@PathVariable("id") long id){
+        thuocService.deleteThuoc(id );
+    }
 }
