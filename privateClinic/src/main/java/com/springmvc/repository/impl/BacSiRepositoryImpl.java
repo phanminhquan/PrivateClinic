@@ -27,10 +27,8 @@ public class BacSiRepositoryImpl implements BacSiRepository {
 
     @Override
     public NhanVien findUserById(Long id) {
-        NhanVien nv = new NhanVien();
         Session s = factory.getObject().getCurrentSession();
-        nv = s.get(NhanVien.class,id);
-        return nv;
+        return s.get(NhanVien.class,id);
     }
 
     @Override
@@ -42,10 +40,8 @@ public class BacSiRepositoryImpl implements BacSiRepository {
 
     @Override
     public void deleteBS(Long id) {
-        BacSi bs = new BacSi();
         Session s = factory.getObject().getCurrentSession();
-        bs = s.get(BacSi.class,id);
-        s.delete(bs);
+        s.delete(s.get(BacSi.class,id));
     }
 
     @Override
