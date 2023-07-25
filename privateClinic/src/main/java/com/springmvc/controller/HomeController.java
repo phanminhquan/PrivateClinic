@@ -25,8 +25,8 @@ public class HomeController {
     @RequestMapping("/")
     public String index(Model model)
     {
-        List<ThuocDTO> q = thuocService.getListThuoc();
-        model.addAttribute("thuoc", q);
+//        List<ThuocDTO> q = thuocService.getListThuoc();
+//        model.addAttribute("thuoc", q);
         return "index";
     }
 }
