@@ -1,5 +1,6 @@
 package com.springmvc.service.impl;
 
+import com.springmvc.customresponse.BacSiResponse;
 import com.springmvc.dto.BacSiDTO;
 import com.springmvc.pojo.BacSi;
 import com.springmvc.pojo.NhanVien;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class BacSiServiceImpl implements BacSiService {
 
@@ -89,5 +92,23 @@ public class BacSiServiceImpl implements BacSiService {
     public BacSiDTO findBSByID(Long id) {
         BacSi bs = bacSiRepository.findBacSiById(id);
         return toDto(bs);
+    }
+
+    @Override
+    public List<Object[]> getList(Map<String, String> params) {
+        return bacSiRepository.getListBacSi(params);
+    }
+
+
+    @Override
+    public List<String> getAllChuyenMon() {
+        List<BacSiDTO> list  = this.getListBS();
+        List<String> listChuyenMon = new ArrayList<>();
+        for(BacSiDTO b : list){
+            if (!listChuyenMon.contains(b.getChuyenMon())){
+                listChuyenMon.add(b.getChuyenMon());
+            }
+        }
+        return  listChuyenMon;
     }
 }

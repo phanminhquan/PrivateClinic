@@ -1,5 +1,6 @@
 package com.springmvc.controller;
 
+import com.springmvc.customresponse.BacSiResponse;
 import com.springmvc.dto.BacSiDTO;
 import com.springmvc.dto.ThuocDTO;
 import com.springmvc.service.BacSiService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ApiBacSiController {
@@ -19,6 +21,12 @@ public class ApiBacSiController {
     {
         return new ResponseEntity<>(this.bacSiService.getListBS(),HttpStatus.OK);
     }
+    @GetMapping("/api/bacsicus/")
+    public ResponseEntity<List<Object[]>> getListBSCus(@RequestParam Map<String, String> params)
+    {
+        return new ResponseEntity<>(this.bacSiService.getList(params),HttpStatus.OK);
+    }
+
 
     @PostMapping("/api/bacsi/")
     public ResponseEntity<BacSiDTO> createBacSi(@RequestBody BacSiDTO bacSiDTO)
