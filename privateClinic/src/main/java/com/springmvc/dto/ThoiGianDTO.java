@@ -1,10 +1,10 @@
 package com.springmvc.dto;
 
-import java.util.Date;
+import java.sql.Time;
 
 public class ThoiGianDTO {
     private Long maTg;
-    private Date gio;
+    private Time gio;
 
     public Long getMaTg() {
         return this.maTg;
@@ -14,11 +14,11 @@ public class ThoiGianDTO {
         this.maTg = maTg;
     }
 
-    public Date getGio() {
+    public Time getGio() {
         return this.gio;
     }
 
-    public void setGio(Date gio) {
+    public void setGio(Time gio) {
         this.gio = gio;
     }
 }

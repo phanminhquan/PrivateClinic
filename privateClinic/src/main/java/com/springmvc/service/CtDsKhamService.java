@@ -1,7 +1,6 @@
 package com.springmvc.service;
 
 import com.springmvc.dto.CtDsKhamDTO;
-import com.springmvc.pojo.CtDsKham;
 
 import java.util.List;
 

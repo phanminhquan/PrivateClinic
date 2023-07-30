@@ -32,9 +32,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "ds_kham_benh")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "DsKhamBenh.findAll", query = "SELECT d FROM DsKhamBenh d"),
-        @NamedQuery(name = "DsKhamBenh.findByMaDS", query = "SELECT d FROM DsKhamBenh d WHERE d.maDS = :maDS"),
-        @NamedQuery(name = "DsKhamBenh.findByNgayKham", query = "SELECT d FROM DsKhamBenh d WHERE d.ngayKham = :ngayKham")})
+    @NamedQuery(name = "DsKhamBenh.findAll", query = "SELECT d FROM DsKhamBenh d"),
+    @NamedQuery(name = "DsKhamBenh.findByMaDS", query = "SELECT d FROM DsKhamBenh d WHERE d.maDS = :maDS"),
+    @NamedQuery(name = "DsKhamBenh.findByNgayKham", query = "SELECT d FROM DsKhamBenh d WHERE d.ngayKham = :ngayKham")})
 public class DsKhamBenh implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -112,5 +112,5 @@ public class DsKhamBenh implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.DsKhamBenh[ maDS=" + maDS + " ]";
     }
-
+    
 }

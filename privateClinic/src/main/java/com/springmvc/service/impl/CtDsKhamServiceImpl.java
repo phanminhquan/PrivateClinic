@@ -3,7 +3,6 @@ package com.springmvc.service.impl;
 import com.springmvc.dto.CtDsKhamDTO;
 import com.springmvc.pojo.BenhNhan;
 import com.springmvc.pojo.CtDsKham;
-
 import com.springmvc.pojo.DsKhamBenh;
 import com.springmvc.pojo.ThoiGian;
 import com.springmvc.repository.BenhNhanRepository;

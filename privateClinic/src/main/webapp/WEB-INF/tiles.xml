@@ -25,4 +25,14 @@
                 <put-attribute name="content"
                                value="/WEB-INF/pages/doctor.jsp" />
         </definition>
+        <definition name="yta" extends="baseLayout">
+                <put-attribute name="title" value="Danh sách y tá" />
+                <put-attribute name="content"
+                               value="/WEB-INF/pages/admin/yta.jsp" />
+        </definition>
+        <definition name="addyta" extends="baseLayout">
+                <put-attribute name="title" value="Quản lý y tá" />
+                <put-attribute name="content"
+                               value="/WEB-INF/pages/admin/addyta.jsp" />
+        </definition>
 </tiles-definitions>

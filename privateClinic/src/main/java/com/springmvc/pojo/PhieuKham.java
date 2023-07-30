@@ -36,10 +36,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "phieu_kham")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "PhieuKham.findAll", query = "SELECT p FROM PhieuKham p"),
-        @NamedQuery(name = "PhieuKham.findByMaPK", query = "SELECT p FROM PhieuKham p WHERE p.maPK = :maPK"),
-        @NamedQuery(name = "PhieuKham.findByNgayKham", query = "SELECT p FROM PhieuKham p WHERE p.ngayKham = :ngayKham"),
-        @NamedQuery(name = "PhieuKham.findByXacnhan", query = "SELECT p FROM PhieuKham p WHERE p.xacnhan = :xacnhan")})
+    @NamedQuery(name = "PhieuKham.findAll", query = "SELECT p FROM PhieuKham p"),
+    @NamedQuery(name = "PhieuKham.findByMaPK", query = "SELECT p FROM PhieuKham p WHERE p.maPK = :maPK"),
+    @NamedQuery(name = "PhieuKham.findByNgayKham", query = "SELECT p FROM PhieuKham p WHERE p.ngayKham = :ngayKham"),
+    @NamedQuery(name = "PhieuKham.findByXacnhan", query = "SELECT p FROM PhieuKham p WHERE p.xacnhan = :xacnhan")})
 public class PhieuKham implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -165,5 +165,5 @@ public class PhieuKham implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.PhieuKham[ maPK=" + maPK + " ]";
     }
-
+    
 }

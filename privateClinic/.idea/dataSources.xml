@@ -8,14 +8,7 @@
       <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="privateclinic@localhost" uuid="7377eae3-b190-43ff-9aaa-c105515ecc68">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/privateclinic</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="privateclinic@localhost [2]" uuid="2db5de1c-ccd4-4052-b691-0b6d2cfe3bd0">
+    <data-source source="LOCAL" name="privateclinic@localhost" uuid="f8347a63-b279-4979-a050-9f2ca3a37d26">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

@@ -4,7 +4,6 @@ import com.springmvc.dto.ThuocDTO;
 import com.springmvc.pojo.Thuoc;
 import com.springmvc.repository.Thuocrepository;
 import com.springmvc.service.ThuocService;
-import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

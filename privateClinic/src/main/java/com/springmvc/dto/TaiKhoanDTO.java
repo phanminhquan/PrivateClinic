@@ -9,6 +9,7 @@ public class TaiKhoanDTO {
     private Boolean isActive;
     private String userRole;
     private Long maNv;
+    private Long tkRole;
 
     public Long getId() {
         return this.id;
@@ -72,5 +73,13 @@ public class TaiKhoanDTO {
 
     public void setMaNv(Long maNv) {
         this.maNv = maNv;
+    }
+
+    public Long getTkRole() {
+        return this.tkRole;
+    }
+
+    public void setTkRole(Long tkRole) {
+        this.tkRole = tkRole;
     }
 }

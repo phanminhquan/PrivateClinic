@@ -30,12 +30,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "hoa_don")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "HoaDon.findAll", query = "SELECT h FROM HoaDon h"),
-        @NamedQuery(name = "HoaDon.findByMaHD", query = "SELECT h FROM HoaDon h WHERE h.maHD = :maHD"),
-        @NamedQuery(name = "HoaDon.findByTienThuoc", query = "SELECT h FROM HoaDon h WHERE h.tienThuoc = :tienThuoc"),
-        @NamedQuery(name = "HoaDon.findByTienKham", query = "SELECT h FROM HoaDon h WHERE h.tienKham = :tienKham"),
-        @NamedQuery(name = "HoaDon.findByTongTien", query = "SELECT h FROM HoaDon h WHERE h.tongTien = :tongTien"),
-        @NamedQuery(name = "HoaDon.findByCreatedDate", query = "SELECT h FROM HoaDon h WHERE h.createdDate = :createdDate")})
+    @NamedQuery(name = "HoaDon.findAll", query = "SELECT h FROM HoaDon h"),
+    @NamedQuery(name = "HoaDon.findByMaHD", query = "SELECT h FROM HoaDon h WHERE h.maHD = :maHD"),
+    @NamedQuery(name = "HoaDon.findByTienThuoc", query = "SELECT h FROM HoaDon h WHERE h.tienThuoc = :tienThuoc"),
+    @NamedQuery(name = "HoaDon.findByTienKham", query = "SELECT h FROM HoaDon h WHERE h.tienKham = :tienKham"),
+    @NamedQuery(name = "HoaDon.findByTongTien", query = "SELECT h FROM HoaDon h WHERE h.tongTien = :tongTien"),
+    @NamedQuery(name = "HoaDon.findByCreatedDate", query = "SELECT h FROM HoaDon h WHERE h.createdDate = :createdDate")})
 public class HoaDon implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -152,5 +152,5 @@ public class HoaDon implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.HoaDon[ maHD=" + maHD + " ]";
     }
-
+    
 }

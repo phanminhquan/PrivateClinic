@@ -1,6 +1,5 @@
 package com.springmvc.repository.impl;
 
-import com.springmvc.dto.ThuocDTO;
 import com.springmvc.pojo.Thuoc;
 import com.springmvc.repository.Thuocrepository;
 import org.hibernate.Query;

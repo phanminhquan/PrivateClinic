@@ -1,10 +1,10 @@
 package com.springmvc.dto;
 
-import java.util.Date;
+import java.sql.Time;
 
 public class CaTrucDTO {
     private Integer maCt;
-    private Date gioTruc;
+    private Time gioTruc;
 
     public Integer getMaCt() {
         return this.maCt;
@@ -14,11 +14,11 @@ public class CaTrucDTO {
         this.maCt = maCt;
     }
 
-    public Date getGioTruc() {
+    public Time getGioTruc() {
         return this.gioTruc;
     }
 
-    public void setGioTruc(Date gioTruc) {
+    public void setGioTruc(Time gioTruc) {
         this.gioTruc = gioTruc;
     }
 }

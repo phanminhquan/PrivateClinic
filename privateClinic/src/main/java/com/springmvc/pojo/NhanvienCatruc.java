@@ -26,8 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "nhanvien_catruc")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "NhanvienCatruc.findAll", query = "SELECT n FROM NhanvienCatruc n"),
-        @NamedQuery(name = "NhanvienCatruc.findByMaNVCT", query = "SELECT n FROM NhanvienCatruc n WHERE n.maNVCT = :maNVCT")})
+    @NamedQuery(name = "NhanvienCatruc.findAll", query = "SELECT n FROM NhanvienCatruc n"),
+    @NamedQuery(name = "NhanvienCatruc.findByMaNVCT", query = "SELECT n FROM NhanvienCatruc n WHERE n.maNVCT = :maNVCT")})
 public class NhanvienCatruc implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -98,5 +98,5 @@ public class NhanvienCatruc implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.NhanvienCatruc[ maNVCT=" + maNVCT + " ]";
     }
-
+    
 }

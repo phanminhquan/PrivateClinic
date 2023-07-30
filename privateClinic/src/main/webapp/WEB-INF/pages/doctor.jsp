@@ -14,15 +14,15 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav me-auto">
-                <c:forEach items="${chuyenmon}" var="c">
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">${c}</a>
-                    </li>
-                </c:forEach>
+<%--            <ul class="navbar-nav me-auto">--%>
+<%--                <c:forEach items="${chuyenmon}" var="c">--%>
+<%--                    <li class="nav-item">--%>
+<%--                        <a class="nav-link" href="javascript:void(0)">${c}</a>--%>
+<%--                    </li>--%>
+<%--                </c:forEach>--%>
 
 
-            </ul>
+<%--            </ul>--%>
             <form class="d-flex">
                 <input class="form-control me-2" type="text" placeholder="Search">
                 <button class="btn btn-primary" type="button">Search</button>
@@ -43,8 +43,6 @@
             <th></th>
             <th>Mã bác sĩ</th>
             <th>Họ và tên</th>
-            <th>Chuyên môn</th>
-            <th>Chứng chỉ</th>
             <th>Ngày sinh</th>
             <th>Email</th>
             <th>Số điện thoại</th>
@@ -54,25 +52,22 @@
         </thead>
         <tbody>
         <tr>
-            <c:forEach items="${bacsi}" var="b">
+            <c:forEach items="${doctor}" var="b">
                 <td>
-                    <img src="${b[8]}" alt="${b[3]}" style="width: 50px">
+                    <img src="${b.hinhAnh}" alt="${b.hoTen}" style="width: 50px">
                 </td>
-                <td>${b[0]}</td>
-                <td>${b[3]}</td>
-                <td>${b[2]}</td>
-                <td>${b[1]}</td>
-                <td>${b[5]}</td>
-                <td>${b[4]}</td>
-                <td>${b[7]}</td>
-                <td>${b[6]}</td>
+                <td>${b.maNv}</td>
+                <td>${b.hoTen}</td>
+                <td>${b.ngaySinh}</td>
+                <td>${b.email}</td>
+                <td>${b.dienThoai}</td>
+                <td>${b.diaChi}</td>
                 <td>
                     <a class="btn btn-success">Sửa</a>
                     <a class="btn btn-danger">Xóa</a>
                 </td>
             </c:forEach>
 
-            
         </tr>
         </tbody>
     </table>

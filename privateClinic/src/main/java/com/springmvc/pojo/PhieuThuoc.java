@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "phieu_thuoc")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "PhieuThuoc.findAll", query = "SELECT p FROM PhieuThuoc p"),
-        @NamedQuery(name = "PhieuThuoc.findByMaPKThuoc", query = "SELECT p FROM PhieuThuoc p WHERE p.maPKThuoc = :maPKThuoc"),
-        @NamedQuery(name = "PhieuThuoc.findBySoLuong", query = "SELECT p FROM PhieuThuoc p WHERE p.soLuong = :soLuong"),
-        @NamedQuery(name = "PhieuThuoc.findByCachDung", query = "SELECT p FROM PhieuThuoc p WHERE p.cachDung = :cachDung")})
+    @NamedQuery(name = "PhieuThuoc.findAll", query = "SELECT p FROM PhieuThuoc p"),
+    @NamedQuery(name = "PhieuThuoc.findByMaPKThuoc", query = "SELECT p FROM PhieuThuoc p WHERE p.maPKThuoc = :maPKThuoc"),
+    @NamedQuery(name = "PhieuThuoc.findBySoLuong", query = "SELECT p FROM PhieuThuoc p WHERE p.soLuong = :soLuong"),
+    @NamedQuery(name = "PhieuThuoc.findByCachDung", query = "SELECT p FROM PhieuThuoc p WHERE p.cachDung = :cachDung")})
 public class PhieuThuoc implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -122,5 +122,5 @@ public class PhieuThuoc implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.PhieuThuoc[ maPKThuoc=" + maPKThuoc + " ]";
     }
-
+    
 }

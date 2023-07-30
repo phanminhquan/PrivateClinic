@@ -32,9 +32,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "thoi_gian")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "ThoiGian.findAll", query = "SELECT t FROM ThoiGian t"),
-        @NamedQuery(name = "ThoiGian.findByMaTG", query = "SELECT t FROM ThoiGian t WHERE t.maTG = :maTG"),
-        @NamedQuery(name = "ThoiGian.findByGio", query = "SELECT t FROM ThoiGian t WHERE t.gio = :gio")})
+    @NamedQuery(name = "ThoiGian.findAll", query = "SELECT t FROM ThoiGian t"),
+    @NamedQuery(name = "ThoiGian.findByMaTG", query = "SELECT t FROM ThoiGian t WHERE t.maTG = :maTG"),
+    @NamedQuery(name = "ThoiGian.findByGio", query = "SELECT t FROM ThoiGian t WHERE t.gio = :gio")})
 public class ThoiGian implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -112,5 +112,5 @@ public class ThoiGian implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.ThoiGian[ maTG=" + maTG + " ]";
     }
-
+    
 }

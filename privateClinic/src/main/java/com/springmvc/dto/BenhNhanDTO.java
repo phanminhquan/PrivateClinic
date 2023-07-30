@@ -8,7 +8,7 @@ public class BenhNhanDTO {
     private String dienThoai;
     private String email;
     private Date ngaySinh;
-    private Byte gioiTinh;
+    private Boolean gioiTinh;
     private String diaChi;
     private String avatar;
 
@@ -52,11 +52,11 @@ public class BenhNhanDTO {
         this.ngaySinh = ngaySinh;
     }
 
-    public Byte getGioiTinh() {
+    public Boolean getGioiTinh() {
         return this.gioiTinh;
     }
 
-    public void setGioiTinh(Byte gioiTinh) {
+    public void setGioiTinh(Boolean gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 

@@ -30,9 +30,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "ca_truc")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "CaTruc.findAll", query = "SELECT c FROM CaTruc c"),
-        @NamedQuery(name = "CaTruc.findByMaCT", query = "SELECT c FROM CaTruc c WHERE c.maCT = :maCT"),
-        @NamedQuery(name = "CaTruc.findByGioTruc", query = "SELECT c FROM CaTruc c WHERE c.gioTruc = :gioTruc")})
+    @NamedQuery(name = "CaTruc.findAll", query = "SELECT c FROM CaTruc c"),
+    @NamedQuery(name = "CaTruc.findByMaCT", query = "SELECT c FROM CaTruc c WHERE c.maCT = :maCT"),
+    @NamedQuery(name = "CaTruc.findByGioTruc", query = "SELECT c FROM CaTruc c WHERE c.gioTruc = :gioTruc")})
 public class CaTruc implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -103,5 +103,5 @@ public class CaTruc implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.CaTruc[ maCT=" + maCT + " ]";
     }
-
+    
 }

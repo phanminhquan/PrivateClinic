@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "ct_ds_kham")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "CtDsKham.findAll", query = "SELECT c FROM CtDsKham c"),
-        @NamedQuery(name = "CtDsKham.findByMaCTDS", query = "SELECT c FROM CtDsKham c WHERE c.maCTDS = :maCTDS"),
-        @NamedQuery(name = "CtDsKham.findByTrangthai", query = "SELECT c FROM CtDsKham c WHERE c.trangthai = :trangthai")})
+    @NamedQuery(name = "CtDsKham.findAll", query = "SELECT c FROM CtDsKham c"),
+    @NamedQuery(name = "CtDsKham.findByMaCTDS", query = "SELECT c FROM CtDsKham c WHERE c.maCTDS = :maCTDS"),
+    @NamedQuery(name = "CtDsKham.findByTrangthai", query = "SELECT c FROM CtDsKham c WHERE c.trangthai = :trangthai")})
 public class CtDsKham implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,11 +64,11 @@ public class CtDsKham implements Serializable {
         this.maCTDS = maCTDS;
     }
 
-    public boolean getTrangthai() {
+    public Boolean getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(boolean trangthai) {
+    public void setTrangthai(Boolean trangthai) {
         this.trangthai = trangthai;
     }
 
@@ -120,5 +120,5 @@ public class CtDsKham implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.CtDsKham[ maCTDS=" + maCTDS + " ]";
     }
-
+    
 }

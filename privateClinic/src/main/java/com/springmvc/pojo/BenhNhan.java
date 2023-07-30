@@ -33,15 +33,15 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "benh_nhan")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "BenhNhan.findAll", query = "SELECT b FROM BenhNhan b"),
-        @NamedQuery(name = "BenhNhan.findByMaBN", query = "SELECT b FROM BenhNhan b WHERE b.maBN = :maBN"),
-        @NamedQuery(name = "BenhNhan.findByHoTen", query = "SELECT b FROM BenhNhan b WHERE b.hoTen = :hoTen"),
-        @NamedQuery(name = "BenhNhan.findByDienThoai", query = "SELECT b FROM BenhNhan b WHERE b.dienThoai = :dienThoai"),
-        @NamedQuery(name = "BenhNhan.findByEmail", query = "SELECT b FROM BenhNhan b WHERE b.email = :email"),
-        @NamedQuery(name = "BenhNhan.findByNgaySinh", query = "SELECT b FROM BenhNhan b WHERE b.ngaySinh = :ngaySinh"),
-        @NamedQuery(name = "BenhNhan.findByGioiTinh", query = "SELECT b FROM BenhNhan b WHERE b.gioiTinh = :gioiTinh"),
-        @NamedQuery(name = "BenhNhan.findByDiaChi", query = "SELECT b FROM BenhNhan b WHERE b.diaChi = :diaChi"),
-        @NamedQuery(name = "BenhNhan.findByAvatar", query = "SELECT b FROM BenhNhan b WHERE b.avatar = :avatar")})
+    @NamedQuery(name = "BenhNhan.findAll", query = "SELECT b FROM BenhNhan b"),
+    @NamedQuery(name = "BenhNhan.findByMaBN", query = "SELECT b FROM BenhNhan b WHERE b.maBN = :maBN"),
+    @NamedQuery(name = "BenhNhan.findByHoTen", query = "SELECT b FROM BenhNhan b WHERE b.hoTen = :hoTen"),
+    @NamedQuery(name = "BenhNhan.findByDienThoai", query = "SELECT b FROM BenhNhan b WHERE b.dienThoai = :dienThoai"),
+    @NamedQuery(name = "BenhNhan.findByEmail", query = "SELECT b FROM BenhNhan b WHERE b.email = :email"),
+    @NamedQuery(name = "BenhNhan.findByNgaySinh", query = "SELECT b FROM BenhNhan b WHERE b.ngaySinh = :ngaySinh"),
+    @NamedQuery(name = "BenhNhan.findByGioiTinh", query = "SELECT b FROM BenhNhan b WHERE b.gioiTinh = :gioiTinh"),
+    @NamedQuery(name = "BenhNhan.findByDiaChi", query = "SELECT b FROM BenhNhan b WHERE b.diaChi = :diaChi"),
+    @NamedQuery(name = "BenhNhan.findByAvatar", query = "SELECT b FROM BenhNhan b WHERE b.avatar = :avatar")})
 public class BenhNhan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -214,5 +214,5 @@ public class BenhNhan implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.BenhNhan[ maBN=" + maBN + " ]";
     }
-
+    
 }

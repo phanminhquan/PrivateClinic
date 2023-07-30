@@ -1,7 +1,6 @@
 package com.springmvc.service;
 
 import com.springmvc.dto.ThuocDTO;
-import com.springmvc.pojo.Thuoc;
 
 import java.util.List;
 

@@ -31,14 +31,14 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "thuoc")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "Thuoc.findAll", query = "SELECT t FROM Thuoc t"),
-        @NamedQuery(name = "Thuoc.findByMaThuoc", query = "SELECT t FROM Thuoc t WHERE t.maThuoc = :maThuoc"),
-        @NamedQuery(name = "Thuoc.findByTenThuoc", query = "SELECT t FROM Thuoc t WHERE t.tenThuoc = :tenThuoc"),
-        @NamedQuery(name = "Thuoc.findBySoLuong", query = "SELECT t FROM Thuoc t WHERE t.soLuong = :soLuong"),
-        @NamedQuery(name = "Thuoc.findByGiaBan", query = "SELECT t FROM Thuoc t WHERE t.giaBan = :giaBan"),
-        @NamedQuery(name = "Thuoc.findByIsActive", query = "SELECT t FROM Thuoc t WHERE t.isActive = :isActive"),
-        @NamedQuery(name = "Thuoc.findByDonVi", query = "SELECT t FROM Thuoc t WHERE t.donVi = :donVi"),
-        @NamedQuery(name = "Thuoc.findByHinhAnh", query = "SELECT t FROM Thuoc t WHERE t.hinhAnh = :hinhAnh")})
+    @NamedQuery(name = "Thuoc.findAll", query = "SELECT t FROM Thuoc t"),
+    @NamedQuery(name = "Thuoc.findByMaThuoc", query = "SELECT t FROM Thuoc t WHERE t.maThuoc = :maThuoc"),
+    @NamedQuery(name = "Thuoc.findByTenThuoc", query = "SELECT t FROM Thuoc t WHERE t.tenThuoc = :tenThuoc"),
+    @NamedQuery(name = "Thuoc.findBySoLuong", query = "SELECT t FROM Thuoc t WHERE t.soLuong = :soLuong"),
+    @NamedQuery(name = "Thuoc.findByGiaBan", query = "SELECT t FROM Thuoc t WHERE t.giaBan = :giaBan"),
+    @NamedQuery(name = "Thuoc.findByIsActive", query = "SELECT t FROM Thuoc t WHERE t.isActive = :isActive"),
+    @NamedQuery(name = "Thuoc.findByDonVi", query = "SELECT t FROM Thuoc t WHERE t.donVi = :donVi"),
+    @NamedQuery(name = "Thuoc.findByHinhAnh", query = "SELECT t FROM Thuoc t WHERE t.hinhAnh = :hinhAnh")})
 public class Thuoc implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -198,5 +198,5 @@ public class Thuoc implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.Thuoc[ maThuoc=" + maThuoc + " ]";
     }
-
+    
 }

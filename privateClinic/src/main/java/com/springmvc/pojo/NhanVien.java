@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,14 +36,14 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "nhan_vien")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "NhanVien.findAll", query = "SELECT n FROM NhanVien n"),
-        @NamedQuery(name = "NhanVien.findByMaNV", query = "SELECT n FROM NhanVien n WHERE n.maNV = :maNV"),
-        @NamedQuery(name = "NhanVien.findByHoTen", query = "SELECT n FROM NhanVien n WHERE n.hoTen = :hoTen"),
-        @NamedQuery(name = "NhanVien.findByEmail", query = "SELECT n FROM NhanVien n WHERE n.email = :email"),
-        @NamedQuery(name = "NhanVien.findByNgaySinh", query = "SELECT n FROM NhanVien n WHERE n.ngaySinh = :ngaySinh"),
-        @NamedQuery(name = "NhanVien.findByDiaChi", query = "SELECT n FROM NhanVien n WHERE n.diaChi = :diaChi"),
-        @NamedQuery(name = "NhanVien.findByDienThoai", query = "SELECT n FROM NhanVien n WHERE n.dienThoai = :dienThoai"),
-        @NamedQuery(name = "NhanVien.findByHinhAnh", query = "SELECT n FROM NhanVien n WHERE n.hinhAnh = :hinhAnh")})
+    @NamedQuery(name = "NhanVien.findAll", query = "SELECT n FROM NhanVien n"),
+    @NamedQuery(name = "NhanVien.findByMaNV", query = "SELECT n FROM NhanVien n WHERE n.maNV = :maNV"),
+    @NamedQuery(name = "NhanVien.findByHoTen", query = "SELECT n FROM NhanVien n WHERE n.hoTen = :hoTen"),
+    @NamedQuery(name = "NhanVien.findByEmail", query = "SELECT n FROM NhanVien n WHERE n.email = :email"),
+    @NamedQuery(name = "NhanVien.findByNgaySinh", query = "SELECT n FROM NhanVien n WHERE n.ngaySinh = :ngaySinh"),
+    @NamedQuery(name = "NhanVien.findByDiaChi", query = "SELECT n FROM NhanVien n WHERE n.diaChi = :diaChi"),
+    @NamedQuery(name = "NhanVien.findByDienThoai", query = "SELECT n FROM NhanVien n WHERE n.dienThoai = :dienThoai"),
+    @NamedQuery(name = "NhanVien.findByHinhAnh", query = "SELECT n FROM NhanVien n WHERE n.hinhAnh = :hinhAnh")})
 public class NhanVien implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -79,12 +81,11 @@ public class NhanVien implements Serializable {
     @Size(max = 200)
     @Column(name = "hinhAnh")
     private String hinhAnh;
-    @OneToMany(mappedBy = "maNV")
-    private Set<Yta> ytaSet;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "maNV")
     private TaiKhoan taiKhoan;
-    @OneToMany(mappedBy = "maNV")
-    private Set<BacSi> bacSiSet;
+    @JoinColumn(name = "IdUser", referencedColumnName = "Id")
+    @ManyToOne
+    private UserRole idUser;
     @OneToMany(mappedBy = "idNV")
     private Set<NhanvienCatruc> nhanvienCatrucSet;
 
@@ -160,15 +161,6 @@ public class NhanVien implements Serializable {
         this.hinhAnh = hinhAnh;
     }
 
-    @XmlTransient
-    public Set<Yta> getYtaSet() {
-        return ytaSet;
-    }
-
-    public void setYtaSet(Set<Yta> ytaSet) {
-        this.ytaSet = ytaSet;
-    }
-
     public TaiKhoan getTaiKhoan() {
         return taiKhoan;
     }
@@ -177,13 +169,12 @@ public class NhanVien implements Serializable {
         this.taiKhoan = taiKhoan;
     }
 
-    @XmlTransient
-    public Set<BacSi> getBacSiSet() {
-        return bacSiSet;
+    public UserRole getIdUser() {
+        return idUser;
     }
 
-    public void setBacSiSet(Set<BacSi> bacSiSet) {
-        this.bacSiSet = bacSiSet;
+    public void setIdUser(UserRole idUser) {
+        this.idUser = idUser;
     }
 
     @XmlTransient
@@ -219,5 +210,5 @@ public class NhanVien implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.NhanVien[ maNV=" + maNV + " ]";
     }
-
+    
 }

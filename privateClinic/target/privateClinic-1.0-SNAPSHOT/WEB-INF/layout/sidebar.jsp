@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="layoutSidenav_nav">
-  <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+  <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
     <div class="sb-sidenav-menu">
       <div class="nav">
         <div class="sb-sidenav-menu-heading">Core</div>
@@ -42,15 +42,32 @@
             <a class="nav-link" href="#">Admin account</a>
           </nav>
         </div>
-
-        <a class="nav-link" href="/admin/bacsi">
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccount3"
+           aria-expanded="false" aria-controls="collapseAccount">
           <div class="sb-nav-link-icon"><i class="fa-solid fa-user-doctor"></i></div>
           Bác sĩ
+          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
         </a>
-        <a class="nav-link" href="/Admin/Home/Index">
-          <div class="sb-nav-link-icon"><i class="fa-solid fa-user-nurse"></i></div>
-          Y tá
+        <div class="collapse" id="collapseAccount3" aria-labelledby="headingOne"
+             data-bs-parent="#sidenavAccordion">
+          <nav class="sb-sidenav-menu-nested nav">
+            <a class="nav-link" href="#">Quản lý bác sĩ</a>
+            <a class="nav-link" href="/admin/bacsi">Danh sách bác sĩ</a>
+          </nav>
+        </div>
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccount4"
+           aria-expanded="false" aria-controls="collapseAccount">
+            <div class="sb-nav-link-icon"><i class="fa-solid fa-user-nurse"></i></div>
+            Y tá
+            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
         </a>
+        <div class="collapse" id="collapseAccount4" aria-labelledby="headingOne"
+             data-bs-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="/admin/add_yta">Quản lý y tá</a>
+                <a class="nav-link" href="/admin/yta">Danh sách y tá</a>
+            </nav>
+        </div>
         <a class="nav-link" href="#">
           <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
           Bệnh nhân

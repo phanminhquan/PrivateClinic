@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -28,14 +29,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "tai_khoan")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "TaiKhoan.findAll", query = "SELECT t FROM TaiKhoan t"),
-        @NamedQuery(name = "TaiKhoan.findById", query = "SELECT t FROM TaiKhoan t WHERE t.id = :id"),
-        @NamedQuery(name = "TaiKhoan.findByName", query = "SELECT t FROM TaiKhoan t WHERE t.name = :name"),
-        @NamedQuery(name = "TaiKhoan.findByUsername", query = "SELECT t FROM TaiKhoan t WHERE t.username = :username"),
-        @NamedQuery(name = "TaiKhoan.findByPassword", query = "SELECT t FROM TaiKhoan t WHERE t.password = :password"),
-        @NamedQuery(name = "TaiKhoan.findByAvatar", query = "SELECT t FROM TaiKhoan t WHERE t.avatar = :avatar"),
-        @NamedQuery(name = "TaiKhoan.findByIsActive", query = "SELECT t FROM TaiKhoan t WHERE t.isActive = :isActive"),
-        @NamedQuery(name = "TaiKhoan.findByUserRole", query = "SELECT t FROM TaiKhoan t WHERE t.userRole = :userRole")})
+    @NamedQuery(name = "TaiKhoan.findAll", query = "SELECT t FROM TaiKhoan t"),
+    @NamedQuery(name = "TaiKhoan.findById", query = "SELECT t FROM TaiKhoan t WHERE t.id = :id"),
+    @NamedQuery(name = "TaiKhoan.findByName", query = "SELECT t FROM TaiKhoan t WHERE t.name = :name"),
+    @NamedQuery(name = "TaiKhoan.findByUsername", query = "SELECT t FROM TaiKhoan t WHERE t.username = :username"),
+    @NamedQuery(name = "TaiKhoan.findByPassword", query = "SELECT t FROM TaiKhoan t WHERE t.password = :password"),
+    @NamedQuery(name = "TaiKhoan.findByAvatar", query = "SELECT t FROM TaiKhoan t WHERE t.avatar = :avatar"),
+    @NamedQuery(name = "TaiKhoan.findByIsActive", query = "SELECT t FROM TaiKhoan t WHERE t.isActive = :isActive"),
+    @NamedQuery(name = "TaiKhoan.findByUserRole", query = "SELECT t FROM TaiKhoan t WHERE t.userRole = :userRole")})
 public class TaiKhoan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -70,6 +71,9 @@ public class TaiKhoan implements Serializable {
     @JoinColumn(name = "maNV", referencedColumnName = "maNV")
     @OneToOne(optional = false)
     private NhanVien maNV;
+    @JoinColumn(name = "tk_role", referencedColumnName = "Id")
+    @ManyToOne
+    private TaiKhoanRole tkRole;
 
     public TaiKhoan() {
     }
@@ -149,6 +153,14 @@ public class TaiKhoan implements Serializable {
         this.maNV = maNV;
     }
 
+    public TaiKhoanRole getTkRole() {
+        return tkRole;
+    }
+
+    public void setTkRole(TaiKhoanRole tkRole) {
+        this.tkRole = tkRole;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -173,5 +185,5 @@ public class TaiKhoan implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.TaiKhoan[ id=" + id + " ]";
     }
-
+    
 }

@@ -10,6 +10,7 @@ public class NhanVienDTO {
     private String diaChi;
     private String dienThoai;
     private String hinhAnh;
+    private Long idUser;
 
     public Long getMaNv() {
         return this.maNv;
@@ -65,5 +66,13 @@ public class NhanVienDTO {
 
     public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
+    }
+
+    public Long getIdUser() {
+        return this.idUser;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 }

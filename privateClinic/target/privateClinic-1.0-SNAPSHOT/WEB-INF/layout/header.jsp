@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark text-bg-primary">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" href="index.html">Private Clinic - Admin</a>
     <!-- Sidebar Toggle-->
