@@ -25,11 +25,11 @@ public class ApiNhanVienController {
     {
         return new ResponseEntity<>(this.nhanVienService.getListBS(), HttpStatus.OK);
     }
-    @PostMapping("api/admin/nhanvien")
-    public ResponseEntity<NhanVienDTO> addOrUpdateNV (@RequestBody NhanVienDTO nhanVienDTO)
-    {
-        return new ResponseEntity<>(this.nhanVienService.addOrUpdateNhanVien(nhanVienDTO),HttpStatus.NO_CONTENT);
-    }
+//    @PostMapping("api/admin/nhanvien")
+//    public ResponseEntity<NhanVienDTO> addOrUpdateNV (@RequestBody NhanVienDTO nhanVienDTO)
+//    {
+//        return new ResponseEntity<>(this.nhanVienService.addOrUpdateNhanVien(nhanVienDTO),HttpStatus.NO_CONTENT);
+//    }
 
     @DeleteMapping("api/admin/nhanvien/{id}")
     public void deleteNhanVien (@PathVariable("id") long id)

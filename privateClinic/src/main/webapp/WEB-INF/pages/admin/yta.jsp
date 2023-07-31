@@ -39,20 +39,22 @@
         </thead>
         <tbody>
         <c:forEach items="${yta}" var="b">
-            <td>
-                <img src="${b.hinhAnh}" alt="${b.hoTen}" style="width: 50px">
-            </td>
-            <td>${b.maNv}</td>
-            <td>${b.hoTen}</td>
-            <td>${b.ngaySinh}</td>
-            <td>${b.email}</td>
-            <td>${b.dienThoai}</td>
-            <td>${b.diaChi}</td>
-            <td>
-                <c:url value="admin/yta/${b.maNv}" var="apiDel" />
-                <a class="btn btn-success">Sửa</a>
-                <button class="btn btn-danger" onclick="delPro('${apiDel}', ${b.maNv})">Xóa</button>
-            </td>
+            <tr>
+                <td>
+                    <img src="${b.hinhAnh}" alt="${b.hoTen}" style="width: 50px">
+                </td>
+                <td>${b.maNv}</td>
+                <td>${b.hoTen}</td>
+                <td>${b.ngaySinh}</td>
+                <td>${b.email}</td>
+                <td>${b.dienThoai}</td>
+                <td>${b.diaChi}</td>
+                <td>
+                    <c:url value="admin/yta/${b.maNv}" var="apiDel"/>
+                    <a href="<c:url value="/admin/yta/${b.maNv}" />" class="btn btn-success">Sửa</a>
+                    <button class="btn btn-danger" onclick="delPro('${apiDel}', ${b.maNv})">Xóa</button>
+                </td>
+            </tr>
         </c:forEach>
 
         </tbody>

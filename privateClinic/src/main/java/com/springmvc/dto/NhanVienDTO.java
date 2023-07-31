@@ -1,16 +1,27 @@
 package com.springmvc.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Date;
 
 public class NhanVienDTO {
     private Long maNv;
     private String hoTen;
     private String email;
-    private Date ngaySinh;
+    private String ngaySinh;
     private String diaChi;
     private String dienThoai;
     private String hinhAnh;
     private Long idUser;
+    private MultipartFile file;
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 
     public Long getMaNv() {
         return this.maNv;
@@ -36,11 +47,11 @@ public class NhanVienDTO {
         this.email = email;
     }
 
-    public Date getNgaySinh() {
+    public String getNgaySinh() {
         return this.ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 

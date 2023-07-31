@@ -4,6 +4,7 @@ package com.springmvc.service;
 import com.springmvc.dto.NhanVienDTO;
 import com.springmvc.pojo.NhanVien;
 
+import java.text.ParseException;
 import java.util.List;
 
 public interface NhanVienService {
@@ -13,7 +14,8 @@ public interface NhanVienService {
 
     List<NhanVienDTO> getListYT();
 
-    NhanVienDTO addOrUpdateNhanVien (NhanVienDTO nhanVienDTO);
+    NhanVienDTO addOrUpdateYta (NhanVienDTO nhanVienDTO) throws ParseException;
+    NhanVienDTO addOrUpdateBacSi (NhanVienDTO nhanVienDTO) throws ParseException;
 
     void deleteNhanVien (Long id);
 }
