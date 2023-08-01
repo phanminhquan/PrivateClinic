@@ -49,11 +49,13 @@ public class NhanVienServiceImpl implements NhanVienService {
         }
         nv.setHoTen(nhanVien.getHoTen());
         nv.setEmail(nhanVien.getEmail());
+
         String year = nhanVien.getNgaySinh().substring(0,4);
         String month = nhanVien.getNgaySinh().substring(5,7);
         String date = nhanVien.getNgaySinh().substring(8,10);
         String createDate = date.concat("/").concat(month).concat("/").concat(year);
         Date d =  Utils.dateParse(createDate);
+
         nv.setNgaySinh(d);
         nv.setDiaChi(nhanVien.getDiaChi());
         nv.setDienThoai(nhanVien.getDienThoai());
@@ -101,7 +103,7 @@ public class NhanVienServiceImpl implements NhanVienService {
         UserRole userRole = nhanVienRepository.findUserRoleById(2);
         nhanVien.setIdUser(userRole);
 
-        if (nhanVien.getFile() != null){
+        if (!nhanVien.getFile().isEmpty()){
             try {
                 Map res =  this.cloudinary.uploader().upload(nhanVien.getFile().getBytes(), ObjectUtils.asMap("resource_type","auto"));
                 nhanVien.setHinhAnh(res.get("secure_url").toString());
@@ -120,7 +122,6 @@ public class NhanVienServiceImpl implements NhanVienService {
         nhanVien = toEntity(nhanVienDTO);
         UserRole userRole = nhanVienRepository.findUserRoleById(1);
         nhanVien.setIdUser(userRole);
-        nhanVien = nhanVienRepository.addOrUpdateNhanVien(nhanVien);
         if (!nhanVien.getFile().isEmpty()){
             try {
                 Map res =  this.cloudinary.uploader().upload(nhanVien.getFile().getBytes(), ObjectUtils.asMap("resource_type","auto"));
@@ -130,6 +131,7 @@ public class NhanVienServiceImpl implements NhanVienService {
             }
 
         }
+        nhanVien = nhanVienRepository.addOrUpdateNhanVien(nhanVien);
 
         return toDto(nhanVien);
     }

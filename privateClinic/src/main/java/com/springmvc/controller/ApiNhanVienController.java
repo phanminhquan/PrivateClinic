@@ -31,7 +31,8 @@ public class ApiNhanVienController {
 //        return new ResponseEntity<>(this.nhanVienService.addOrUpdateNhanVien(nhanVienDTO),HttpStatus.NO_CONTENT);
 //    }
 
-    @DeleteMapping("api/admin/nhanvien/{id}")
+    @DeleteMapping("api/nhanvien/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteNhanVien (@PathVariable("id") long id)
     {
          nhanVienService.deleteNhanVien(id);

@@ -50,7 +50,7 @@
                 <td>${b.dienThoai}</td>
                 <td>${b.diaChi}</td>
                 <td>
-                    <c:url value="admin/yta/${b.maNv}" var="apiDel"/>
+                    <c:url value="/api/nhanvien/${b.maNv}" var="apiDel"/>
                     <a href="<c:url value="/admin/yta/${b.maNv}" />" class="btn btn-success">Sửa</a>
                     <button class="btn btn-danger" onclick="delPro('${apiDel}', ${b.maNv})">Xóa</button>
                 </td>
@@ -60,3 +60,4 @@
         </tbody>
     </table>
 </section>
+<script src="/resources/static/js/javscript.js"></script>
