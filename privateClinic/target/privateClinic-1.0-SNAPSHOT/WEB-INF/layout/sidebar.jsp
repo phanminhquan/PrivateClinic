@@ -51,7 +51,7 @@
         <div class="collapse" id="collapseAccount3" aria-labelledby="headingOne"
              data-bs-parent="#sidenavAccordion">
           <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="#">Quản lý bác sĩ</a>
+            <a class="nav-link" href="/admin/add_bacsi">Quản lý bác sĩ</a>
             <a class="nav-link" href="/admin/bacsi">Danh sách bác sĩ</a>
           </nav>
         </div>
@@ -76,10 +76,25 @@
           <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
           Hóa dơn
         </a>
-        <a class="nav-link" href="#">
+
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccount5"
+           aria-expanded="false" aria-controls="collapseAccount">
           <div class="sb-nav-link-icon"><i class="fa-solid fa-tablets"></i></div>
           Thuốc
+          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
         </a>
+        <div class="collapse" id="collapseAccount5" aria-labelledby="headingOne"
+             data-bs-parent="#sidenavAccordion">
+          <nav class="sb-sidenav-menu-nested nav">
+            <a class="nav-link" href="/admin/add_thuoc">Quản lý thuốc</a>
+            <a class="nav-link" href="/admin/thuoc">Danh sách thuốc</a>
+          </nav>
+        </div>
+
+<%--        <a class="nav-link" href="#">--%>
+<%--          <div class="sb-nav-link-icon"><i class="fa-solid fa-tablets"></i></div>--%>
+<%--          Thuốc--%>
+<%--        </a>--%>
       </div>
     </div>
   </nav>

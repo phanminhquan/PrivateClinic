@@ -1,45 +1,33 @@
 <%--
   Created by IntelliJ IDEA.
-  User: DELL
-  Date: 7/23/2023
-  Time: 2:49 AM
+  User: user
+  Date: 7/25/2023
+  Time: 12:38 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="javascript:void(0)">Quản lý bác sĩ</a>
+        <a class="navbar-brand" href="javascript:void(0)">Danh Sách Bác Sĩ</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
-<%--            <ul class="navbar-nav me-auto">--%>
-<%--                <c:forEach items="${chuyenmon}" var="c">--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="javascript:void(0)">${c}</a>--%>
-<%--                    </li>--%>
-<%--                </c:forEach>--%>
-
-
-<%--            </ul>--%>
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search">
-                <button class="btn btn-primary" type="button">Search</button>
+            <ul class="navbar-nav me-auto">
+            </ul>
+            <c:url value="/admin/bacsi" var="action"></c:url>
+            <form class="d-flex" action="${action}">
+                <input class="form-control me-2" type="text" name="kw" placeholder="Tìm tên bác sĩ ..">
+                <button class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
     </div>
 </nav>
-
-
 <section class="container">
-    <br>
-    <a class="btn btn-info">Thêm</a>
-    <br><br>
-    <h2 class="text-center">DANH SÁCH BÁC SĨ</h2>
-    <table class="table table-hover">
+    <table class="table table-hover" style="border-collapse: collapse">
         <thead>
-        <tr>
+        <tr style="margin-left: 10px">
             <th></th>
             <th>Mã bác sĩ</th>
             <th>Họ và tên</th>
@@ -51,8 +39,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <c:forEach items="${doctor}" var="b">
+        <c:forEach items="${doctor}" var="b">
+            <tr>
                 <td>
                     <img src="${b.hinhAnh}" alt="${b.hoTen}" style="width: 50px">
                 </td>
@@ -63,12 +51,25 @@
                 <td>${b.dienThoai}</td>
                 <td>${b.diaChi}</td>
                 <td>
-                    <a class="btn btn-success">Sửa</a>
-                    <a class="btn btn-danger">Xóa</a>
+                    <c:url value="/api/nhanvien/${b.maNv}" var="apiDel"/>
+                    <a href="<c:url value="/admin/bacsi/${b.maNv}" />" class="btn btn-success">Sửa</a>
+                    <button class="btn btn-danger" onclick="delPro('${apiDel}', ${b.maNv})">Xóa</button>
                 </td>
-            </c:forEach>
+            </tr>
+        </c:forEach>
 
-        </tr>
         </tbody>
     </table>
 </section>
+<c:if test="${counter > 1}">
+    <ul class="pagination mt-1 justify-content-center">
+        <li class="page-item"><a class="page-link" href="<c:url value="/admin/bacsi"/>">Tất cả</a></li>
+        <c:forEach begin="1" end="${counter}" var="i">
+            <c:url value="/admin/bacsi" var="pageUrl">
+                <c:param name="page" value="${i}"></c:param>
+            </c:url>
+            <li class="page-item"><a class="page-link" href="${pageUrl}">${i}</a></li>
+        </c:forEach>
+    </ul>
+</c:if>
+<script src="/resources/static/js/javscript.js"></script>

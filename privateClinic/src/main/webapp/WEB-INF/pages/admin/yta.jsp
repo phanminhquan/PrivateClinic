@@ -9,16 +9,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="javascript:void(0)">Quản lý y tá</a>
+        <a class="navbar-brand" href="javascript:void(0)">Danh sách y tá</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search">
-                <button class="btn btn-primary" type="button">Search</button>
+            <c:url value="/admin/yta" var="action"></c:url>
+            <form class="d-flex" action="${action}">
+                <input class="form-control me-2" type="text" name="kw" placeholder="Tìm tên y tá...">
+                <button class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
     </div>
@@ -60,4 +61,15 @@
         </tbody>
     </table>
 </section>
+<c:if test="${counter > 1}">
+    <ul class="pagination mt-1 justify-content-center">
+        <li class="page-item"><a class="page-link" href="<c:url value="/admin/yta"/>">Tất cả</a></li>
+        <c:forEach begin="1" end="${counter}" var="i">
+            <c:url value="/admin/yta" var="pageUrl">
+                <c:param name="page" value="${i}"></c:param>
+            </c:url>
+            <li class="page-item"><a class="page-link" href="${pageUrl}">${i}</a></li>
+        </c:forEach>
+    </ul>
+</c:if>
 <script src="/resources/static/js/javscript.js"></script>

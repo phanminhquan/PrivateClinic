@@ -55,6 +55,7 @@ public class NhanVien implements Serializable {
     @NotNull
     @Column(name = "ngaySinh")
     @Temporal(TemporalType.TIMESTAMP)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngaySinh;
     @Basic(optional = false)
     @NotNull

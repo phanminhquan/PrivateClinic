@@ -35,4 +35,19 @@
                 <put-attribute name="content"
                                value="/WEB-INF/pages/admin/addyta.jsp" />
         </definition>
+        <definition name="addBacSi" extends="baseLayout">
+                <put-attribute name="title" value="Quản lý bác sĩ" />
+                <put-attribute name="content"
+                               value="/WEB-INF/pages/admin/addBacSi.jsp" />
+        </definition>
+        <definition name="thuoc" extends="baseLayout">
+                <put-attribute name="title" value="Danh sách thuốc" />
+                <put-attribute name="content"
+                               value="/WEB-INF/pages/admin/thuoc.jsp" />
+        </definition>
+        <definition name="addThuoc" extends="baseLayout">
+                <put-attribute name="title" value="Quản lý thuốc" />
+                <put-attribute name="content"
+                               value="/WEB-INF/pages/admin/addThuoc.jsp" />
+        </definition>
 </tiles-definitions>

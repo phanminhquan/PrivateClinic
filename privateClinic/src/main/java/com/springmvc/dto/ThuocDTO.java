@@ -1,5 +1,7 @@
 package com.springmvc.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ThuocDTO {
     private Long maThuoc;
     private String tenThuoc;
@@ -9,6 +11,16 @@ public class ThuocDTO {
     private Boolean isActive;
     private String donVi;
     private String hinhAnh;
+
+    private MultipartFile file;
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 
     public Long getMaThuoc() {
         return this.maThuoc;

@@ -85,14 +85,14 @@ public class NhanVienServiceImpl implements NhanVienService {
     }
 
     @Override
-    public List<NhanVienDTO> getListBS() {
-        List<NhanVien> nv = nhanVienRepository.getListBS();
+    public List<NhanVienDTO> getListBS(Map<String , String> params) {
+        List<NhanVien> nv = nhanVienRepository.getListBS(params);
         return toNhanVienDto(nv);
     }
 
     @Override
-    public List<NhanVienDTO> getListYT() {
-        List<NhanVien> nv = nhanVienRepository.getListYT();
+    public List<NhanVienDTO> getListYT(Map<String , String> params) {
+        List<NhanVien> nv = nhanVienRepository.getListYT(params);
         return toNhanVienDto(nv);
     }
 
@@ -141,6 +141,23 @@ public class NhanVienServiceImpl implements NhanVienService {
     public void deleteNhanVien(Long id) {
 
         nhanVienRepository.deleteNhanVien(id);
+    }
+
+    @Override
+    public List<NhanVienDTO> searchBS(String kw) {
+        List<NhanVien> nv = nhanVienRepository.searchBS(kw);
+        return toNhanVienDto(nv);
+    }
+
+    @Override
+    public List<NhanVienDTO> searchYT(String kw) {
+        List<NhanVien> nv = nhanVienRepository.searchYT(kw);
+        return toNhanVienDto(nv);
+    }
+
+    @Override
+    public Long countPromotion(long in) {
+        return nhanVienRepository.countPromotion(in);
     }
 
 }

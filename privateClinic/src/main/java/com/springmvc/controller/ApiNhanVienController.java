@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ApiNhanVienController {
@@ -21,9 +22,9 @@ public class ApiNhanVienController {
         return new ResponseEntity<>(this.nhanVienService.getListNV(), HttpStatus.OK);
     }
     @GetMapping("api/admin/bacsi")
-    public ResponseEntity<List<NhanVienDTO>> getListBS ()
+    public ResponseEntity<List<NhanVienDTO>> getListBS (Map<String,String> params)
     {
-        return new ResponseEntity<>(this.nhanVienService.getListBS(), HttpStatus.OK);
+        return new ResponseEntity<>(this.nhanVienService.getListBS(params), HttpStatus.OK);
     }
 //    @PostMapping("api/admin/nhanvien")
 //    public ResponseEntity<NhanVienDTO> addOrUpdateNV (@RequestBody NhanVienDTO nhanVienDTO)
@@ -36,5 +37,11 @@ public class ApiNhanVienController {
     public void deleteNhanVien (@PathVariable("id") long id)
     {
          nhanVienService.deleteNhanVien(id);
+    }
+
+    @GetMapping("api/nhanvien")
+    public ResponseEntity<List<NhanVienDTO>> searchBS (@RequestParam String kw)
+    {
+        return new ResponseEntity<>(this.nhanVienService.searchBS(kw),HttpStatus.OK);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ApiThuocController {
@@ -15,29 +16,16 @@ public class ApiThuocController {
     private ThuocService thuocService;
 
     @GetMapping("/api/thuoc")
-    public ResponseEntity<List<ThuocDTO>> getListThuoc(){
+    public ResponseEntity<List<ThuocDTO>> getListThuoc(@RequestParam Map<String,String> params){
         return new ResponseEntity<>(
-                this.thuocService.getListThuoc(),
+                this.thuocService.getListThuoc(params),
                 HttpStatus.OK);
     }
-    @PostMapping("/api/thuoc")
-    public ResponseEntity<ThuocDTO> createThuoc(@RequestBody ThuocDTO thuocDTO)
-    {
-        return new ResponseEntity<>(this.thuocService.createThuoc(thuocDTO),HttpStatus.CREATED);
-    }
 
-    @GetMapping("/api/thuoc/{id}")
-    public  ResponseEntity<ThuocDTO> getThuocById(@PathVariable("id") long id){
-        return  new ResponseEntity<>(this.thuocService.getThuocById(id), HttpStatus.OK);
-    }
 
-    @PutMapping("/api/thuoc/{id}")
-    public ResponseEntity<ThuocDTO> updateThuoc(@PathVariable("id") long id, @RequestBody ThuocDTO t){
-        t.setMaThuoc(id);
-        return new ResponseEntity<>(this.thuocService.updateThuoc(t) ,HttpStatus.NO_CONTENT);
-    }
 
-    @DeleteMapping("/api/thuoc/{id}")
+    @DeleteMapping("api/thuoc/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteThuoc(@PathVariable("id") long id){
         thuocService.deleteThuoc(id );
     }
