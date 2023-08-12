@@ -7,6 +7,8 @@ package com.springmvc.configs;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -40,16 +42,6 @@ public class WebAppContextConfig implements WebMvcConfigurer{
 
     @Autowired
     private Environment env;
-    @Bean
-    public Cloudinary cloudinary() {
-        Cloudinary cloudinary
-                = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", this.env.getProperty("cloudinary.cloud_name"),
-                "api_key", this.env.getProperty("cloudinary.api_id"),
-                "api_secret", this.env.getProperty("cloudinary.api_secret"),
-                "secure", true));
-        return cloudinary;
-    }
 
 
     @Bean
@@ -59,6 +51,25 @@ public class WebAppContextConfig implements WebMvcConfigurer{
         resolver.setDefaultEncoding("UTF-8");
         return resolver;
     }
+    @Value("${cloudinary.cloud_name}")
+    private String cloudName;
+    @Value("${cloudinary.api_id}")
+    private String apiKey;
+    @Value("${cloudinary.api_secret}")
+    private String apiSecret;
+    @Qualifier("cloud2")
+    @Bean
+    public Cloudinary cloudinary() {
+        Cloudinary cloudinary
+                = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", cloudName,
+                "api_key", apiKey,
+                "api_secret", apiSecret,
+                "secure", true));
+        return cloudinary;
+    }
+
+
 
     @Bean
     SimpleDateFormat simpleDateFormat(){

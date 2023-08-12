@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="layoutSidenav_nav">
   <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
-    <div class="sb-sidenav-menu">
+    <div class="sb-sidenav-menu" style="background-color: #e9ecef">
       <div class="nav">
         <div class="sb-sidenav-menu-heading">Core</div>
         <a class="nav-link" href="/">
@@ -38,8 +38,8 @@
         <div class="collapse" id="collapseAccount1" aria-labelledby="headingOne"
              data-bs-parent="#sidenavAccordion">
           <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="#">User account</a>
-            <a class="nav-link" href="#">Admin account</a>
+            <a class="nav-link" href="/admin/register">Quản lý tài khoản</a>
+            <a class="nav-link" href="/admin/taikhoan">Danh sách tài khoản</a>
           </nav>
         </div>
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccount3"

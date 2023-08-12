@@ -60,7 +60,8 @@ public class ThuocServiceImpl implements ThuocService {
         for (Thuoc thuoc: t)
         {
             ThuocDTO dto = toDto(thuoc);
-            thuocDTOS.add(dto);
+            if(dto.getIsActive() != false)
+                thuocDTOS.add(dto);
         }
         return  thuocDTOS;
     }

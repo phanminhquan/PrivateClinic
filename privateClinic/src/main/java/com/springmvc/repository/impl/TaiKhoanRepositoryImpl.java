@@ -1,8 +1,12 @@
 package com.springmvc.repository.impl;
 
+import com.springmvc.pojo.NhanVien;
 import com.springmvc.pojo.TaiKhoan;
+import com.springmvc.pojo.TaiKhoanRole;
+import com.springmvc.pojo.UserRole;
 import com.springmvc.repository.TaiKhoanRepository;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -14,6 +18,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,8 +28,28 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
     @Autowired
     private LocalSessionFactoryBean factory;
     @Override
-    public boolean addTaiKhoan(TaiKhoan taiKhoan) {
-        return false;
+    public TaiKhoan addTaiKhoan(TaiKhoan taiKhoan) {
+        Session session = factory.getObject().getCurrentSession();
+        List<String> ls = new ArrayList<>();
+        List<TaiKhoan> tk = session.createQuery("from TaiKhoan ").getResultList();
+        TaiKhoan tkr = getTKById(taiKhoan.getId());
+        tk.remove(tkr);
+        for (TaiKhoan t : tk){
+            ls.add(t.getUsername());
+        }
+        session.clear();
+        session.flush();
+        if (!ls.contains(taiKhoan.getUsername())){
+            if(taiKhoan.getId() == null)
+                session.save(taiKhoan);
+            else
+                session.update(taiKhoan);
+
+            return taiKhoan;
+        }
+        else  return  null;
+
+
     }
 
     @Override
@@ -43,4 +68,44 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
         Query q = session.createQuery(query);
         return q.getResultList();
     }
+
+    @Override
+    public List<TaiKhoan> getAllTK() {
+        Session session = factory.getObject().getCurrentSession();
+        Query q = session.createQuery("from TaiKhoan ");
+        return q.getResultList();
+    }
+
+    @Override
+    public TaiKhoan getTKById(Long id) {
+        Session session = factory.getObject().getCurrentSession();
+        return session.get(TaiKhoan.class,id);
+    }
+
+    @Override
+    public NhanVien findNVByID(Long id) {
+        Session session = factory.getObject().getCurrentSession();
+        return session.get(NhanVien.class,id);
+    }
+
+    @Override
+    public TaiKhoanRole findtkByID(Long id) {
+        Session session = factory.getObject().getCurrentSession();
+        return session.get(TaiKhoanRole.class,id);
+    }
+
+    @Override
+    public void deleteTaiKhoan(long id) {
+        Session session = factory.getObject().getCurrentSession();
+        session.delete(session.get(TaiKhoan.class,id));
+    }
+
+    @Override
+    public List<TaiKhoan> searchTaiKhoan(String kw) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("from TaiKhoan where name like :ten");
+        q.setParameter("ten","%" + kw.toUpperCase() + "%");
+        return q.getResultList();
+    }
+
 }

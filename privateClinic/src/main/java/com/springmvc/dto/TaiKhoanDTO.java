@@ -1,5 +1,7 @@
 package com.springmvc.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class TaiKhoanDTO {
     private Long id;
     private String name;
@@ -10,6 +12,32 @@ public class TaiKhoanDTO {
     private String userRole;
     private Long maNv;
     private Long tkRole;
+    private String confirmPassword;
+    private MultipartFile file;
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
     public Long getId() {
         return this.id;

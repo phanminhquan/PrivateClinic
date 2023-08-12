@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: DELL
@@ -5,6 +6,7 @@
   Time: 2:11 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="sb-topnav navbar navbar-expand navbar-dark text-bg-primary">
     <!-- Navbar Brand-->
@@ -19,14 +21,28 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                 <li>
                     <hr class="dropdown-divider"/>
                 </li>
-                <li><a class="dropdown-item" href="/Admin/Home/Login">Logout</a></li>
+                <c:if test="${pageContext.request.userPrincipal.name == null}">
+                    <li class="nav-item active">
+                        <a class="nav-link text-danger" href="/admin/login">Đăng nhập</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-danger" href="/admin/register">Đăng xuất</a>
+                    </li>
+                </c:if>
+                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                    <li class="nav-item active">
+                        <a class="nav-link text-danger" href="/">${pageContext.request.userPrincipal.name}</a>
+                    </li>
+                    <li><a class="dropdown-item" href="<c:url value="/logout"/>">Logout</a></li>
+                </c:if>
+
+
             </ul>
         </li>
     </ul>
 </nav>
+
 
