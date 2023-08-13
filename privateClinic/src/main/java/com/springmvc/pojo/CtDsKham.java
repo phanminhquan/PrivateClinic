@@ -4,19 +4,11 @@
  */
 package com.springmvc.pojo;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -28,7 +20,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "CtDsKham.findAll", query = "SELECT c FROM CtDsKham c"),
     @NamedQuery(name = "CtDsKham.findByMaCTDS", query = "SELECT c FROM CtDsKham c WHERE c.maCTDS = :maCTDS"),
-    @NamedQuery(name = "CtDsKham.findByTrangthai", query = "SELECT c FROM CtDsKham c WHERE c.trangthai = :trangthai")})
+    @NamedQuery(name = "CtDsKham.findByTrangthai", query = "SELECT c FROM CtDsKham c WHERE c.trangthai = :trangthai"),
+    @NamedQuery(name = "CtDsKham.findByNgaykham", query = "SELECT c FROM CtDsKham c WHERE c.ngaykham = :ngaykham")})
 public class CtDsKham implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,13 +31,15 @@ public class CtDsKham implements Serializable {
     @Column(name = "maCTDS")
     private Long maCTDS;
     @Column(name = "trangthai")
-    private Boolean trangthai;
+    private Short trangthai;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ngaykham")
+    @Temporal(TemporalType.DATE)
+    private Date ngaykham;
     @JoinColumn(name = "maBN", referencedColumnName = "maBN")
     @ManyToOne(optional = false)
     private BenhNhan maBN;
-    @JoinColumn(name = "maDS", referencedColumnName = "maDS")
-    @ManyToOne(optional = false)
-    private DsKhamBenh maDS;
     @JoinColumn(name = "maTG", referencedColumnName = "maTG")
     @ManyToOne(optional = false)
     private ThoiGian maTG;
@@ -56,6 +51,11 @@ public class CtDsKham implements Serializable {
         this.maCTDS = maCTDS;
     }
 
+    public CtDsKham(Long maCTDS, Date ngaykham) {
+        this.maCTDS = maCTDS;
+        this.ngaykham = ngaykham;
+    }
+
     public Long getMaCTDS() {
         return maCTDS;
     }
@@ -64,12 +64,20 @@ public class CtDsKham implements Serializable {
         this.maCTDS = maCTDS;
     }
 
-    public Boolean getTrangthai() {
+    public Short getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(Boolean trangthai) {
+    public void setTrangthai(Short trangthai) {
         this.trangthai = trangthai;
+    }
+
+    public Date getNgaykham() {
+        return ngaykham;
+    }
+
+    public void setNgaykham(Date ngaykham) {
+        this.ngaykham = ngaykham;
     }
 
     public BenhNhan getMaBN() {
@@ -78,14 +86,6 @@ public class CtDsKham implements Serializable {
 
     public void setMaBN(BenhNhan maBN) {
         this.maBN = maBN;
-    }
-
-    public DsKhamBenh getMaDS() {
-        return maDS;
-    }
-
-    public void setMaDS(DsKhamBenh maDS) {
-        this.maDS = maDS;
     }
 
     public ThoiGian getMaTG() {

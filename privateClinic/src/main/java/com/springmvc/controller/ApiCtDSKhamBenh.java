@@ -13,12 +13,12 @@ import java.util.List;
 
 @RestController
 public class ApiCtDSKhamBenh {
-    @Autowired
-    private CtDsKhamService ctDsKhamService;
-
-    @GetMapping("/api/ctdskham/")
-    ResponseEntity<List<CtDsKhamDTO>> getCtDsKham(){
-        return new ResponseEntity<>(ctDsKhamService.getListCtDSKham(), HttpStatus.OK);
-    }
+//    @Autowired
+//    private CtDsKhamService ctDsKhamService;
+//
+//    @GetMapping("/api/ctdskham/")
+//    ResponseEntity<List<CtDsKhamDTO>> getCtDsKham(){
+//        return new ResponseEntity<>(ctDsKhamService.getListCtDSKham(), HttpStatus.OK);
+//    }
 
 }

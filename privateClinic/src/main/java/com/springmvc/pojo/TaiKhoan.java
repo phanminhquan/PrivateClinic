@@ -31,7 +31,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TaiKhoan.findByUserRole", query = "SELECT t FROM TaiKhoan t WHERE t.userRole = :userRole")})
 public class TaiKhoan implements Serializable {
     public static final String ADMIN = "ROLE_ADMIN";
-    public static final String USER = "ROLE_USER";
+    public static final String STAFF = "ROLE_USER";
+
+    public static final String NURSE = "ROLE_NUSRE";
+    public static final String DOCTOR = "ROLE_DOCTOR";
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -65,10 +68,7 @@ public class TaiKhoan implements Serializable {
     @JoinColumn(name = "maNV", referencedColumnName = "maNV")
     @OneToOne
     private NhanVien maNV;
-    @JoinColumn(name = "tk_role", referencedColumnName = "Id")
-    @ManyToOne
-    private TaiKhoanRole tkRole;
-    @Transient
+       @Transient
     private String confirmPassword;
 
     public String getConfirmPassword() {
@@ -166,14 +166,6 @@ public class TaiKhoan implements Serializable {
 
     public void setMaNV(NhanVien maNV) {
         this.maNV = maNV;
-    }
-
-    public TaiKhoanRole getTkRole() {
-        return tkRole;
-    }
-
-    public void setTkRole(TaiKhoanRole tkRole) {
-        this.tkRole = tkRole;
     }
 
     @Override

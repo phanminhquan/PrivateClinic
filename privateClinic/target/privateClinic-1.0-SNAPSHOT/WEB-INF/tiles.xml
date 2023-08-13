@@ -69,4 +69,25 @@
                 <put-attribute name="content"
                                value="/WEB-INF/pages/admin/upTaiKhoan.jsp" />
         </definition>
+
+        <definition name="catruc" extends="baseLayout">
+                <put-attribute name="title" value="Quản lý ca trực nhân viên" />
+                <put-attribute name="content"
+                               value="/WEB-INF/pages/admin/catruc.jsp" />
+        </definition>
+        <definition name="catrucdetail" extends="baseLayout">
+                <put-attribute name="title" value="Quản lý ca trực" />
+                <put-attribute name="content"
+                               value="/WEB-INF/pages/admin/catrucdetail.jsp" />
+        </definition>
+        <definition name="catruc_edit" extends="baseLayout">
+                <put-attribute name="title" value="Quản lý ca trực" />
+                <put-attribute name="content"
+                               value="/WEB-INF/pages/admin/catruc_edit.jsp" />
+        </definition>
+        <definition name="addcatruc" extends="baseLayout">
+                <put-attribute name="title" value="Quản lý ca trực" />
+                <put-attribute name="content"
+                               value="/WEB-INF/pages/admin/addcatruc.jsp" />
+        </definition>
 </tiles-definitions>

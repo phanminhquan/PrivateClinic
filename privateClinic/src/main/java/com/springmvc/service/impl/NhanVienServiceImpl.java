@@ -159,5 +159,24 @@ public class NhanVienServiceImpl implements NhanVienService {
     public Long countPromotion(long in) {
         return nhanVienRepository.countPromotion(in);
     }
+    @Override
+    public List<Object[]> getListNhanvVienByCaTruc(int id) {
+        return nhanVienRepository.getListNhanVienByIdCaTruc(id);
+    }
+
+    @Override
+    public List<Long> getAllMaNv() {
+        return nhanVienRepository.getAllMaNv();
+    }
+
+    @Override
+    public List<String> getAllName() {
+        return nhanVienRepository.getAllName();
+    }
+
+    @Override
+    public List<Object[]> getAllListNhanVien(Map<String, String> map) {
+        return nhanVienRepository.GetAllListNhanVien(map);
+    }
 
 }

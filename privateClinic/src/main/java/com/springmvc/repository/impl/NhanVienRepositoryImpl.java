@@ -13,8 +13,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.*;
 
 
 @Repository
@@ -121,5 +124,58 @@ public class NhanVienRepositoryImpl implements NhanVienRepository {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("SELECT Count(*) FROM NhanVien n where n.idUser.id = " + in);
         return Long.parseLong(q.getSingleResult().toString());
+    }
+
+
+    @Override
+    public List<Object[]> getListNhanVienByIdCaTruc(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query query = s.createQuery("select n.id,n.hoTen,n.dienThoai,n.email,role.ten,nvct.id " +
+                "from NhanVien n " +
+                " join  NhanvienCatruc nvct on n.id = nvct.idNV.id" +
+                " join CaTrucTrongTuan cttt on cttt.id = nvct.idCT.id" +
+                " join CaTruc ct on ct.id = cttt.idCaTruc.id " +
+                " join UserRole role on role.id = n.idUser.id" +
+                " where ct.id =:id");
+        query.setParameter("id" ,id);
+        return query.getResultList();
+    }
+    @Override
+    public List<Long> getAllMaNv() {
+        Session s = this.factory.getObject().getCurrentSession();
+        return  s.createQuery("select n.id from NhanVien n").getResultList();
+    }
+    @Override
+    public List<String> getAllName() {
+        Session s = this.factory.getObject().getCurrentSession();
+        List<String> list = s.createQuery("select n.hoTen from NhanVien n").getResultList();
+        Set<String> set =  new LinkedHashSet<>(list);
+        return new ArrayList<>(set);
+    }
+
+    @Override
+    public List<Object[]> GetAllListNhanVien(Map<String, String> map) {
+        Session s = factory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        Root rootNhanVien = q.from(NhanVien.class);
+        Root rootUserRole = q.from(UserRole.class);
+        List<Predicate> predicates = new ArrayList<>();
+        q.multiselect(rootNhanVien.get("maNV"),rootNhanVien.get("hoTen"),rootNhanVien.get("ngaySinh"),
+                rootNhanVien.get("email"),rootNhanVien.get("dienThoai"),rootNhanVien.get("diaChi"),rootUserRole.get("ten"));
+        predicates.add(b.equal(rootNhanVien.get("idUser"), rootUserRole.get("id")));
+        String name = map.get("tenNv");
+        String maNv = map.get("maNv");
+        if(map != null){
+            if(name != null && !name.isEmpty()){
+                predicates.add(b.like(rootNhanVien.get("hoTen"),String.format("%%%s%%", name)));
+            }
+            if(maNv != null && !maNv.isEmpty()){
+                predicates.add(b.equal(rootNhanVien.get("maNV"),maNv));
+            }
+            q.where(predicates.toArray(Predicate[]::new));
+        }
+        Query query = s.createQuery(q);
+        return query.getResultList();
     }
 }

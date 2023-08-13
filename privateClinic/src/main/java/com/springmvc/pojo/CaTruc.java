@@ -4,23 +4,12 @@
  */
 package com.springmvc.pojo;
 
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -44,8 +33,21 @@ public class CaTruc implements Serializable {
     @Column(name = "gioTruc")
     @Temporal(TemporalType.TIME)
     private Date gioTruc;
-    @OneToMany(mappedBy = "idCT")
-    private Set<NhanvienCatruc> nhanvienCatrucSet;
+
+    @Column(name = "gioKetThuc")
+    @Temporal(TemporalType.TIME)
+    private Date gioKetThuc;
+
+    public Date getGioKetThuc() {
+        return gioKetThuc;
+    }
+
+    public void setGioKetThuc(Date gioKetThuc) {
+        this.gioKetThuc = gioKetThuc;
+    }
+
+    @OneToMany(mappedBy = "idCaTruc")
+    private Set<CaTrucTrongTuan> caTrucTrongTuanSet;
 
     public CaTruc() {
     }
@@ -71,12 +73,12 @@ public class CaTruc implements Serializable {
     }
 
     @XmlTransient
-    public Set<NhanvienCatruc> getNhanvienCatrucSet() {
-        return nhanvienCatrucSet;
+    public Set<CaTrucTrongTuan> getCaTrucTrongTuanSet() {
+        return caTrucTrongTuanSet;
     }
 
-    public void setNhanvienCatrucSet(Set<NhanvienCatruc> nhanvienCatrucSet) {
-        this.nhanvienCatrucSet = nhanvienCatrucSet;
+    public void setCaTrucTrongTuanSet(Set<CaTrucTrongTuan> caTrucTrongTuanSet) {
+        this.caTrucTrongTuanSet = caTrucTrongTuanSet;
     }
 
     @Override

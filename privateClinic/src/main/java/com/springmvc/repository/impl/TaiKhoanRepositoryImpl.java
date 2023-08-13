@@ -2,11 +2,8 @@ package com.springmvc.repository.impl;
 
 import com.springmvc.pojo.NhanVien;
 import com.springmvc.pojo.TaiKhoan;
-import com.springmvc.pojo.TaiKhoanRole;
-import com.springmvc.pojo.UserRole;
 import com.springmvc.repository.TaiKhoanRepository;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -30,26 +27,13 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
     @Override
     public TaiKhoan addTaiKhoan(TaiKhoan taiKhoan) {
         Session session = factory.getObject().getCurrentSession();
-        List<String> ls = new ArrayList<>();
-        List<TaiKhoan> tk = session.createQuery("from TaiKhoan ").getResultList();
-        TaiKhoan tkr = getTKById(taiKhoan.getId());
-        tk.remove(tkr);
-        for (TaiKhoan t : tk){
-            ls.add(t.getUsername());
-        }
-        session.clear();
-        session.flush();
-        if (!ls.contains(taiKhoan.getUsername())){
+
             if(taiKhoan.getId() == null)
                 session.save(taiKhoan);
             else
                 session.update(taiKhoan);
 
             return taiKhoan;
-        }
-        else  return  null;
-
-
     }
 
     @Override
@@ -88,11 +72,11 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
         return session.get(NhanVien.class,id);
     }
 
-    @Override
-    public TaiKhoanRole findtkByID(Long id) {
-        Session session = factory.getObject().getCurrentSession();
-        return session.get(TaiKhoanRole.class,id);
-    }
+//    @Override
+//    public TaiKhoanRole findtkByID(Long id) {
+//        Session session = factory.getObject().getCurrentSession();
+//        return session.get(TaiKhoanRole.class,id);
+//    }
 
     @Override
     public void deleteTaiKhoan(long id) {

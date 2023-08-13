@@ -3,17 +3,13 @@ package com.springmvc.service.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.springmvc.dto.TaiKhoanDTO;
-import com.springmvc.dto.ThuocDTO;
 import com.springmvc.pojo.NhanVien;
 import com.springmvc.pojo.TaiKhoan;
-import com.springmvc.pojo.TaiKhoanRole;
-import com.springmvc.pojo.Thuoc;
 import com.springmvc.repository.TaiKhoanRepository;
 import com.springmvc.service.TaiKhoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -109,9 +105,9 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
             NhanVien nv = taiKhoanRepository.findNVByID(in);
             taiKhoan.setMaNV(nv);
         }
-        long t = 1;
-        TaiKhoanRole tk = taiKhoanRepository.findtkByID(t);
-        taiKhoan.setTkRole(tk);
+//        long t = 1;
+//        TaiKhoanRole tk = taiKhoanRepository.findtkByID(t);
+//        taiKhoan.setTkRole(tk);
         taiKhoan = taiKhoanRepository.addTaiKhoan(taiKhoan);
         if(taiKhoan == null)
             return null;

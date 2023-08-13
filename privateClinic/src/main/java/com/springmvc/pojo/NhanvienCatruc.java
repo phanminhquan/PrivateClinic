@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.springmvc.pojo;
 
-import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,36 +13,32 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author user
- */
+
 @Entity
 @Table(name = "nhanvien_catruc")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "NhanvienCatruc.findAll", query = "SELECT n FROM NhanvienCatruc n"),
-    @NamedQuery(name = "NhanvienCatruc.findByMaNVCT", query = "SELECT n FROM NhanvienCatruc n WHERE n.maNVCT = :maNVCT")})
-public class NhanvienCatruc implements Serializable {
+        @NamedQuery(name = "NhanvienCatruc.findAll", query = "SELECT n FROM NhanvienCatruc n"),
+        @NamedQuery(name = "NhanvienCatruc.findByMaNVCT", query = "SELECT n FROM NhanvienCatruc n WHERE n.maNVCT = :maNVCT")})
 
+public class NhanvienCatruc {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "maNV_CT")
     private Integer maNVCT;
-    @JoinColumn(name = "id_CT", referencedColumnName = "maCT")
+    @JoinColumn(name = "id_CT", referencedColumnName = "id")
     @ManyToOne
-    private CaTruc idCT;
+    private CaTrucTrongTuan idCT;
     @JoinColumn(name = "id_NV", referencedColumnName = "maNV")
     @ManyToOne
     private NhanVien idNV;
 
-    public NhanvienCatruc() {
-    }
-
-    public NhanvienCatruc(Integer maNVCT) {
+    public NhanvienCatruc(Integer maNVCT, CaTrucTrongTuan idCT, NhanVien idNV) {
         this.maNVCT = maNVCT;
+        this.idCT = idCT;
+        this.idNV = idNV;
     }
 
     public Integer getMaNVCT() {
@@ -58,11 +49,11 @@ public class NhanvienCatruc implements Serializable {
         this.maNVCT = maNVCT;
     }
 
-    public CaTruc getIdCT() {
+    public CaTrucTrongTuan getIdCT() {
         return idCT;
     }
 
-    public void setIdCT(CaTruc idCT) {
+    public void setIdCT(CaTrucTrongTuan idCT) {
         this.idCT = idCT;
     }
 
@@ -74,6 +65,9 @@ public class NhanvienCatruc implements Serializable {
         this.idNV = idNV;
     }
 
+
+
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -81,22 +75,10 @@ public class NhanvienCatruc implements Serializable {
         return hash;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof NhanvienCatruc)) {
-            return false;
-        }
-        NhanvienCatruc other = (NhanvienCatruc) object;
-        if ((this.maNVCT == null && other.maNVCT != null) || (this.maNVCT != null && !this.maNVCT.equals(other.maNVCT))) {
-            return false;
-        }
-        return true;
-    }
+
 
     @Override
     public String toString() {
         return "com.springmvc.pojo.NhanvienCatruc[ maNVCT=" + maNVCT + " ]";
     }
-    
 }

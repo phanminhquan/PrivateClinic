@@ -24,4 +24,8 @@ public interface NhanVienService {
     List<NhanVienDTO> searchYT(String kw);
 
     public Long countPromotion(long in);
+    List<Object[]> getListNhanvVienByCaTruc(int id);
+    public List<Long> getAllMaNv();
+    public List<String> getAllName();
+    public List<Object[]> getAllListNhanVien(Map<String , String> map);
 }

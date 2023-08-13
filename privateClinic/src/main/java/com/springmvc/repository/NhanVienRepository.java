@@ -24,5 +24,10 @@ public interface NhanVienRepository {
 
     public Long countPromotion(long in);
 
+    List<Object[]> getListNhanVienByIdCaTruc(int id);
+    List<Long> getAllMaNv();
+    List<String> getAllName();
+    List<Object[]> GetAllListNhanVien(Map<String, String> map);
+
 
 }

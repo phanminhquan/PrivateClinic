@@ -65,7 +65,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().defaultSuccessUrl("/").failureUrl("/admin/login?error");
         http.logout().logoutSuccessUrl("/admin/login");
         http.exceptionHandling().accessDeniedPage("/admin/login?accessDenied");
-        http.authorizeRequests().antMatchers("/").hasAnyAuthority("ADMIN")
+        http.authorizeRequests().antMatchers("/").hasAnyAuthority("ADMIN","DOCTOR","NURSE")
                 .antMatchers("/admin/bacsi").hasAnyAuthority("ADMIN")
                 .antMatchers("/admin/add_bacsi").hasAnyAuthority("ADMIN")
                 .antMatchers("/admin/add_yta").hasAnyAuthority("ADMIN")

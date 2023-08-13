@@ -11,8 +11,7 @@ public class TaiKhoanDTO {
     private Boolean isActive;
     private String userRole;
     private Long maNv;
-    private Long tkRole;
-    private String confirmPassword;
+     private String confirmPassword;
     private MultipartFile file;
 
     public MultipartFile getFile() {
@@ -103,11 +102,4 @@ public class TaiKhoanDTO {
         this.maNv = maNv;
     }
 
-    public Long getTkRole() {
-        return this.tkRole;
-    }
-
-    public void setTkRole(Long tkRole) {
-        this.tkRole = tkRole;
-    }
 }
