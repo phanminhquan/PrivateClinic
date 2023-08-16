@@ -1,6 +1,5 @@
 package com.springmvc.repository.impl;
 
-import com.springmvc.pojo.NhanVien;
 import com.springmvc.pojo.Thuoc;
 import com.springmvc.repository.Thuocrepository;
 import org.hibernate.Query;
@@ -24,7 +23,7 @@ public class ThuocRepositoryImpl implements Thuocrepository {
     private Environment env;
 
     @Override
-    public List<Thuoc> getListThuoc(Map<String , String> params) {
+    public List<Thuoc> getListThuoc(Map<String, String> params) {
         Session s = factoryBean.getObject().getCurrentSession();
         Query q = s.createQuery("from Thuoc ");
         if (params != null) {
@@ -52,24 +51,23 @@ public class ThuocRepositoryImpl implements Thuocrepository {
     }
 
 
-
     @Override
     public Thuoc getThuocById(long id) {
         Session s = factoryBean.getObject().getCurrentSession();
-        return s.get(Thuoc.class,id);
+        return s.get(Thuoc.class, id);
     }
 
     @Override
     public void deleteThuoc(long id) {
         Session s = factoryBean.getObject().getCurrentSession();
-        s.delete(s.get(Thuoc.class,id));
+        s.delete(s.get(Thuoc.class, id));
     }
 
     @Override
     public List<Thuoc> searchThuoc(String kw) {
         Session s = this.factoryBean.getObject().getCurrentSession();
         Query q = s.createQuery("from Thuoc where tenThuoc like :ten");
-        q.setParameter("ten","%" + kw.toUpperCase() + "%");
+        q.setParameter("ten", "%" + kw.toUpperCase() + "%");
         return q.getResultList();
     }
 
@@ -78,5 +76,13 @@ public class ThuocRepositoryImpl implements Thuocrepository {
         Session s = this.factoryBean.getObject().getCurrentSession();
         Query q = s.createQuery("SELECT Count(*) FROM Thuoc");
         return Long.parseLong(q.getSingleResult().toString());
+    }
+
+    @Override
+    public List<Object[]> getListThuocByPK(long id) {
+        Session s = factoryBean.getObject().getCurrentSession();
+        Query q = s.createQuery("select t.tenThuoc,t.donVi,pt.soLuong,pt.cachDung from PhieuThuoc pt join Thuoc t on t.id = pt.maThuoc.id where pt.maPK.maPK = :id");
+        q.setParameter("id", id);
+        return q.getResultList();
     }
 }

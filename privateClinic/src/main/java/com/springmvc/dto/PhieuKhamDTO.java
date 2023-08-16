@@ -1,14 +1,26 @@
 package com.springmvc.dto;
 
+import com.springmvc.pojo.BenhNhan;
+
 import java.util.Date;
 
 public class PhieuKhamDTO {
     private Long maPk;
-    private Date ngayKham;
+    private String ngayKham;
     private String trieuChung;
     private String chuanDoan;
     private Long maBn;
     private Boolean xacnhan;
+
+    private Long maBS;
+
+    public Long getMaBS() {
+        return maBS;
+    }
+
+    public void setMaBS(Long maBS) {
+        this.maBS = maBS;
+    }
 
     public Long getMaPk() {
         return this.maPk;
@@ -18,11 +30,11 @@ public class PhieuKhamDTO {
         this.maPk = maPk;
     }
 
-    public Date getNgayKham() {
+    public String getNgayKham() {
         return this.ngayKham;
     }
 
-    public void setNgayKham(Date ngayKham) {
+    public void setNgayKham(String ngayKham) {
         this.ngayKham = ngayKham;
     }
 

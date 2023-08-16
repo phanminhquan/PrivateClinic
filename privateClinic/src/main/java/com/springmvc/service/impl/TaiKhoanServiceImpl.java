@@ -3,6 +3,7 @@ package com.springmvc.service.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.springmvc.dto.TaiKhoanDTO;
+import com.springmvc.dto.Util;
 import com.springmvc.pojo.NhanVien;
 import com.springmvc.pojo.TaiKhoan;
 import com.springmvc.repository.TaiKhoanRepository;
@@ -149,8 +150,10 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
         if (list.isEmpty())
             throw new UsernameNotFoundException("User does not exist");
         TaiKhoan taiKhoan = list.get(0);
+
         Set<GrantedAuthority> auth = new HashSet<>();
         auth.add(new SimpleGrantedAuthority(taiKhoan.getUserRole()));
+        Util.maNV = taiKhoan.getMaNV().getMaNV();
         return new org.springframework.security.core.userdetails
                 .User(taiKhoan.getUsername(),taiKhoan.getPassword(),auth);
     }

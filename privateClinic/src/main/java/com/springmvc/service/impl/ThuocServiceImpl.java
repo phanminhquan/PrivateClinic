@@ -3,9 +3,7 @@ package com.springmvc.service.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.springmvc.dto.ThuocDTO;
-import com.springmvc.pojo.NhanVien;
 import com.springmvc.pojo.Thuoc;
-import com.springmvc.pojo.UserRole;
 import com.springmvc.repository.Thuocrepository;
 import com.springmvc.service.ThuocService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,8 @@ public class ThuocServiceImpl implements ThuocService {
 
     @Autowired
     private Cloudinary cloudinary;
-    public ThuocDTO toDto(Thuoc thuoc){
+
+    public ThuocDTO toDto(Thuoc thuoc) {
         ThuocDTO t = new ThuocDTO();
         t.setDonVi(thuoc.getDonVi());
         t.setMaThuoc(thuoc.getMaThuoc());
@@ -39,11 +38,11 @@ public class ThuocServiceImpl implements ThuocService {
         t.setFile(thuoc.getFile());
         return t;
     }
-    public Thuoc toEntity(ThuocDTO thuocDTO)
-    {
+
+    public Thuoc toEntity(ThuocDTO thuocDTO) {
         Thuoc t = new Thuoc();
         t.setDonVi(thuocDTO.getDonVi());
-        if(thuocDTO.getMaThuoc()!=null){
+        if (thuocDTO.getMaThuoc() != null) {
             t.setMaThuoc(thuocDTO.getMaThuoc());
         }
         t.setHinhAnh(thuocDTO.getHinhAnh());
@@ -55,18 +54,19 @@ public class ThuocServiceImpl implements ThuocService {
         t.setFile(thuocDTO.getFile());
         return t;
     }
-    public List<ThuocDTO> toThuocDTOList(List<Thuoc> t){
+
+    public List<ThuocDTO> toThuocDTOList(List<Thuoc> t) {
         List<ThuocDTO> thuocDTOS = new ArrayList<>();
-        for (Thuoc thuoc: t)
-        {
+        for (Thuoc thuoc : t) {
             ThuocDTO dto = toDto(thuoc);
-            if(dto.getIsActive() != false)
+            if (dto.getIsActive() != false)
                 thuocDTOS.add(dto);
         }
-        return  thuocDTOS;
+        return thuocDTOS;
     }
+
     @Override
-    public List<ThuocDTO> getListThuoc(Map<String , String> params) {
+    public List<ThuocDTO> getListThuoc(Map<String, String> params) {
         List<Thuoc> thuoc = thuocrepository.getListThuoc(params);
         return toThuocDTOList(thuoc);
     }
@@ -75,11 +75,11 @@ public class ThuocServiceImpl implements ThuocService {
     public ThuocDTO addOrUpdateThuoc(ThuocDTO thuocDTO) throws ParseException {
         Thuoc thuoc = new Thuoc();
         thuoc = toEntity(thuocDTO);
-        if (!thuoc.getFile().isEmpty()){
+        if (!thuoc.getFile().isEmpty()) {
             try {
-                Map res =  this.cloudinary.uploader().upload(thuoc.getFile().getBytes(), ObjectUtils.asMap("resource_type","auto"));
+                Map res = this.cloudinary.uploader().upload(thuoc.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
                 thuoc.setHinhAnh(res.get("secure_url").toString());
-            }catch (IOException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(NhanVienServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
 
@@ -108,5 +108,10 @@ public class ThuocServiceImpl implements ThuocService {
     @Override
     public Long countPromotion(long in) {
         return thuocrepository.countPromotion(in);
+    }
+
+    @Override
+    public List<Object[]> getListByIDPK(long id) {
+        return thuocrepository.getListThuocByPK(id);
     }
 }

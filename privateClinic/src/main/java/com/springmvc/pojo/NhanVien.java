@@ -78,6 +78,17 @@ public class NhanVien implements Serializable {
     @OneToMany(mappedBy = "idNV")
     private Set<NhanvienCatruc> nhanvienCatrucSet;
 
+    public Set<PhieuKham> getPhieuKhamSet() {
+        return phieuKhamSet;
+    }
+
+    public void setPhieuKhamSet(Set<PhieuKham> phieuKhamSet) {
+        this.phieuKhamSet = phieuKhamSet;
+    }
+
+    @OneToMany(mappedBy = "maBS")
+    private Set<PhieuKham> phieuKhamSet;
+
     @Transient
     private MultipartFile file;
 

@@ -7,6 +7,7 @@ package com.springmvc.pojo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
+import java.util.Optional;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -66,7 +67,7 @@ public class TaiKhoan implements Serializable {
     @Column(name = "user_role")
     private String userRole;
     @JoinColumn(name = "maNV", referencedColumnName = "maNV")
-    @OneToOne
+    @OneToOne()
     private NhanVien maNV;
        @Transient
     private String confirmPassword;

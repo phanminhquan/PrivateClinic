@@ -149,8 +149,8 @@
                     <div class="collapse" id="collapseAccount7" aria-labelledby="headingOne"
                          data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="#">Ca trực bác sĩ</a>
-                            <a class="nav-link" href="#">Lịch khám</a>
+                            <a class="nav-link" href="/admin/phieukham">Lập phiếu khám</a>
+                            <a class="nav-link" href="/lichsukham">Lịch sử khám</a>
                         </nav>
                     </div>
                 </div>

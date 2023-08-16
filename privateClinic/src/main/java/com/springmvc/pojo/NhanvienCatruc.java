@@ -35,10 +35,15 @@ public class NhanvienCatruc {
     @ManyToOne
     private NhanVien idNV;
 
+
     public NhanvienCatruc(Integer maNVCT, CaTrucTrongTuan idCT, NhanVien idNV) {
         this.maNVCT = maNVCT;
         this.idCT = idCT;
         this.idNV = idNV;
+    }
+
+    public NhanvienCatruc() {
+
     }
 
     public Integer getMaNVCT() {

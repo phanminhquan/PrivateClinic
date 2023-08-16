@@ -60,7 +60,7 @@ public class PhieuKham implements Serializable {
     @Column(name = "chuanDoan")
     private String chuanDoan;
     @Column(name = "xacnhan")
-    private Short xacnhan;
+    private Boolean xacnhan;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "maPK")
     private Set<PhieuThuoc> phieuThuocSet;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "maPK")
@@ -68,6 +68,18 @@ public class PhieuKham implements Serializable {
     @JoinColumn(name = "maBN", referencedColumnName = "maBN")
     @ManyToOne
     private BenhNhan maBN;
+
+    public NhanVien getMaBS() {
+        return maBS;
+    }
+
+    public void setMaBS(NhanVien maBS) {
+        this.maBS = maBS;
+    }
+
+    @JoinColumn(name = "maBS", referencedColumnName = "maNV")
+    @ManyToOne
+    private NhanVien maBS;
 
     public PhieuKham() {
     }
@@ -108,11 +120,11 @@ public class PhieuKham implements Serializable {
         this.chuanDoan = chuanDoan;
     }
 
-    public Short getXacnhan() {
+    public Boolean getXacnhan() {
         return xacnhan;
     }
 
-    public void setXacnhan(Short xacnhan) {
+    public void setXacnhan(Boolean xacnhan) {
         this.xacnhan = xacnhan;
     }
 

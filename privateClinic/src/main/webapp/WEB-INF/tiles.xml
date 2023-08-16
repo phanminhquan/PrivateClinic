@@ -1,93 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE tiles-definitions PUBLIC "-//ApacheSoftware Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<!DOCTYPE tiles-definitions PUBLIC "-//ApacheSoftware Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-        <definition name="baseLayout"
-                    template="/WEB-INF/layout/base.jsp">
-                <put-attribute name="title" value="" />
-                <put-attribute name="header"
-                               value="/WEB-INF/layout/header.jsp" />
-                <put-attribute name="content" value="" />
-                <put-attribute name="footer"
-                               value="/WEB-INF/layout/footer.jsp" />
-                <put-attribute name="sidebar"
-                               value="/WEB-INF/layout/sidebar.jsp" />
-        </definition>
-        <definition name="index" extends="baseLayout">
-                <put-attribute name="title" value="Trang chủ" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/index.jsp" />
-        </definition>
-        <definition name="doctor" extends="baseLayout">
-                <put-attribute name="title" value="Quản lý bác sĩ" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/doctor.jsp" />
-        </definition>
-        <definition name="yta" extends="baseLayout">
-                <put-attribute name="title" value="Danh sách y tá" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/yta.jsp" />
-        </definition>
-        <definition name="addyta" extends="baseLayout">
-                <put-attribute name="title" value="Quản lý y tá" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/addyta.jsp" />
-        </definition>
-        <definition name="addBacSi" extends="baseLayout">
-                <put-attribute name="title" value="Quản lý bác sĩ" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/addBacSi.jsp" />
-        </definition>
-        <definition name="thuoc" extends="baseLayout">
-                <put-attribute name="title" value="Danh sách thuốc" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/thuoc.jsp" />
-        </definition>
-        <definition name="addThuoc" extends="baseLayout">
-                <put-attribute name="title" value="Quản lý thuốc" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/addThuoc.jsp" />
-        </definition>
-        <definition name="login" extends="baseLayout" >
-                <put-attribute name="title" value="Đăng nhập" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/dangNhap.jsp" />
-        </definition>
-        <definition name="dangKy" extends="baseLayout" >
-                <put-attribute name="title" value="Đăng ký" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/dangKy.jsp" />
-        </definition>
-        <definition name="taikhoan" extends="baseLayout" >
-                <put-attribute name="title" value="Danh sách tài khoản" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/taiKhoan.jsp" />
-        </definition>
-        <definition name="upTaiKhoan" extends="baseLayout" >
-                <put-attribute name="title" value="Danh sách tài khoản" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/upTaiKhoan.jsp" />
-        </definition>
+    <definition name="baseLayout"
+                template="/WEB-INF/layout/base.jsp">
+        <put-attribute name="title" value=""/>
+        <put-attribute name="header"
+                       value="/WEB-INF/layout/header.jsp"/>
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer"
+                       value="/WEB-INF/layout/footer.jsp"/>
+        <put-attribute name="sidebar"
+                       value="/WEB-INF/layout/sidebar.jsp"/>
+    </definition>
+    <definition name="index" extends="baseLayout">
+        <put-attribute name="title" value="Trang chủ"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/index.jsp"/>
+    </definition>
+    <definition name="doctor" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý bác sĩ"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/doctor.jsp"/>
+    </definition>
+    <definition name="yta" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách y tá"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/yta.jsp"/>
+    </definition>
+    <definition name="addyta" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý y tá"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/addyta.jsp"/>
+    </definition>
+    <definition name="addBacSi" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý bác sĩ"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/addBacSi.jsp"/>
+    </definition>
+    <definition name="thuoc" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách thuốc"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/thuoc.jsp"/>
+    </definition>
+    <definition name="addThuoc" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý thuốc"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/addThuoc.jsp"/>
+    </definition>
+    <definition name="login" extends="baseLayout">
+        <put-attribute name="title" value="Đăng nhập"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/dangNhap.jsp"/>
+    </definition>
+    <definition name="dangKy" extends="baseLayout">
+        <put-attribute name="title" value="Đăng ký"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/dangKy.jsp"/>
+    </definition>
+    <definition name="taikhoan" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách tài khoản"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/taiKhoan.jsp"/>
+    </definition>
+    <definition name="upTaiKhoan" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách tài khoản"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/upTaiKhoan.jsp"/>
+    </definition>
 
-        <definition name="catruc" extends="baseLayout">
-                <put-attribute name="title" value="Quản lý ca trực nhân viên" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/catruc.jsp" />
-        </definition>
-        <definition name="catrucdetail" extends="baseLayout">
-                <put-attribute name="title" value="Quản lý ca trực" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/catrucdetail.jsp" />
-        </definition>
-        <definition name="catruc_edit" extends="baseLayout">
-                <put-attribute name="title" value="Quản lý ca trực" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/catruc_edit.jsp" />
-        </definition>
-        <definition name="addcatruc" extends="baseLayout">
-                <put-attribute name="title" value="Quản lý ca trực" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/addcatruc.jsp" />
-        </definition>
+    <definition name="catruc" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý ca trực nhân viên"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/catruc.jsp"/>
+    </definition>
+    <definition name="catrucdetail" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý ca trực"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/catrucdetail.jsp"/>
+    </definition>
+    <definition name="catruc_edit" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý ca trực"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/catruc_edit.jsp"/>
+    </definition>
+    <definition name="addcatruc" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý ca trực"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/addcatruc.jsp"/>
+    </definition>
+    <definition name="phieukham" extends="baseLayout">
+        <put-attribute name="title" value="Phiếu khám bệnh nhân"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/phieukham.jsp"/>
+    </definition>
+    <definition name="PDF" extends="baseLayout">
+        <put-attribute name="title" value="Phiếu khám bệnh nhân"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/PDF.jsp"/>
+    </definition>
+    <definition name="lichsukham" extends="baseLayout">
+        <put-attribute name="title" value="Lịch sủ khám"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/lichsukham.jsp"/>
+    </definition>
 </tiles-definitions>
