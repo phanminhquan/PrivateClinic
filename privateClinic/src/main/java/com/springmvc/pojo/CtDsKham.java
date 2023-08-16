@@ -31,7 +31,7 @@ public class CtDsKham implements Serializable {
     @Column(name = "maCTDS")
     private Long maCTDS;
     @Column(name = "trangthai")
-    private Short trangthai;
+    private Integer trangthai;
     @Basic(optional = false)
     @NotNull
     @Column(name = "ngaykham")
@@ -64,11 +64,11 @@ public class CtDsKham implements Serializable {
         this.maCTDS = maCTDS;
     }
 
-    public Short getTrangthai() {
+    public Integer getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(Short trangthai) {
+    public void setTrangthai(Integer trangthai) {
         this.trangthai = trangthai;
     }
 

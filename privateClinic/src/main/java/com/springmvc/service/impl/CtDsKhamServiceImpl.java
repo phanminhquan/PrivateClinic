@@ -1,12 +1,23 @@
 package com.springmvc.service.impl;
 
+import com.springmvc.dto.CtDsKhamDTO;
+import com.springmvc.pojo.BenhNhan;
+import com.springmvc.pojo.CtDsKham;
 import com.springmvc.repository.BenhNhanRepository;
 import com.springmvc.repository.CtDsKhamRepository;
 import com.springmvc.repository.DsKhamBenhRepository;
 import com.springmvc.repository.ThoiGianRepsitory;
 import com.springmvc.service.CtDsKhamService;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Service;
+
+import javax.sql.rowset.serial.SerialStruct;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -22,25 +33,46 @@ public class CtDsKhamServiceImpl implements CtDsKhamService {
     private DsKhamBenhRepository dsKhamBenhRepository;
 
 
-//    private CtDsKhamDTO toDTO(CtDsKham ctDsKham){
-//        CtDsKhamDTO dto = new CtDsKhamDTO();
-//        if(ctDsKham.getMaCTDS() !=null){
-//            dto.setMaCtds(ctDsKham.getMaCTDS());
-//        }
-//        dto.setMaBn(ctDsKham.getMaBN().getMaBN());
-//        dto.setMaDs(ctDsKham.getMaDS().getMaDS());
-//        dto.setTrangthai(ctDsKham.getTrangthai());
-//        dto.setMaTg(ctDsKham.getMaTG().getMaTG());
-//        return dto;
-//    }
-//
-//    private CtDsKham toEntity(CtDsKhamDTO ctDsKhamDTO){
-//        CtDsKham ct = new CtDsKham();
-//        ct.setTrangthai(ct.getTrangthai());
-//        ct.setMaCTDS(ctDsKhamDTO.getMaCtds());
-//        return ct;
-//    }
-//
+    private CtDsKhamDTO toDTO(CtDsKham ctDsKham){
+        CtDsKhamDTO dto = new CtDsKhamDTO();
+        if(ctDsKham.getMaCTDS() !=null){
+            dto.setMaCtds(ctDsKham.getMaCTDS());
+        }
+        dto.setMaBn(ctDsKham.getMaBN().getMaBN());
+        dto.setTrangthai(ctDsKham.getTrangthai());
+        dto.setMaTg(ctDsKham.getMaTG().getMaTG());
+        return dto;
+    }
+
+    private CtDsKham toEntity(CtDsKhamDTO ctDsKhamDTO){
+        CtDsKham ct = new CtDsKham();
+        if(ctDsKhamDTO.getMaCtds() !=null){
+            ct.setMaCTDS(ctDsKhamDTO.getMaCtds());
+        }
+        ct.setTrangthai(ct.getTrangthai());
+        ct.setMaBN(benhNhanRepository.getBenhNhanByID(ctDsKhamDTO.getMaBn()));
+        ct.setMaTG(thoiGianRepsitory.getThoiGianByID(ctDsKhamDTO.getMaTg()));
+        return ct;
+    }
+    List<CtDsKhamDTO> toListDto(List<CtDsKham> list){
+        List<CtDsKhamDTO> l  = new ArrayList<>();
+        for (CtDsKham ct : list)
+            l.add(toDTO(ct));
+        return  l;
+    }
+
+
+
+    @Override
+    public Map<String, String> AcceptOrdennyDanhSachKham(long id, Integer status) {
+        return ctDsKhamRepository.AcceptOrdennyDanhSachKham(id,status);
+    }
+
+    @Override
+    public List<Object[]> getListCtDSKham(Map<String, String> params) {
+        return ctDsKhamRepository.getListCtDSKham(params);
+    }
+
 //    @Override
 //    public CtDsKhamDTO create(CtDsKhamDTO ctDsKhamDTO) {
 //        CtDsKham ct = toEntity(ctDsKhamDTO);

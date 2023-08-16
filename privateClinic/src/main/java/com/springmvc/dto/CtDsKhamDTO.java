@@ -3,9 +3,9 @@ package com.springmvc.dto;
 public class CtDsKhamDTO {
     private Long maCtds;
     private Long maBn;
-    private Long maDs;
+
     private Long maTg;
-    private Boolean trangthai;
+    private Integer trangthai;
 
     public Long getMaCtds() {
         return this.maCtds;
@@ -23,14 +23,6 @@ public class CtDsKhamDTO {
         this.maBn = maBn;
     }
 
-    public Long getMaDs() {
-        return this.maDs;
-    }
-
-    public void setMaDs(Long maDs) {
-        this.maDs = maDs;
-    }
-
     public Long getMaTg() {
         return this.maTg;
     }
@@ -39,11 +31,11 @@ public class CtDsKhamDTO {
         this.maTg = maTg;
     }
 
-    public Boolean getTrangthai() {
+    public Integer getTrangthai() {
         return this.trangthai;
     }
 
-    public void setTrangthai(Boolean trangthai) {
+    public void setTrangthai(Integer trangthai) {
         this.trangthai = trangthai;
     }
 }
