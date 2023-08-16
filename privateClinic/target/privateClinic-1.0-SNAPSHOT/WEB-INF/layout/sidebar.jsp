@@ -112,19 +112,31 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Trang chủ
                     </a>
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccount6"
-                       aria-expanded="false" aria-controls="collapseAccount">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar-days"></i></div>
-                        Appointment
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    <a class="nav-link" href="/admin/dskham">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Xác nhận lịch khám <span class="badge bg-danger cart-counter" id="counter" >0</span>
                     </a>
-                    <div class="collapse" id="collapseAccount6" aria-labelledby="headingOne"
-                         data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="#">Ca trực bác sĩ</a>
-                            <a class="nav-link" href="#">Lịch khám</a>
-                        </nav>
-                    </div>
+                    <a class="nav-link" href="/admin/dskhamhomnay">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Xem lịch khám ngày hôm nay
+                    </a>
+                    <a class="nav-link" href="/admin/pay">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Thanh toán
+                    </a>
+                        <%--                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccount6"--%>
+                        <%--                       aria-expanded="false" aria-controls="collapseAccount">--%>
+                        <%--                        <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar-days"></i></div>--%>
+                        <%--                        Appointment--%>
+                        <%--                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>--%>
+                        <%--                    </a>--%>
+                        <%--                    <div class="collapse" id="collapseAccount6" aria-labelledby="headingOne"--%>
+                        <%--                         data-bs-parent="#sidenavAccordion">--%>
+                        <%--                        <nav class="sb-sidenav-menu-nested nav">--%>
+                        <%--                            <a class="nav-link" href="#">Ca trực bác sĩ</a>--%>
+                        <%--                            <a class="nav-link" href="#">Lịch khám</a>--%>
+                        <%--                        </nav>--%>
+                        <%--                    </div>--%>
                 </div>
             </div>
         </nav>

@@ -12,6 +12,8 @@ import com.springmvc.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -112,4 +114,10 @@ public class PhieuKhamServiceImpl implements PhieuKhamService {
         List<PhieuKham> list = phieuKhamRepository.findPkByName(kw);
         return tolistDTO(list);
     }
+
+    @Override
+    public List<Object[]> getListObjUI(Map<String,String>map) {
+        return phieuKhamRepository.listObjPayUI(map);
+    }
+
 }

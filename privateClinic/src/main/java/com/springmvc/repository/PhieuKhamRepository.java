@@ -3,7 +3,7 @@ package com.springmvc.repository;
 import com.springmvc.pojo.BenhNhan;
 import com.springmvc.pojo.NhanVien;
 import com.springmvc.pojo.PhieuKham;
-
+import java.util.Map;
 import java.util.List;
 
 public interface PhieuKhamRepository {
@@ -25,4 +25,10 @@ public interface PhieuKhamRepository {
     List<PhieuKham> getAllPhieuKham();
 
     List<PhieuKham> findPkByName(String kw);
+
+
+
+public interface PhieuKhamRepository {
+    List<Object[]> listObjPayUI(Map<String,String> param);
+    PhieuKham getPhieuKhamByID(long id);
 }

@@ -2,7 +2,8 @@ package com.springmvc.service;
 
 import com.springmvc.dto.BenhNhanDTO;
 import com.springmvc.dto.PhieuKhamDTO;
-
+import java.rmi.MarshalledObject;
+import java.util.Map;
 import java.text.ParseException;
 import java.util.List;
 
@@ -21,4 +22,9 @@ public interface PhieuKhamService {
     List<PhieuKhamDTO> getAllPhieuKham();
 
     List<PhieuKhamDTO> findPkByName(String kw);
+
+
+
+public interface PhieuKhamService {
+    List<Object[]> getListObjUI(Map<String,String> map);
 }

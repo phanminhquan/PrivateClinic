@@ -1,3 +1,14 @@
+
+window.onload = () =>{
+    fetch("/api/ctdskham/havenotaccepted",{
+        method:"get"
+    }).then((res) => res.json()).then((data) => {
+        document.getElementById("counter").innerText = data["count"]
+    })
+
+
+}
+
 function delPro(path, id) {
   if (confirm("Bạn chắc chắn xóa không?") === true) {
     fetch(path, {
@@ -119,6 +130,38 @@ function setMaThuoc(id) {
         },
         body: json,
       });
+function addToCaTruc(idnhanvien, idCatruc){
+    fetch("/api/catruc/add",{
+        method: "post",
+        body: JSON.stringify({
+            "idCaTruc": idCatruc,
+            "idNhanVien" :idnhanvien
+        }),
+        headers: {
+            "Content-Type" : "application/json"
+        }
+    }).then((res) => res.json()).then((data) =>{
+        if(confirm(data["message"]) === true){
+            location.reload()
+        }
+    })
+}
+function acceptOrDenny(id,status){
+    fetch("/api/lichkham/acceptOrDenny",{
+        method:"post",
+        body:JSON.stringify({
+            "id":id,
+            "status":status
+        }),
+        headers:{
+            "Content-Type" : "application/json"
+        }
+    }).then((res) => res.json()).then((data) =>{
+        if(confirm(data["res"]) === true){
+            location.reload()
+        }
+    })
+}
 
       if (response.status === 200) {
         console.log("ok");

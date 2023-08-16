@@ -1,14 +1,18 @@
 package com.springmvc.repository;
 
+import com.springmvc.dto.CtDsKhamDTO;
 import com.springmvc.pojo.CtDsKham;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface CtDsKhamRepository {
-//    CtDsKham create(CtDsKham ctDsKham);
+    //    CtDsKham create(CtDsKham ctDsKham);
 //    void delete(long id);
 //    CtDsKham update(CtDsKham ctDsKham);
-//    void AcceptDanhSachKham(long id);
-//    List<CtDsKham> getListCtDSKham();
+    Map<String,String> AcceptOrdennyDanhSachKham(long id,Integer status);
+    List<Object[]> getListCtDSKham(Map<String, String> params);
 //    CtDsKham getByID(long id);
+
 }

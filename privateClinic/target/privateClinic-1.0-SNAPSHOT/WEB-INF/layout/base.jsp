@@ -41,11 +41,12 @@
         <tiles:insertAttribute name="content"/>
         <tiles:insertAttribute name="footer"/>
     </div>
-</div>
-</div>
-
 
 </div>
+</div>
 
+
+</div>
+<script src="/resources/static/js/javscript.js"></script>
 </body>
 </html>
