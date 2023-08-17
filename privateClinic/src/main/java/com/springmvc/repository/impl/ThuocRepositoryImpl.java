@@ -85,4 +85,22 @@ public class ThuocRepositoryImpl implements Thuocrepository {
         q.setParameter("id", id);
         return q.getResultList();
     }
+
+    @Override
+    public List<Thuoc> getListThuocByPhieuKham(long id) {
+        Session s = factoryBean.getObject().getCurrentSession();
+        Query q = s.createQuery("SELECT t from  Thuoc t join PhieuThuoc pt on t.id =pt.maThuoc.id " +
+                "join PhieuKham pk on pk.maPK = pt.maPK.maPK where pk.maPK = :id");
+        q.setParameter("id",id);
+        return q.getResultList();
+    }
+
+    @Override
+    public List<Object[]> listCustomUIByPhieuKham(long id) {
+        Session s= factoryBean.getObject().getCurrentSession();
+        Query q =  s.createQuery("SELECT t.maThuoc,t.tenThuoc,pt.soLuong,pt.cachDung from  Thuoc t join PhieuThuoc pt on t.id =pt.maThuoc.id " +
+                "join PhieuKham pk on pk.maPK = pt.maPK.maPK where pk.maPK = :id");
+        q.setParameter("id",id);
+        return q.getResultList();
+    }
 }

@@ -20,4 +20,6 @@ public interface Thuocrepository {
     public Long countPromotion(long in);
 
     List<Object[]> getListThuocByPK(long id);
+    List<Thuoc> getListThuocByPhieuKham(long id);
+    List<Object[]> listCustomUIByPhieuKham(long id);
 }

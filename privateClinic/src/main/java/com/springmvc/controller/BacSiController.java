@@ -104,7 +104,7 @@ public class BacSiController {
         String currentDateTime = dateFormatter.format(new Date());
 
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=pdf_" + currentDateTime + ".pdf";
+        String headerValue = "attachment; filename*=UTF-8''" + currentDateTime +".pdf";
         response.setHeader(headerKey, headerValue);
         response.addHeader("Content-Type", "application/pdf; charset=UTF-8");
         BenhNhanDTO bn = benhNhanService.getBNById(phieuKhamService.getPhieuKhamByID(Util.maPk).getMaBn());

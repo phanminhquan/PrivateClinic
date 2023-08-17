@@ -9,4 +9,5 @@ public class Utils {
     public static Date dateParse(String date) throws ParseException {
         return simpleDateFormat.parse(date);
     }
+
 }

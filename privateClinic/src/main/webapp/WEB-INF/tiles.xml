@@ -107,18 +107,28 @@
                        value="/WEB-INF/pages/admin/lichsukham.jsp"/>
     </definition>
     <definition name="danhsachphieukham" extends="baseLayout">
-                <put-attribute name="title" value="Danh sách khám" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/danhsachphieukham.jsp" />
-        </definition>
-        <definition name="dskhamhomnay" extends="baseLayout">
-                <put-attribute name="title" value="Danh sách khám" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/dskhamhomnay.jsp" />
-        </definition>
-        <definition name="pay" extends="baseLayout">
-                <put-attribute name="title" value="Danh sách khám" />
-                <put-attribute name="content"
-                               value="/WEB-INF/pages/admin/pay.jsp" />
-        </definition>
+        <put-attribute name="title" value="Danh sách khám"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/danhsachphieukham.jsp"/>
+    </definition>
+    <definition name="dskhamhomnay" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách khám"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/dskhamhomnay.jsp"/>
+    </definition>
+    <definition name="pay" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách khám"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/pay.jsp"/>
+    </definition>
+    <definition name="phieukhamdetail" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách khám"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/phieukhamdetail.jsp"/>
+    </definition>
+    <definition name="catruc_nhanvien" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách khám"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admin/catruc_nhanvien.jsp"/>
+    </definition>
 </tiles-definitions>

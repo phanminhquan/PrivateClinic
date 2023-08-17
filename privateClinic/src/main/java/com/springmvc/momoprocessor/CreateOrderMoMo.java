@@ -21,20 +21,6 @@ public class CreateOrderMoMo extends AbstractProcess<PaymentRequest, PaymentResp
         super(environment);
     }
 
-    /**
-     * Capture MoMo Process on Payment Gateway
-     *
-     * @param amount
-     * @param extraData
-     * @param orderInfo
-     * @param env       name of the environment (dev or prod)
-     * @param orderId   unique order ID in MoMo system
-     * @param requestId request ID
-     * @param returnURL URL to redirect customer
-     * @param notifyURL URL for MoMo to return transaction status to merchant
-     * @return PaymentResponse
-     **/
-
     public static PaymentResponse process(Environment env, String orderId, String requestId, String amount, String orderInfo, String returnURL, String notifyURL, String extraData, RequestType requestType, Boolean autoCapture) throws Exception {
         try {
             CreateOrderMoMo m2Processor = new CreateOrderMoMo(env);
@@ -60,8 +46,6 @@ public class CreateOrderMoMo extends AbstractProcess<PaymentRequest, PaymentResp
                 throw new MoMoException("[PaymentResponse] [" + request.getOrderId() + "] -> Error API");
             }
 
-            System.out.println("uweryei7rye8wyreow8: "+ response.getData());
-
             PaymentResponse captureMoMoResponse = getGson().fromJson(response.getData(), PaymentResponse.class);
             String responserawData = Parameter.REQUEST_ID + "=" + captureMoMoResponse.getRequestId() +
                     "&" + Parameter.ORDER_ID + "=" + captureMoMoResponse.getOrderId() +
@@ -69,25 +53,12 @@ public class CreateOrderMoMo extends AbstractProcess<PaymentRequest, PaymentResp
                     "&" + Parameter.PAY_URL + "=" + captureMoMoResponse.getPayUrl() +
                     "&" + Parameter.RESULT_CODE + "=" + captureMoMoResponse.getResultCode();
 
-//            LogUtils.info("[PaymentMoMoResponse] rawData: " + responserawData);
-
             return captureMoMoResponse;
 
         } catch (Exception exception) {
             throw new IllegalArgumentException("Invalid params capture MoMo Request");
         }
     }
-
-    /**
-     * @param orderId
-     * @param requestId
-     * @param amount
-     * @param orderInfo
-     * @param returnUrl
-     * @param notifyUrl
-     * @param extraData
-     * @return
-     */
     public PaymentRequest createPaymentCreationRequest(String orderId, String requestId, String amount, String orderInfo,
                                                        String returnUrl, String notifyUrl, String extraData, RequestType requestType, Boolean autoCapture) {
 

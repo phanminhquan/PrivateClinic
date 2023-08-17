@@ -25,10 +25,8 @@ public interface PhieuKhamRepository {
     List<PhieuKham> getAllPhieuKham();
 
     List<PhieuKham> findPkByName(String kw);
-
-
-
-public interface PhieuKhamRepository {
     List<Object[]> listObjPayUI(Map<String,String> param);
-    PhieuKham getPhieuKhamByID(long id);
 }
+
+
+

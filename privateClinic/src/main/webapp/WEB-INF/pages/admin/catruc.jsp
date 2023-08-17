@@ -21,10 +21,10 @@
             <div>
                 Ca ${c.maCt}: Bắt đầu từ  ${c.gioTruc}h, kết thúc lúc ${c.gioKetThuc}h.
             </div>
-            <div class="d-flex me-auto" style="flex:auto;flex-direction: row-reverse;">
-                <a class="btn btn-info" href="/admin/addcatruc/${c.maCt}">Sửa</a>
-                <a class="btn btn-danger" onclick="delCaTruc(${c.maCt})">Xóa</a>
-            </div>
+<%--            <div class="d-flex me-auto" style="flex:auto;flex-direction: row-reverse;">--%>
+<%--                <a class="btn btn-info" href="/admin/addcatruc/${c.maCt}">Sửa</a>--%>
+<%--                <a class="btn btn-danger" onclick="delCaTruc(${c.maCt})">Xóa</a>--%>
+<%--            </div>--%>
         </div>
     </c:forEach>
     <table class="table">

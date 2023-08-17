@@ -57,4 +57,13 @@ public class HoaDonDTO {
     public void setMaPk(Long maPk) {
         this.maPk = maPk;
     }
+
+    public HoaDonDTO(Long maHd, Float tienThuoc, Float tienKham, Float tongTien, Date createdDate, Long maPk) {
+        this.maHd = maHd;
+        this.tienThuoc = tienThuoc;
+        this.tienKham = tienKham;
+        this.tongTien = tongTien;
+        this.createdDate = createdDate;
+        this.maPk = maPk;
+    }
 }

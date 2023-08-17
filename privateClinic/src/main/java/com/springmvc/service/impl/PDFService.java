@@ -34,7 +34,7 @@ public class PDFService {
         Paragraph paragraph2 = new Paragraph("Họ tên: " + benhnhan.getHoTen(), fontParagraph);
         paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
         Paragraph paragraph5 = new Paragraph("Ngày Sinh: " + benhnhan.getNgaySinh(), fontParagraph);
-        paragraph5.setAlignment(Paragraph.ALIGN_RIGHT);
+        paragraph5.setAlignment(Paragraph.ALIGN_LEFT);
         Paragraph paragraph3 = new Paragraph("Số điện thoại: " + benhnhan.getDienThoai(), fontParagraph);
         paragraph3.setAlignment(Paragraph.ALIGN_LEFT);
         Paragraph paragraph4 = new Paragraph("Chuẩn đoán: " + phieuKhamDTO.getChuanDoan(), fontParagraph);
@@ -66,11 +66,10 @@ public class PDFService {
             table.addCell(obj[3].toString());
         }
 
-
-        document.add(paragraph5);
         document.add(paragraph);
         document.add(paragraph3);
         document.add(paragraph4);
+        document.add(paragraph5);
         document.add(paragraph2);
         document.add(table);
         document.close();

@@ -2,6 +2,7 @@ package com.springmvc.service.impl;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.springmvc.dto.PhieuThuocDTO;
 import com.springmvc.dto.ThuocDTO;
 import com.springmvc.pojo.Thuoc;
 import com.springmvc.repository.Thuocrepository;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.LongStream;
 
 @Service
 public class ThuocServiceImpl implements ThuocService {
@@ -113,5 +115,19 @@ public class ThuocServiceImpl implements ThuocService {
     @Override
     public List<Object[]> getListByIDPK(long id) {
         return thuocrepository.getListThuocByPK(id);
+    }
+
+    @Override
+    public List<ThuocDTO> getListThuocByPhieuKham(long id) {
+        List<ThuocDTO> list = new ArrayList<>();
+        for(Thuoc t : thuocrepository.getListThuocByPhieuKham(id)){
+            list.add(toDto(t));
+        }
+        return list;
+    }
+
+    @Override
+    public List<Object[]> listCustomUIByPhieuKham(long id) {
+        return thuocrepository.listCustomUIByPhieuKham(id);
     }
 }

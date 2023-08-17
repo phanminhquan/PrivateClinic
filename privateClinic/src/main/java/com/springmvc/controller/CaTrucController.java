@@ -90,6 +90,11 @@ public class CaTrucController {
         return "addcatruc";
     }
 
+    @GetMapping("/catruc/nhanvien")
+    public String caTrucOfNhanVien()
+    {
+        return "catruc_nhanvien";
+    }
 
 
 }

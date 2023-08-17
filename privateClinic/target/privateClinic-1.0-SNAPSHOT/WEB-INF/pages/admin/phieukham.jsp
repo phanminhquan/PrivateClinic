@@ -250,7 +250,7 @@
     <a class="btn btn-danger" href="/admin/pdf">In phiếu thuốc</a>
 </section>
 
-<script src="/resources/static/js/javscript.js"></script>
+<%--<script src="/resources/static/js/javscript.js"></script>--%>
 
 <script></script>
 </section>

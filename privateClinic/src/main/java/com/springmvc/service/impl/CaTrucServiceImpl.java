@@ -96,4 +96,9 @@ public class CaTrucServiceImpl implements CaTrucService {
     public CaTrucDTO getCaTrucById(int id) {
         return toDTO(caTrucRepository.getCaTrucById(id));
     }
+
+    @Override
+    public List<CaTrucDTO> getListCaTrucByDayAnhNhanVien(int iddae, long idnv) {
+        return toListDTO(caTrucRepository.getListCaTrucByDateAndIdNV(iddae,idnv));
+    }
 }

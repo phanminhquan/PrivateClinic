@@ -27,6 +27,13 @@ public class ApiCTDSKham {
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
+    @PostMapping("/mail")
+    void sendMail(@RequestBody Map<String,String> req){
+        String username = req.get("username");
+        String email = req.get("email");
+        String id = req.get("id");
+        emailService.sendMail(username,email,id,"test");
+    }
     @PostMapping("/api/lichkham/acceptOrDenny")
     ResponseEntity<Map<String,String>> acceptOrDennyLichKham(@RequestBody Map<String,String> req){
         Map<String,String> res = new HashMap<>();
@@ -41,8 +48,11 @@ public class ApiCTDSKham {
                 break;
             case 1:
                 result = "Xác nhận lịch khám thành công";
-                String username = map.get("username");
-                emailService.sendMail(username,map.get("email").toString(),"test");
+                String username = map.get("name");
+                res.put("username" , username);
+                res.put("email",map.get("email").toString());
+                res.put("id",Integer.toString(id));
+
                 break;
             case 2:
                 result = "Hủy lịch khám thành công";
@@ -52,6 +62,4 @@ public class ApiCTDSKham {
         res.put("res",result);
         return new ResponseEntity<>(res,HttpStatus.OK);
     }
-
-
 }

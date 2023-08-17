@@ -12,11 +12,11 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
    private JavaMailSenderImpl javaMailSender;
     @Override
-    public void sendMail(String username,String email, String result) {
+    public void sendMail(String username,String email,String idKhamBenh, String result) {
         SimpleMailMessage newEmail = new SimpleMailMessage();
         newEmail.setTo(email);
         newEmail.setSubject("Xác nhận lịch khám");
-        newEmail.setText("Xin chào " + username +"\nThông báo về việc lịch hẹn của bạn đã được xác nhận thành công");
+        newEmail.setText("Xin chào " + username +"\nThông báo về việc lịch hẹn mã số " +  idKhamBenh+" của bạn đã được xác nhận thành công");
         javaMailSender.send(newEmail);
     }
 }

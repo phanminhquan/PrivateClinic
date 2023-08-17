@@ -22,9 +22,6 @@ public interface PhieuKhamService {
     List<PhieuKhamDTO> getAllPhieuKham();
 
     List<PhieuKhamDTO> findPkByName(String kw);
-
-
-
-public interface PhieuKhamService {
     List<Object[]> getListObjUI(Map<String,String> map);
+
 }

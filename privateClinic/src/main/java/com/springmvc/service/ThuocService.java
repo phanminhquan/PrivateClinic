@@ -20,5 +20,7 @@ public interface ThuocService {
     public Long countPromotion(long in);
 
     List<Object[]> getListByIDPK(long id);
+    List<ThuocDTO> getListThuocByPhieuKham(long id);
+    List<Object[]> listCustomUIByPhieuKham(long id);
 
 }

@@ -26,4 +26,5 @@ public interface CaTrucRepository {
     List<Integer> addCaTrucVaoNgay(List<Integer> listId, int idNgay);
     void delCaTruc(int id);
     CaTruc getCaTrucById(int id);
+    List<CaTruc> getListCaTrucByDateAndIdNV(int dateId,long idnv);
 }

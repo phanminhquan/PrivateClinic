@@ -5,7 +5,134 @@ window.onload = () =>{
     }).then((res) => res.json()).then((data) => {
         document.getElementById("counter").innerText = data["count"]
     })
+    var chart = new CanvasJS.Chart("chartContainer1", {
+        animationEnabled: true,
+        title: {
+            text: "THỐNG KÊ SỐ LƯỢNG BỆNH NHÂN ĐẾN KHÁM"
+        },
+        axisX:{
+            minimum: 5,
+            maximum: 95
+        },
+        data: [{
+            type: "column",
+            dataPoints: [
+                { x: 10, y: 71 },
+                { x: 20, y: 55 },
+                { x: 30, y: 50 },
+                { x: 40, y: 65 },
+                { x: 50, y: 95 },
+                { x: 60, y: 68 },
+                { x: 70, y: 28 },
+                { x: 80, y: 34 },
+                { x: 90, y: 14 }
+            ]
+        }]
+    });
+    chart.render();
 
+    var xSnapDistance = chart.axisX[0].convertPixelToValue(chart.get("dataPointWidth")) / 2;
+    var ySnapDistance = 3;
+
+    var xValue, yValue;
+
+    var mouseDown = false;
+    var selected = null;
+    var changeCursor = false;
+
+    var timerId = null;
+
+    function getPosition(e) {
+        var parentOffset = $("#chartContainer1 > .canvasjs-chart-container").offset();
+        var relX = e.pageX - parentOffset.left;
+        var relY = e.pageY - parentOffset.top;
+        xValue = Math.round(chart.axisX[0].convertPixelToValue(relX));
+        yValue = Math.round(chart.axisY[0].convertPixelToValue(relY));
+    }
+
+    function searchDataPoint() {
+        var dps = chart.data[0].dataPoints;
+        for(var i = 0; i < dps.length; i++ ) {
+            if( (xValue >= dps[i].x - xSnapDistance && xValue <= dps[i].x + xSnapDistance) && (yValue >= dps[i].y - ySnapDistance && yValue <= dps[i].y + ySnapDistance) )
+            {
+                if(mouseDown) {
+                    selected = i;
+                    break;
+                } else {
+                    changeCursor = true;
+                    break;
+                }
+            } else {
+                selected = null;
+                changeCursor = false;
+            }
+        }
+    }
+
+    jQuery("#chartContainer1 > .canvasjs-chart-container").on({
+        mousedown: function(e) {
+            mouseDown = true;
+            getPosition(e);
+            searchDataPoint();
+        },
+        mousemove: function(e) {
+            getPosition(e);
+            if(mouseDown) {
+                clearTimeout(timerId);
+                timerId = setTimeout(function(){
+                    if(selected != null) {
+                        chart.data[0].dataPoints[selected].y = yValue;
+                        chart.render();
+                    }
+                }, 0);
+            }
+            else {
+                searchDataPoint();
+                if(changeCursor) {
+                    chart.data[0].set("cursor", "n-resize");
+                } else {
+                    chart.data[0].set("cursor", "default");
+                }
+            }
+        },
+        mouseup: function(e) {
+            if(selected != null) {
+                chart.data[0].dataPoints[selected].y = yValue;
+                chart.render();
+                mouseDown = false;
+            }
+        }
+
+    });
+
+
+    var chart1 = new CanvasJS.Chart("chartContainer", {
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
+        animationEnabled: true,
+        title: {
+            text: "THỐNG KÊ DOANH THU"
+        },
+        data: [{
+            type: "pie",
+            startAngle: 25,
+            toolTipContent: "<b>{label}</b>: {y}%",
+            showInLegend: "true",
+            legendText: "{label}",
+            indexLabelFontSize: 16,
+            indexLabel: "{label} - {y}%",
+            dataPoints: [
+                { y: 51.08, label: "Chrome" },
+                { y: 27.34, label: "Internet Explorer" },
+                { y: 10.62, label: "Firefox" },
+                { y: 5.02, label: "Microsoft Edge" },
+                { y: 4.07, label: "Safari" },
+                { y: 1.22, label: "Opera" },
+                { y: 0.44, label: "Others" }
+            ]
+        }]
+    });
+    chart1.render();
 
 }
 
@@ -87,49 +214,8 @@ function setMaThuoc(id) {
   document.getElementById("maThuoc").value = id;
 }
 
-//  -=-=
 
-(() => {
-  const thuocList = [];
-  $("#themthuocSubmitBtn").on("click", () => {
-    const $maPk = $("[name=maPk]");
-    const $maThuoc = $("[name=maThuoc]");
-    const $soLuong = $("[name=soLuong]");
-    const $cachDung = $("[name=cachDung]");
 
-    const obj = {
-      maPk: $maPk.val(),
-      maThuoc: $maThuoc.val(),
-      soLuong: $soLuong.val(),
-      cachDung: $cachDung.val(),
-    };
-
-    thuocList.push(obj);
-
-    addToDom(obj);
-  });
-
-  $("#themthuocToDbSubmitBtn").on("click", () => {
-    if (thuocList.length == 0) return;
-
-    submit();
-  });
-
-  async function submit() {
-    const url = location.origin + "/api/phieuthuoc";
-
-    let isSomeFailed = false;
-
-    for await (const thuoc of thuocList) {
-      const json = JSON.stringify(thuoc);
-
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: json,
-      });
 function addToCaTruc(idnhanvien, idCatruc){
     fetch("/api/catruc/add",{
         method: "post",
@@ -158,26 +244,97 @@ function acceptOrDenny(id,status){
         }
     }).then((res) => res.json()).then((data) =>{
         if(confirm(data["res"]) === true){
+            if(status === 2)
+            {
+                fetch("/mail", {
+                    method: "post",
+                    body: JSON.stringify({
+                        "username": data["username"],
+                        "email": data["email"],
+                        "id": data["id"]
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }).then(r => (location.reload()))
+            }
             location.reload()
         }
     })
 }
 
-      if (response.status === 200) {
-        console.log("ok");
-      } else {
-        isSomeFailed = true;
-        console.log("fail");
-      }
+function pay(id){
+    fetch("/pay",{
+        method:"post",
+        body:JSON.stringify({
+            "idPK":id,
+        }),
+        headers:{
+            "Content-Type" : "application/json"
+        }
+    }).then((res) => res.json()).then((data) =>{
+        location.replace(data["payUrl"]);
+    })
+}
+
+
+(() => {
+    const thuocList = [];
+    $("#themthuocSubmitBtn").on("click", () => {
+        const $maPk = $("[name=maPk]");
+        const $maThuoc = $("[name=maThuoc]");
+        const $soLuong = $("[name=soLuong]");
+        const $cachDung = $("[name=cachDung]");
+
+        const obj = {
+            maPk: $maPk.val(),
+            maThuoc: $maThuoc.val(),
+            soLuong: $soLuong.val(),
+            cachDung: $cachDung.val(),
+        };
+
+        thuocList.push(obj);
+
+        addToDom(obj);
+    });
+
+    $("#themthuocToDbSubmitBtn").on("click", () => {
+        if (thuocList.length == 0) return;
+
+        submit();
+    });
+
+    async function submit() {
+        const url = location.origin + "/api/phieuthuoc";
+
+        let isSomeFailed = false;
+
+        for await (const thuoc of thuocList) {
+            const json = JSON.stringify(thuoc);
+
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: json,
+            });
+
+            if (response.status === 200) {
+                console.log("ok");
+            } else {
+                isSomeFailed = true;
+                console.log("fail");
+            }
+        }
+
+        if (!isSomeFailed) location.reload();
     }
 
-    if (!isSomeFailed) location.reload();
-  }
+    function addToDom(thuoc) {
+        const $tbody = $("#themthuocTBody");
 
-  function addToDom(thuoc) {
-    const $tbody = $("#themthuocTBody");
-
-    var $tr = $(`
+        var $tr = $(`
         <tr>
             <td style="text-align: center">${thuoc.maThuoc}</td>
             <td style="text-align: center">${thuoc.soLuong}</td>
@@ -187,6 +344,6 @@ function acceptOrDenny(id,status){
         </tr>
           `);
 
-    $tbody.append($tr);
-  }
+        $tbody.append($tr);
+    }
 })();

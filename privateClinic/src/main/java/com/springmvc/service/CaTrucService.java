@@ -17,4 +17,5 @@ public interface CaTrucService {
     public List<Integer> addCaTrucVaoNgay(List<Integer> listId, int idNgay);
     void delCaTruc(int id);
     CaTrucDTO getCaTrucById(int id);
+    List<CaTrucDTO> getListCaTrucByDayAnhNhanVien(int iddae, long idnv);
 }

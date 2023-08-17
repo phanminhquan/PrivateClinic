@@ -12,7 +12,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Query;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -102,7 +102,7 @@ public class PhieuKhamRepositoryImpl implements PhieuKhamRepository {
     private SimpleDateFormat f;
     @Override
     public List<Object[]> listObjPayUI(Map<String,String> pareams) {
-        Session s= factory.getObject().getCurrentSession();
+        Session s= factoryBean.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
         Root rPhieuKham = q.from(PhieuKham.class);
@@ -139,8 +139,5 @@ public class PhieuKhamRepositoryImpl implements PhieuKhamRepository {
         return query.getResultList();
     }
 
-    @Override
-    public PhieuKham getPhieuKhamByID(long id) {
-        return factory.getObject().getCurrentSession().get(PhieuKham.class,id);
-    }
+
 }
