@@ -19,9 +19,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -137,6 +135,13 @@ public class PhieuKhamRepositoryImpl implements PhieuKhamRepository {
 
         Query query = s.createQuery(q);
         return query.getResultList();
+    }
+
+    @Override
+    public Set<Object> getAllYear() {
+        Session s = factoryBean.getObject().getCurrentSession();
+        List<Object> y = s.createQuery("select year (p.ngayKham) from PhieuKham p").getResultList();
+        return new HashSet<>(y);
     }
 
 

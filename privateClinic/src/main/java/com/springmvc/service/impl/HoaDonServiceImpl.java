@@ -10,6 +10,8 @@ import com.springmvc.service.PhieuKhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 public class HoaDonServiceImpl implements HoaDonService {
     @Autowired
@@ -32,5 +34,10 @@ public class HoaDonServiceImpl implements HoaDonService {
     @Override
     public void saveHoaDon(HoaDonDTO hoaDonDTO) {
         hoaDonRepository.savaHoaDon(toEntity(hoaDonDTO));
+    }
+
+    @Override
+    public Set<Object> getAllYear() {
+        return hoaDonRepository.getAllYear();
     }
 }

@@ -5,6 +5,7 @@ import com.springmvc.pojo.NhanVien;
 import com.springmvc.pojo.PhieuKham;
 import java.util.Map;
 import java.util.List;
+import java.util.Set;
 
 public interface PhieuKhamRepository {
 
@@ -26,6 +27,8 @@ public interface PhieuKhamRepository {
 
     List<PhieuKham> findPkByName(String kw);
     List<Object[]> listObjPayUI(Map<String,String> param);
+
+    Set<Object> getAllYear();
 }
 
 

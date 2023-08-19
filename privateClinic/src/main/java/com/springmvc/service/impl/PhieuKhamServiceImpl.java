@@ -12,12 +12,9 @@ import com.springmvc.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.util.*;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Service
 public class PhieuKhamServiceImpl implements PhieuKhamService {
@@ -118,6 +115,12 @@ public class PhieuKhamServiceImpl implements PhieuKhamService {
     @Override
     public List<Object[]> getListObjUI(Map<String,String>map) {
         return phieuKhamRepository.listObjPayUI(map);
+    }
+
+    @Override
+    public Set<Object> getAllyear() {
+
+        return phieuKhamRepository.getAllYear();
     }
 
 }

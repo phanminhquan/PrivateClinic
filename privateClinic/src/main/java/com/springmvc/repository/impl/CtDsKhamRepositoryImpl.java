@@ -60,7 +60,6 @@ public class CtDsKhamRepositoryImpl implements CtDsKhamRepository {
             int soLichHen = q.getResultList().size();
             if(soLichHen == 100){
                 m.put("status","0");
-//                return "Trong ngày " + ct.getNgaykham().toString() + " đã có đủ 100 lịch khám";
             }
             else {
                 ct.setTrangthai(status);
@@ -78,7 +77,6 @@ public class CtDsKhamRepositoryImpl implements CtDsKhamRepository {
             s.update(ct);
             m.put("status","2");
             return m;
-//            return "Từ chối lịch khám thành công";
         }
         m.put("msg","lỗi");
         return m;
