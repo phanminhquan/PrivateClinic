@@ -21,8 +21,8 @@
         </div>
     </div>
 </nav>
-<section class="container" >
-    <div class="container" >
+<section class="container">
+    <div class="container">
 
         <div class=" text-black">
             <div class="align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
@@ -37,18 +37,20 @@
                     </div>
                 </c:if>
                 <c:url value="/admin/upRegister" var="action"></c:url>
-                <form:form cssStyle="margin-left: 20%; width: 50%" modelAttribute="dangki" method="post" action="${action}" enctype="multipart/form-data">
+                <form:form cssStyle="margin-left: 20%; width: 50%" modelAttribute="dangki" method="post"
+                           action="${action}" enctype="multipart/form-data">
                     <form:hidden path="id"/>
                     <form:hidden path="avatar"/>
                     <form:hidden path="username"/>
                     <form:hidden path="password"/>
                     <form:hidden path="confirmPassword"/>
+                    <form:errors path="*" element="div" cssClass="text-bg-danger"/>
                     <div class="form-group">
                         <labe for="name"> Họ và tên</labe>
                         <form:input type="text" id="name" name="name" class="form-control" path="name"/>
                     </div>
                     <div class="form-group" style="margin-top: 20px">
-                        <label >Avatar</label>
+                        <label>Avatar</label>
                         <form:input type="file" class="form-control" id="upload" path="file"/>
                     </div>
                     <div class="form-group" style="margin-top: 15px">

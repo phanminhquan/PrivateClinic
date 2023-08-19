@@ -2,14 +2,31 @@ package com.springmvc.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class NhanVienDTO {
     private Long maNv;
+    @NotEmpty(message = "{nhanvien.hoten.notNullMsg}")
+    @Size(min = 1, max = 50, message = "{nhanvien.hoten.size}")
+    @NotBlank(message = "{formspace}")
     private String hoTen;
+    @NotEmpty(message = "{nhanvien.email.notNullMsg}")
+    @Size(min = 1, max = 50, message = "{nhanvien.email.size}")
+    @NotBlank(message = "{formspace}")
     private String email;
+    @NotEmpty(message = "{nhanvien.ngaysinh.notNullMsg}")
+    @Column(name = "ngaySinh")
     private String ngaySinh;
+    @NotEmpty(message = "{nhanvien.diachi.notNullMsg}")
+    @Size(min = 1, max = 100, message = "{nhanvien.diachi.size}")
+    @NotBlank(message = "{formspace}")
     private String diaChi;
+    @NotEmpty(message = "{nhanvien.dienthoai.notNullMsg}")
+    @Size(min = 10, max = 10, message = "{nhanvien.dienthoai.size}")
+    @NotBlank(message = "{formspace}")
     private String dienThoai;
     private String hinhAnh;
     private Long idUser;

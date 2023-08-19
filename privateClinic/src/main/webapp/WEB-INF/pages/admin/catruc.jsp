@@ -13,18 +13,17 @@
 <section class="container">
     <h3 class="text-danger"> Chú thích</h3>
     <br>
-    <a href="/admin/addcatruc" class="btn-success btn">Thêm ca trực</a>
     <br>
     <c:forEach items="${listCaTruc}" var="c">
 
         <div class="alert alert-primary d-flex" role="alert">
             <div>
-                Ca ${c.maCt}: Bắt đầu từ  ${c.gioTruc}h, kết thúc lúc ${c.gioKetThuc}h.
+                Ca ${c.maCt}: Bắt đầu từ ${c.gioTruc}h, kết thúc lúc ${c.gioKetThuc}h.
             </div>
-<%--            <div class="d-flex me-auto" style="flex:auto;flex-direction: row-reverse;">--%>
-<%--                <a class="btn btn-info" href="/admin/addcatruc/${c.maCt}">Sửa</a>--%>
-<%--                <a class="btn btn-danger" onclick="delCaTruc(${c.maCt})">Xóa</a>--%>
-<%--            </div>--%>
+                <%--            <div class="d-flex me-auto" style="flex:auto;flex-direction: row-reverse;">--%>
+                <%--                <a class="btn btn-info" href="/admin/addcatruc/${c.maCt}">Sửa</a>--%>
+                <%--                <a class="btn btn-danger" onclick="delCaTruc(${c.maCt})">Xóa</a>--%>
+                <%--            </div>--%>
         </div>
     </c:forEach>
     <table class="table">
@@ -32,7 +31,7 @@
         <tr>
             <th></th>
             <th scope="col">Ngày làm việc</th>
-            <th scope="col" >Các ca trực</th>
+            <th scope="col">Các ca trực</th>
 
         </tr>
         </thead>

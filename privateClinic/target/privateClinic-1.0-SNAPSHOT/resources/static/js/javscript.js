@@ -1,7 +1,6 @@
-
-window.onload = () =>{
-    fetch("/api/ctdskham/havenotaccepted",{
-        method:"get"
+window.onload = () => {
+    fetch("/api/ctdskham/havenotaccepted", {
+        method: "get"
     }).then((res) => res.json()).then((data) => {
         document.getElementById("counter").innerText = data["count"]
     })
@@ -10,22 +9,22 @@ window.onload = () =>{
         title: {
             text: "THỐNG KÊ SỐ LƯỢNG BỆNH NHÂN ĐẾN KHÁM"
         },
-        axisX:{
+        axisX: {
             minimum: 5,
             maximum: 95
         },
         data: [{
             type: "column",
             dataPoints: [
-                { x: 10, y: 71 },
-                { x: 20, y: 55 },
-                { x: 30, y: 50 },
-                { x: 40, y: 65 },
-                { x: 50, y: 95 },
-                { x: 60, y: 68 },
-                { x: 70, y: 28 },
-                { x: 80, y: 34 },
-                { x: 90, y: 14 }
+                {x: 10, y: 71},
+                {x: 20, y: 55},
+                {x: 30, y: 50},
+                {x: 40, y: 65},
+                {x: 50, y: 95},
+                {x: 60, y: 68},
+                {x: 70, y: 28},
+                {x: 80, y: 34},
+                {x: 90, y: 14}
             ]
         }]
     });
@@ -52,10 +51,9 @@ window.onload = () =>{
 
     function searchDataPoint() {
         var dps = chart.data[0].dataPoints;
-        for(var i = 0; i < dps.length; i++ ) {
-            if( (xValue >= dps[i].x - xSnapDistance && xValue <= dps[i].x + xSnapDistance) && (yValue >= dps[i].y - ySnapDistance && yValue <= dps[i].y + ySnapDistance) )
-            {
-                if(mouseDown) {
+        for (var i = 0; i < dps.length; i++) {
+            if ((xValue >= dps[i].x - xSnapDistance && xValue <= dps[i].x + xSnapDistance) && (yValue >= dps[i].y - ySnapDistance && yValue <= dps[i].y + ySnapDistance)) {
+                if (mouseDown) {
                     selected = i;
                     break;
                 } else {
@@ -70,33 +68,32 @@ window.onload = () =>{
     }
 
     jQuery("#chartContainer1 > .canvasjs-chart-container").on({
-        mousedown: function(e) {
+        mousedown: function (e) {
             mouseDown = true;
             getPosition(e);
             searchDataPoint();
         },
-        mousemove: function(e) {
+        mousemove: function (e) {
             getPosition(e);
-            if(mouseDown) {
+            if (mouseDown) {
                 clearTimeout(timerId);
-                timerId = setTimeout(function(){
-                    if(selected != null) {
+                timerId = setTimeout(function () {
+                    if (selected != null) {
                         chart.data[0].dataPoints[selected].y = yValue;
                         chart.render();
                     }
                 }, 0);
-            }
-            else {
+            } else {
                 searchDataPoint();
-                if(changeCursor) {
+                if (changeCursor) {
                     chart.data[0].set("cursor", "n-resize");
                 } else {
                     chart.data[0].set("cursor", "default");
                 }
             }
         },
-        mouseup: function(e) {
-            if(selected != null) {
+        mouseup: function (e) {
+            if (selected != null) {
                 chart.data[0].dataPoints[selected].y = yValue;
                 chart.render();
                 mouseDown = false;
@@ -122,13 +119,13 @@ window.onload = () =>{
             indexLabelFontSize: 16,
             indexLabel: "{label} - {y}%",
             dataPoints: [
-                { y: 51.08, label: "Chrome" },
-                { y: 27.34, label: "Internet Explorer" },
-                { y: 10.62, label: "Firefox" },
-                { y: 5.02, label: "Microsoft Edge" },
-                { y: 4.07, label: "Safari" },
-                { y: 1.22, label: "Opera" },
-                { y: 0.44, label: "Others" }
+                {y: 51.08, label: "Chrome"},
+                {y: 27.34, label: "Internet Explorer"},
+                {y: 10.62, label: "Firefox"},
+                {y: 5.02, label: "Microsoft Edge"},
+                {y: 4.07, label: "Safari"},
+                {y: 1.22, label: "Opera"},
+                {y: 0.44, label: "Others"}
             ]
         }]
     });
@@ -137,115 +134,114 @@ window.onload = () =>{
 }
 
 function delPro(path, id) {
-  if (confirm("Bạn chắc chắn xóa không?") === true) {
-    fetch(path, {
-      method: "delete",
-    }).then((res) => {
-      if (res.status === 204) location.reload();
-      else alert("Something wrong!!!");
-    });
-  }
+    if (confirm("Bạn chắc chắn xóa không?") === true) {
+        fetch(path, {
+            method: "delete",
+        }).then((res) => {
+            if (res.status === 204) location.reload();
+            else alert("Something wrong!!!");
+        });
+    }
 }
 
 function delCaTruc(id) {
-  if (confirm("Bạn chắc chắn xóa không?") === true) {
-    fetch(`/api/delcatruc/${id}`, {
-      method: "delete",
-    }).then((res) => {
-      if (res.status === 204) location.reload();
-      else alert("Something wrong!!!");
-    });
-  }
+    if (confirm("Bạn chắc chắn xóa không?") === true) {
+        fetch(`/api/delcatruc/${id}`, {
+            method: "delete",
+        }).then((res) => {
+            if (res.status === 204) location.reload();
+            else alert("Something wrong!!!");
+        });
+    }
 }
 
 function delStaffFromShift(id) {
-  if (confirm("Bạn chắc chắn xóa không?") === true) {
-    fetch(`/api/catruc/${id}`, {
-      method: "delete",
-    }).then((res) => {
-      location.reload();
-    });
-  }
+    if (confirm("Bạn chắc chắn xóa không?") === true) {
+        fetch(`/api/catruc/${id}`, {
+            method: "delete",
+        }).then((res) => {
+            location.reload();
+        });
+    }
 }
 
 function delCaTrucTRongTuan(idCaTruc, idNgay) {
-  fetch("/api/catructrongtuan", {
-    method: "delete",
-    body: JSON.stringify({
-      idCaTruc: idCaTruc,
-      idNgay: idNgay,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((res) => {
-    location.reload();
-  });
-}
-
-function addToCaTruc(idnhanvien, idCatruc) {
-  fetch("/api/catruc/add", {
-    method: "post",
-    body: JSON.stringify({
-      idCaTruc: idCatruc,
-      idNhanVien: idnhanvien,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (confirm(data["message"]) === true) {
+    fetch("/api/catructrongtuan", {
+        method: "delete",
+        body: JSON.stringify({
+            idCaTruc: idCaTruc,
+            idNgay: idNgay,
+        }),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then((res) => {
         location.reload();
-      }
     });
 }
 
+function addToCaTruc(idnhanvien, idCatruc) {
+    fetch("/api/catruc/add", {
+        method: "post",
+        body: JSON.stringify({
+            idCaTruc: idCatruc,
+            idNhanVien: idnhanvien,
+        }),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            if (confirm(data["message"]) === true) {
+                location.reload();
+            }
+        });
+}
+
 function setMaBN(id) {
-  document.getElementById("maBn").value = id;
+    document.getElementById("maBn").value = id;
 }
 
 function setMaPK(id) {
-  document.getElementById("maPk").value = id;
+    document.getElementById("maPk").value = id;
 }
 
 function setMaThuoc(id) {
-  document.getElementById("maThuoc").value = id;
+    document.getElementById("maThuoc").value = id;
 }
 
 
-
-function addToCaTruc(idnhanvien, idCatruc){
-    fetch("/api/catruc/add",{
+function addToCaTruc(idnhanvien, idCatruc) {
+    fetch("/api/catruc/add", {
         method: "post",
         body: JSON.stringify({
             "idCaTruc": idCatruc,
-            "idNhanVien" :idnhanvien
+            "idNhanVien": idnhanvien
         }),
         headers: {
-            "Content-Type" : "application/json"
+            "Content-Type": "application/json"
         }
-    }).then((res) => res.json()).then((data) =>{
-        if(confirm(data["message"]) === true){
+    }).then((res) => res.json()).then((data) => {
+        if (confirm(data["message"]) === true) {
             location.reload()
         }
     })
 }
-function acceptOrDenny(id,status){
-    fetch("/api/lichkham/acceptOrDenny",{
-        method:"post",
-        body:JSON.stringify({
-            "id":id,
-            "status":status
+
+function acceptOrDenny(id, status) {
+    fetch("/api/lichkham/acceptOrDenny", {
+        method: "post",
+        body: JSON.stringify({
+            "id": id,
+            "status": status
         }),
-        headers:{
-            "Content-Type" : "application/json"
+        headers: {
+            "Content-Type": "application/json"
         }
-    }).then((res) => res.json()).then((data) =>{
-        if(confirm(data["res"]) === true){
-            if(status === 2)
-            {
+    }).then((res) => res.json()).then((data) => {
+        if (confirm(data["res"]) === true) {
+            if (status === 2) {
                 fetch("/mail", {
                     method: "post",
                     body: JSON.stringify({
@@ -263,16 +259,16 @@ function acceptOrDenny(id,status){
     })
 }
 
-function pay(id){
-    fetch("/pay",{
-        method:"post",
-        body:JSON.stringify({
-            "idPK":id,
+function pay(id) {
+    fetch("/pay", {
+        method: "post",
+        body: JSON.stringify({
+            "idPK": id,
         }),
-        headers:{
-            "Content-Type" : "application/json"
+        headers: {
+            "Content-Type": "application/json"
         }
-    }).then((res) => res.json()).then((data) =>{
+    }).then((res) => res.json()).then((data) => {
         location.replace(data["payUrl"]);
     })
 }
@@ -321,10 +317,10 @@ function pay(id){
             });
 
             if (response.status === 200) {
-                console.log("ok");
+                alert("Thêm phiếu khám thành công")
             } else {
                 isSomeFailed = true;
-                console.log("fail");
+                alert("Thêm phiếu khám thất bại")
             }
         }
 

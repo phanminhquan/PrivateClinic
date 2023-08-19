@@ -21,8 +21,8 @@
         </div>
     </div>
 </nav>
-<section class="container" >
-    <div class="container" >
+<section class="container">
+    <div class="container">
 
         <div class=" text-black">
             <div class="align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
@@ -37,7 +37,9 @@
                     </div>
                 </c:if>
                 <c:url value="/admin/register" var="action"></c:url>
-                <form:form cssStyle="margin-left: 20%; width: 50%" modelAttribute="dangki" method="post" action="${action}" enctype="multipart/form-data">
+                <form:form cssStyle="margin-left: 20%; width: 50%" modelAttribute="dangki" method="post"
+                           action="${action}" enctype="multipart/form-data">
+                    <form:errors path="*" element="div" cssClass="text-bg-danger"/>
                     <form:hidden path="id"/>
                     <form:hidden path="avatar"/>
                     <div class="form-group">
@@ -58,7 +60,7 @@
                                     path="confirmPassword"/>
                     </div>
                     <div class="form-group" style="margin-top: 20px">
-                        <label >Avatar</label>
+                        <label>Avatar</label>
                         <form:input type="file" class="form-control" id="upload" path="file"/>
                     </div>
                     <div class="form-group" style="margin-top: 15px">
