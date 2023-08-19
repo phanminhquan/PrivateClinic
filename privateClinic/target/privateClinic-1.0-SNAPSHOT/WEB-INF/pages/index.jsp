@@ -3,13 +3,85 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <sec:authorize access="hasAnyAuthority('ADMIN')">
+    <script>
+        function loadchar(){
+            const datatk = [];
+            <c:forEach items="${keys}" var="i" varStatus="loop">
+                datatk.push({label:"${i}",y:${thongkenam[loop.index]}})
+            </c:forEach>
+            console.log(datatk)
+            var chart3 = new CanvasJS.Chart("chartContainer2", {
+                animationEnabled: true,
+                theme: "light2", // "light1", "light2", "dark1", "dark2"
+                title: {
+                    text: "THỐNG KÊ SỐ LƯỢNG KHÁCH HÀNG QUA CÁC NĂM"
+                },
+                axisY: {
+                    title: "Số lượng khách hàng",
+                    suffix: ""
+                },
+                axisX: {
+                    title: "Các năm"
+                },
+                data: [{
+                    type: "column",
+                    dataPoints: datatk
+                }]
+            });
+            chart3.render();
+        }
+        function loadchar2(){
+            const datatkdoanhso = [];
+            <c:forEach items="${nam}" var="i" varStatus="loop">
+            datatkdoanhso.push({label:"${i}",y:${thongkedoanhthunam[loop.index]}})
+            </c:forEach>
+            var chart4 = new CanvasJS.Chart("chartContainer5", {
+                animationEnabled: true,
+                title:{
+                    text:"THỐNG KÊ DOANH THU THEO CÁC NĂM"
+                },
+                axisX:{
+                    interval: 1
+                },
+                axisY2:{
+                    interlacedColor: "rgba(1,77,101,.2)",
+                    gridColor: "rgba(1,77,101,.1)",
+                    title: "Doanh thu"
+                },
+                data: [{
+                    type: "bar",
+                    name: "companies",
+                    axisYType: "secondary",
+                    color: "#014D65",
+                    dataPoints: datatkdoanhso
+                }]
+            });
+            chart4.render();
+
+        }
+
+    </script>
     <section class="container">
         <h1 class="text-center">THỐNG KÊ BÁO CÁO</h1>
+        <button onclick="fectCharQuy()">test</button>
+        <input type="number" placeholder="Nhập năm" id="year">
         <form>
         </form>
         <div class="d-flex gap-5">
             <div id="chartContainer1" style="height: 370px; width: 50%;"></div>
             <div id="chartContainer" style="height: 370px; width: 50%;"></div>
+        </div>
+        <div class="mt-4">
+            <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+        </div>
+        <br>
+        <div class="mt-4">
+            <div id="chartContainer4" style="height: 370px; width: 100%;"></div>
+        </div>
+        <br>
+        <div class="d-flex gap-5">
+            <div id="chartContainer3" style="height: 370px; width: 50%;"></div>
+            <div id="chartContainer5" style="height: 370px; width: 50%;"></div>
         </div>
     </section>
 

@@ -1,59 +1,67 @@
-window.onload = () => {
-    fetch("/api/ctdskham/havenotaccepted", {
-        method: "get"
+
+window.onload = () =>{
+    fetch("/api/ctdskham/havenotaccepted",{
+        method:"get"
     }).then((res) => res.json()).then((data) => {
         document.getElementById("counter").innerText = data["count"]
     })
-    var chart = new CanvasJS.Chart("chartContainer1", {
+    //chart 1
+    fechchart1();
+
+    //Chart 2
+    fecthPieChart();
+
+    //Chart 3
+    loadchar();
+
+
+    //Chart 4
+    fecthDaonhThuTheoThang();
+
+    //
+    fectSLTheoThang();
+
+    //chart 5
+    loadchar2();
+
+
+}
+
+function loadChartSLTheoThang(){
+    var chart = new CanvasJS.Chart("chartContainer4", {
         animationEnabled: true,
-        title: {
-            text: "THỐNG KÊ SỐ LƯỢNG BỆNH NHÂN ĐẾN KHÁM"
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        title:{
+            text: "THỐNG KÊ SỐ LƯỢNG BỆNH NHÂN THEO THÁNG"
         },
-        axisX: {
+        axisX:{
             minimum: 5,
             maximum: 95
         },
         data: [{
             type: "column",
             dataPoints: [
-                {x: 10, y: 71},
-                {x: 20, y: 55},
-                {x: 30, y: 50},
-                {x: 40, y: 65},
-                {x: 50, y: 95},
-                {x: 60, y: 68},
-                {x: 70, y: 28},
-                {x: 80, y: 34},
-                {x: 90, y: 14}
+                { x: 10, y: 71 },
+                { x: 20, y: 55 },
+                { x: 30, y: 50 },
+                { x: 40, y: 65 },
+                { x: 50, y: 95 },
+                { x: 60, y: 68 },
+                { x: 70, y: 28 },
+                { x: 80, y: 34 },
+                { x: 90, y: 14 }
             ]
         }]
     });
     chart.render();
-
-    var xSnapDistance = chart.axisX[0].convertPixelToValue(chart.get("dataPointWidth")) / 2;
-    var ySnapDistance = 3;
-
-    var xValue, yValue;
-
-    var mouseDown = false;
-    var selected = null;
-    var changeCursor = false;
-
-    var timerId = null;
-
-    function getPosition(e) {
-        var parentOffset = $("#chartContainer1 > .canvasjs-chart-container").offset();
-        var relX = e.pageX - parentOffset.left;
-        var relY = e.pageY - parentOffset.top;
-        xValue = Math.round(chart.axisX[0].convertPixelToValue(relX));
-        yValue = Math.round(chart.axisY[0].convertPixelToValue(relY));
-    }
+}
 
     function searchDataPoint() {
         var dps = chart.data[0].dataPoints;
-        for (var i = 0; i < dps.length; i++) {
-            if ((xValue >= dps[i].x - xSnapDistance && xValue <= dps[i].x + xSnapDistance) && (yValue >= dps[i].y - ySnapDistance && yValue <= dps[i].y + ySnapDistance)) {
-                if (mouseDown) {
+        for(var i = 0; i < dps.length; i++ ) {
+            if( (xValue >= dps[i].x - xSnapDistance && xValue <= dps[i].x + xSnapDistance) && (yValue >= dps[i].y - ySnapDistance && yValue <= dps[i].y + ySnapDistance) )
+            {
+                if(mouseDown) {
                     selected = i;
                     break;
                 } else {
@@ -68,68 +76,78 @@ window.onload = () => {
     }
 
     jQuery("#chartContainer1 > .canvasjs-chart-container").on({
-        mousedown: function (e) {
+        mousedown: function(e) {
             mouseDown = true;
             getPosition(e);
             searchDataPoint();
         },
-        mousemove: function (e) {
+        mousemove: function(e) {
             getPosition(e);
-            if (mouseDown) {
+            if(mouseDown) {
                 clearTimeout(timerId);
-                timerId = setTimeout(function () {
-                    if (selected != null) {
+                timerId = setTimeout(function(){
+                    if(selected != null) {
                         chart.data[0].dataPoints[selected].y = yValue;
                         chart.render();
                     }
                 }, 0);
-            } else {
+            }
+            else {
                 searchDataPoint();
-                if (changeCursor) {
+                if(changeCursor) {
                     chart.data[0].set("cursor", "n-resize");
                 } else {
                     chart.data[0].set("cursor", "default");
                 }
             }
         },
-        mouseup: function (e) {
-            if (selected != null) {
+        mouseup: function(e) {
+            if(selected != null) {
                 chart.data[0].dataPoints[selected].y = yValue;
                 chart.render();
                 mouseDown = false;
             }
         }
 
-    });
+function fectCharQuy(){
+    fechchart1();
+    fecthPieChart();
+    fecthDaonhThuTheoThang()
+    fectSLTheoThang();
+}
+var dataDoanhThu = []
+var dataBenhNhanTheoQuy =[]
+var dataDoanhThuTheoThang = []
+var dataSLTheoThang =[]
 
-
-    var chart1 = new CanvasJS.Chart("chartContainer", {
+function loadchar1(){
+    var chart = new CanvasJS.Chart("chartContainer1", {
         theme: "light2", // "light1", "light2", "dark1", "dark2"
         exportEnabled: true,
         animationEnabled: true,
         title: {
-            text: "THỐNG KÊ DOANH THU"
+            text: "THỐNG KÊ SỐ LƯỢNG BỆNH NHÂN THEO QUÝ"
         },
         data: [{
             type: "pie",
             startAngle: 25,
-            toolTipContent: "<b>{label}</b>: {y}%",
+            toolTipContent: "<b>{label}</b>: {y}",
             showInLegend: "true",
             legendText: "{label}",
             indexLabelFontSize: 16,
             indexLabel: "{label} - {y}%",
             dataPoints: [
-                {y: 51.08, label: "Chrome"},
-                {y: 27.34, label: "Internet Explorer"},
-                {y: 10.62, label: "Firefox"},
-                {y: 5.02, label: "Microsoft Edge"},
-                {y: 4.07, label: "Safari"},
-                {y: 1.22, label: "Opera"},
-                {y: 0.44, label: "Others"}
+                { y: 51.08, label: "Chrome" },
+                { y: 27.34, label: "Internet Explorer" },
+                { y: 10.62, label: "Firefox" },
+                { y: 5.02, label: "Microsoft Edge" },
+                { y: 4.07, label: "Safari" },
+                { y: 1.22, label: "Opera" },
+                { y: 0.44, label: "Others" }
             ]
         }]
     });
-    chart1.render();
+    chart.render();
 
 }
 

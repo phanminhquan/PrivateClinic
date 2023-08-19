@@ -6,6 +6,7 @@ import java.rmi.MarshalledObject;
 import java.util.Map;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Set;
 
 public interface PhieuKhamService {
 
@@ -23,5 +24,7 @@ public interface PhieuKhamService {
 
     List<PhieuKhamDTO> findPkByName(String kw);
     List<Object[]> getListObjUI(Map<String,String> map);
+
+    Set<Object> getAllyear();
 
 }
