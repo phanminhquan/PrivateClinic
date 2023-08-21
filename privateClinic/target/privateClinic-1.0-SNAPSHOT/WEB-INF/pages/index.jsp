@@ -3,11 +3,26 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <sec:authorize access="hasAnyAuthority('ADMIN')">
+    <nav class="navbar navbar-expand-sm navbar-dark " style="background-color: #e9ecef">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="javascript:void(0)" style="color: black; font-weight: 500">Thống kê
+                báo
+                cáo</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                </ul>
+            </div>
+        </div>
+    </nav>
     <script>
-        function loadchar(){
+        function loadchar() {
             const datatk = [];
             <c:forEach items="${keys}" var="i" varStatus="loop">
-                datatk.push({label:"${i}",y:${thongkenam[loop.index]}})
+            datatk.push({label: "${i}", y:${thongkenam[loop.index]}})
             </c:forEach>
             console.log(datatk)
             var chart3 = new CanvasJS.Chart("chartContainer2", {
@@ -30,23 +45,24 @@
             });
             chart3.render();
         }
-        function loadchar2(){
+
+        function loadchar2() {
             const datatkdoanhso = [];
             <c:forEach items="${nam}" var="i" varStatus="loop">
-            datatkdoanhso.push({label:"${i}",y:${thongkedoanhthunam[loop.index]}})
+            datatkdoanhso.push({label: "${i}", y:${thongkedoanhthunam[loop.index]}})
             </c:forEach>
             var chart4 = new CanvasJS.Chart("chartContainer5", {
                 animationEnabled: true,
-                title:{
-                    text:"THỐNG KÊ DOANH THU THEO CÁC NĂM"
+                title: {
+                    text: "THỐNG KÊ DOANH THU THEO CÁC NĂM"
                 },
-                axisX:{
+                axisX: {
                     interval: 1
                 },
-                axisY2:{
+                axisY2: {
                     interlacedColor: "rgba(1,77,101,.2)",
                     gridColor: "rgba(1,77,101,.1)",
-                    title: "Doanh thu"
+                    title: "Doanh thu (VNĐ)"
                 },
                 data: [{
                     type: "bar",
@@ -62,26 +78,27 @@
 
     </script>
     <section class="container">
-        <h1 class="text-center">THỐNG KÊ BÁO CÁO</h1>
-        <button onclick="fectCharQuy()">test</button>
-        <input type="number" placeholder="Nhập năm" id="year">
-        <form>
-        </form>
-        <div class="d-flex gap-5">
-            <div id="chartContainer1" style="height: 370px; width: 50%;"></div>
-            <div id="chartContainer" style="height: 370px; width: 50%;"></div>
-        </div>
-        <div class="mt-4">
-            <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
-        </div>
-        <br>
-        <div class="mt-4">
-            <div id="chartContainer4" style="height: 370px; width: 100%;"></div>
-        </div>
-        <br>
-        <div class="d-flex gap-5">
-            <div id="chartContainer3" style="height: 370px; width: 50%;"></div>
-            <div id="chartContainer5" style="height: 370px; width: 50%;"></div>
+        <div class="container">
+            <div class="d-flex" style="margin-top: 30px">
+                <input class="form-control me-2" type="number" placeholder="Nhập năm" id="year" style="width: 250px">
+                <button class="btn btn-primary" onclick="fectCharQuy()">Lọc</button>
+            </div>
+            <div class="d-flex gap-5" style="margin-top: 40px">
+                <div id="chartContainer1" style="height: 370px; width: 50%;"></div>
+                <div id="chartContainer" style="height: 370px; width: 50%;"></div>
+            </div>
+            <div class="mt-4" style="margin-top: 40px">
+                <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+            </div>
+            <br>
+            <div class="mt-4" style="margin-top: 40px">
+                <div id="chartContainer4" style="height: 370px; width: 100%;"></div>
+            </div>
+            <br>
+            <div class="d-flex gap-5" style="margin-top: 40px">
+                <div id="chartContainer3" style="height: 370px; width: 50%;"></div>
+                <div id="chartContainer5" style="height: 370px; width: 50%;"></div>
+            </div>
         </div>
     </section>
 
@@ -89,30 +106,51 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </sec:authorize>
 <sec:authorize access="hasAnyAuthority('DOCTOR', 'NURSE')">
-    <h1 class="text-center">LỊCH TRỰC NHÂN VIÊN</h1>
+    <nav class="navbar navbar-expand-sm navbar-dark " style="background-color: #e9ecef">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="javascript:void(0)" style="color: black; font-weight: 500">Lịch trực nhân viên
+                trong tuần</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar2">
+                <ul class="navbar-nav me-auto">
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container py-9 py-lg-11 position-relative z-index-1">
         <div class="row">
             <div class="col-lg-5 mb-5 mb-lg-0">
-                <div class="nav nav-pills flex-column aos-init aos-animate" id="myTab" role="tablist" data-aos="fade-up">
-                    <button class="nav-link px-4 text-start active" id="d1-tab" data-bs-toggle="tab" data-bs-target="#day1" type="button" role="tab" aria-controls="day1" aria-selected="true">
+                <div class="nav nav-pills flex-column aos-init aos-animate" id="myTab" role="tablist"
+                     data-aos="fade-up">
+                    <button class="nav-link px-4 text-start active" id="d1-tab" data-bs-toggle="tab"
+                            data-bs-target="#day1" type="button" role="tab" aria-controls="day1" aria-selected="true">
                         <span class="d-block fs-5 fw-bold">Thứ hai</span>
                     </button>
-                    <button class="nav-link px-4 text-start" id="d2-tab" data-bs-toggle="tab" data-bs-target="#day2" type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
+                    <button class="nav-link px-4 text-start" id="d2-tab" data-bs-toggle="tab" data-bs-target="#day2"
+                            type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
                         <span class="d-block fs-5 fw-bold">Thứ ba</span>
                     </button>
-                    <button class="nav-link px-4 text-start" id="d3-tab" data-bs-toggle="tab" data-bs-target="#day3" type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
+                    <button class="nav-link px-4 text-start" id="d3-tab" data-bs-toggle="tab" data-bs-target="#day3"
+                            type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
                         <span class="d-block fs-5 fw-bold">Thứ tư</span>
                     </button>
-                    <button class="nav-link px-4 text-start" id="d4-tab" data-bs-toggle="tab" data-bs-target="#day4" type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
+                    <button class="nav-link px-4 text-start" id="d4-tab" data-bs-toggle="tab" data-bs-target="#day4"
+                            type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
                         <span class="d-block fs-5 fw-bold">Thứ năm</span>
                     </button>
-                    <button class="nav-link px-4 text-start" id="d5-tab" data-bs-toggle="tab" data-bs-target="#day5" type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
+                    <button class="nav-link px-4 text-start" id="d5-tab" data-bs-toggle="tab" data-bs-target="#day5"
+                            type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
                         <span class="d-block fs-5 fw-bold">Thứ sáu</span>
                     </button>
-                    <button class="nav-link px-4 text-start" id="d6-tab" data-bs-toggle="tab" data-bs-target="#day6" type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
+                    <button class="nav-link px-4 text-start" id="d6-tab" data-bs-toggle="tab" data-bs-target="#day6"
+                            type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
                         <span class="d-block fs-5 fw-bold">Thứ bảy</span>
                     </button>
-                    <button class="nav-link px-4 text-start" id="d7-tab" data-bs-toggle="tab" data-bs-target="#day7" type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
+                    <button class="nav-link px-4 text-start" id="d7-tab" data-bs-toggle="tab" data-bs-target="#day7"
+                            type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1">
                         <span class="d-block fs-5 fw-bold">Chủ nhật</span>
                     </button>
                 </div>
@@ -121,10 +159,11 @@
             <div class="col-lg-7 col-xl-6">
                 <div data-aos="fade-up" class="tab-content aos-init aos-animate" id="myTabContent">
                     <div class="tab-pane fade active show" id="day1" role="tabpanel" aria-labelledby="d1-tab">
-                        <ul class="pt-4 list-unstyled mb-0">
+                        <ul>
                             <c:forEach items="${date1}" var="d">
-                                <li class="d-flex flex-column flex-md-row py-4">
-                                <span class="flex-shrink-0 width-13x me-md-4 d-block mb-3 mb-md-0 small text-muted">
+                                <li class="d-flex">
+                                <span class="flex-shrink-0 width-13x me-md-4 d-block mb-3 mb-md-0 small text-muted"
+                                      style="margin-top: 10px">
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">

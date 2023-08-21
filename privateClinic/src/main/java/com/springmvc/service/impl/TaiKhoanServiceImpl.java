@@ -30,7 +30,7 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     @Autowired
     private Cloudinary cloudinary;
 
-    public TaiKhoanDTO toDto(TaiKhoan taiKhoan){
+    public TaiKhoanDTO toDto(TaiKhoan taiKhoan) {
         TaiKhoanDTO t = new TaiKhoanDTO();
         t.setId(null);
         t.setName(taiKhoan.getName());
@@ -43,7 +43,8 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
 //        t.setTkRole(taiKhoan.getTkRole().getId());
         return t;
     }
-    public TaiKhoanDTO toDto1(TaiKhoan taiKhoan){
+
+    public TaiKhoanDTO toDto1(TaiKhoan taiKhoan) {
         TaiKhoanDTO t = new TaiKhoanDTO();
         t.setId(taiKhoan.getId());
         t.setName(taiKhoan.getName());
@@ -61,17 +62,18 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
 //        t.setTkRole(taiKhoan.getTkRole().getId());
         return t;
     }
-    public List<TaiKhoanDTO> toTKDTOList(List<TaiKhoan> t){
+
+    public List<TaiKhoanDTO> toTKDTOList(List<TaiKhoan> t) {
         List<TaiKhoanDTO> taiKhoanDTOS = new ArrayList<>();
-        for (TaiKhoan taiKhoan: t)
-        {
+        for (TaiKhoan taiKhoan : t) {
             TaiKhoanDTO dto = toDto1(taiKhoan);
-            if(dto.getIsActive() != false)
+            if (dto.getIsActive() != false)
                 taiKhoanDTOS.add(dto);
         }
-        return  taiKhoanDTOS;
+        return taiKhoanDTOS;
     }
-    public TaiKhoan toEntity(TaiKhoanDTO taiKhoan){
+
+    public TaiKhoan toEntity(TaiKhoanDTO taiKhoan) {
         TaiKhoan t = new TaiKhoan();
         t.setId(taiKhoan.getId());
         t.setName(taiKhoan.getName());
@@ -83,25 +85,24 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
         t.setFile(taiKhoan.getFile());
         return t;
     }
+
     @Override
     public TaiKhoanDTO addTaiKhoan(TaiKhoanDTO taiKhoanDTO) {
         TaiKhoan taiKhoan = new TaiKhoan();
         taiKhoan = toEntity(taiKhoanDTO);
-        if (!taiKhoan.getFile().isEmpty()){
+        if (!taiKhoan.getFile().isEmpty()) {
             try {
-                Map res =  this.cloudinary.uploader().upload(taiKhoan.getFile().getBytes(), ObjectUtils.asMap("resource_type","auto"));
+                Map res = this.cloudinary.uploader().upload(taiKhoan.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
                 taiKhoan.setAvatar(res.get("secure_url").toString());
-            }catch (IOException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(TaiKhoanService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        if(taiKhoanDTO.getMaNv() != null) {
+        if (taiKhoanDTO.getMaNv() != null) {
             NhanVien nv = taiKhoanRepository.findNVByID(taiKhoanDTO.getMaNv());
             taiKhoan.setMaNV(nv);
-        }
-        else
-        {
+        } else {
             long in = 10;
             NhanVien nv = taiKhoanRepository.findNVByID(in);
             taiKhoan.setMaNV(nv);
@@ -110,9 +111,9 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
 //        TaiKhoanRole tk = taiKhoanRepository.findtkByID(t);
 //        taiKhoan.setTkRole(tk);
         taiKhoan = taiKhoanRepository.addTaiKhoan(taiKhoan);
-        if(taiKhoan == null)
+        if (taiKhoan == null)
             return null;
-        return toDto(taiKhoan) ;
+        return toDto(taiKhoan);
     }
 
     @Override
@@ -124,7 +125,7 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     public TaiKhoanDTO getTaiKhoanById(Long id) {
         TaiKhoan taiKhoan = new TaiKhoan();
         taiKhoan = taiKhoanRepository.getTKById(id);
-        return toDto1(taiKhoan) ;
+        return toDto1(taiKhoan);
     }
 
     @Override
@@ -145,6 +146,31 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     }
 
     @Override
+    public TaiKhoan getTaiKhoanByUsername(String user) {
+        TaiKhoan tk = taiKhoanRepository.getTkByUsername(user);
+        return tk;
+    }
+
+    @Override
+    public boolean authUser(String username, String password) {
+        return this.taiKhoanRepository.authUser(username, password);
+    }
+
+//    @Override
+//    public TaiKhoan addUser(Map<String, String> params, MultipartFile avatar) {
+//        TaiKhoan t = new TaiKhoan();
+//        t.setName(params.get("name"));
+//        t.setUsername(taiKhoan.getUsername());
+//        t.setPassword(this.passwordEncoder.encode(taiKhoan.getPassword()));
+//        t.setAvatar(taiKhoan.getAvatar());
+//        t.setIsActive(taiKhoan.getIsActive());
+//        t.setUserRole(taiKhoan.getUserRole());
+//        t.setFile(taiKhoan.getFile());
+//
+//        return null;
+//    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<TaiKhoan> list = this.getListTaiKhoan(username);
         if (list.isEmpty())
@@ -155,6 +181,6 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
         auth.add(new SimpleGrantedAuthority(taiKhoan.getUserRole()));
         Util.maNV = taiKhoan.getMaNV().getMaNV();
         return new org.springframework.security.core.userdetails
-                .User(taiKhoan.getUsername(),taiKhoan.getPassword(),auth);
+                .User(taiKhoan.getUsername(), taiKhoan.getPassword(), auth);
     }
 }

@@ -4,21 +4,20 @@
  */
 package com.springmvc.configs;
 
-import org.springframework.security.access.SecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
- *
  * @author user
  */
-public class DispatcherServletInit extends AbstractAnnotationConfigDispatcherServletInitializer{
+public class DispatcherServletInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] {
+        return new Class[]{
                 HibernateConfig.class,
                 TilesConfigs.class,
-                SpringSecurityConfig.class
+                SpringSecurityConfig.class,
+                JwtSecurityConfig.class
 
         };
     }
@@ -30,8 +29,8 @@ public class DispatcherServletInit extends AbstractAnnotationConfigDispatcherSer
 
     @Override
     protected String[] getServletMappings() {
-        return new String []{"/"};
+        return new String[]{"/"};
     }
-    
-    
+
+
 }

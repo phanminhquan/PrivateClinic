@@ -398,7 +398,7 @@ function pay(id) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: json,
+        body: json
       });
 
       if (response.status === 200) {
