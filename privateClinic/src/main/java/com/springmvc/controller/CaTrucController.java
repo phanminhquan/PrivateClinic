@@ -1,10 +1,12 @@
 package com.springmvc.controller;
 
 import com.springmvc.dto.CaTrucDTO;
+import com.springmvc.dto.CaTrucTrongTuanDTO;
 import com.springmvc.dto.DateOfWeekDTO;
 
 import com.springmvc.service.CaTrucService;
 import com.springmvc.service.DateOfWeekService;
+import com.springmvc.service.NhanVienCaTrucService;
 import com.springmvc.service.NhanVienService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +46,12 @@ public class CaTrucController {
         return "catruc";
     }
 
-    @GetMapping("/catruc/{id}")
-    public String detail(@PathVariable("id") int id, Model model, @RequestParam Map<String, String> map){
-        model.addAttribute("idCaTruc", id);
-        model.addAttribute("listNhanVien", nhanVienService.getListNhanvVienByCaTruc(id));
+    @GetMapping("/catruc/{iddate}/{id}")
+    public String detail(@PathVariable("id") int id, Model model,@PathVariable("iddate") int iddate, @RequestParam Map<String, String> map){
+
+        CaTrucTrongTuanDTO ct = caTrucService.getCaTrucTrongTuanByDayAndCaTruc(iddate,id);
+        model.addAttribute("idCaTruc", ct.getId());
+        model.addAttribute("listNhanVien", nhanVienService.getListNhanvVienByCaTruc(ct.getId()));
         model.addAttribute("allMaNv", nhanVienService.getAllMaNv());
         model.addAttribute("allName", nhanVienService.getAllName());
         model.addAttribute("allSearchlistNV", nhanVienService.getAllListNhanVien(map));

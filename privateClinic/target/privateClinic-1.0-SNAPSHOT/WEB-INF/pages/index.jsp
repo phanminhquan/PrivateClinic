@@ -46,7 +46,7 @@
                 axisY2:{
                     interlacedColor: "rgba(1,77,101,.2)",
                     gridColor: "rgba(1,77,101,.1)",
-                    title: "Doanh thu"
+                    title: "Doanh thu (VNĐ)"
                 },
                 data: [{
                     type: "bar",
@@ -143,7 +143,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -157,7 +157,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -171,7 +171,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -185,7 +185,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -199,7 +199,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -213,7 +213,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>

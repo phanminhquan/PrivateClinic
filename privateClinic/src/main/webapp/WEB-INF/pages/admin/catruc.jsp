@@ -37,7 +37,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${date}" var="d" varStatus="loop">
+            <c:forEach items="${date}" var="d" varStatus="loop">
             <tr>
                 <td>
                     <a href="/catruc/edit/${d.id}" class="btn-info btn">Sửa</a>
@@ -45,7 +45,7 @@
                 <td>${d.dateOfWeek}</td>
                 <td>
                     <c:forEach items="${list[loop.index]}" var="l">
-                        <a href="/catruc/${l.maCt}" class="btn-success btn">Ca ${l.maCt}</a>
+                        <a href="/catruc/${d.id}/${l.maCt}" class="btn-success btn">Ca ${l.maCt}</a>
                     </c:forEach>
                 </td>
 

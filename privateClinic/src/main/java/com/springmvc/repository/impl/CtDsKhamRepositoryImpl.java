@@ -30,8 +30,6 @@ public class CtDsKhamRepositoryImpl implements CtDsKhamRepository {
     LocalSessionFactoryBean factory;
     @Autowired
     private SimpleDateFormat f;
-
-
         public void sendMail(String username,String email, String result) {
             SimpleMailMessage newEmail = new SimpleMailMessage();
             newEmail.setTo(email);

@@ -28,6 +28,7 @@ public interface NhanVienRepository {
     List<Long> getAllMaNv();
     List<String> getAllName();
     List<Object[]> GetAllListNhanVien(Map<String, String> map);
+    List<NhanVien> getListNhanVienByCaTrucTrongTuan(int id);
 
 
 }

@@ -136,7 +136,7 @@ public class NhanVienRepositoryImpl implements NhanVienRepository {
                 " join CaTrucTrongTuan cttt on cttt.id = nvct.idCT.id" +
                 " join CaTruc ct on ct.id = cttt.idCaTruc.id " +
                 " join UserRole role on role.id = n.idUser.id" +
-                " where ct.id =:id");
+                " where cttt.id =:id");
         query.setParameter("id" ,id);
         return query.getResultList();
     }
@@ -177,5 +177,15 @@ public class NhanVienRepositoryImpl implements NhanVienRepository {
         }
         Query query = s.createQuery(q);
         return query.getResultList();
+    }
+
+    @Override
+    public List<NhanVien> getListNhanVienByCaTrucTrongTuan(int id) {
+        Session s = factory.getObject().getCurrentSession();
+        Query q = s.createQuery("select n from NhanVien n join NhanvienCatruc nct on n.id = nct.idNV.id" +
+                " join CaTrucTrongTuan cttt on cttt.id = nct.idCT.id where cttt.id = :id");
+        q.setParameter("id",id);
+
+        return q.getResultList();
     }
 }

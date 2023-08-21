@@ -1,7 +1,9 @@
 package com.springmvc.service.impl;
 
 import com.springmvc.dto.CaTrucDTO;
+import com.springmvc.dto.CaTrucTrongTuanDTO;
 import com.springmvc.pojo.CaTruc;
+import com.springmvc.pojo.CaTrucTrongTuan;
 import com.springmvc.repository.CaTrucRepository;
 import com.springmvc.service.CaTrucService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,15 @@ public class CaTrucServiceImpl implements CaTrucService {
         for (CaTruc c : list)
             dtoList.add(toDTO(c));
         return dtoList;
+    }
+    private CaTrucTrongTuanDTO toDTOCaTrucTrongTuan(CaTrucTrongTuan entity){
+        CaTrucTrongTuanDTO ct = new CaTrucTrongTuanDTO();
+        if(entity.getId() !=null){
+            ct.setId(entity.getId());
+        }
+        ct.setIdCaTruc(entity.getIdCaTruc().getMaCT());
+        ct.setIdNgay(entity.getIdNgay().getId());
+        return ct;
     }
     @Override
     public List<CaTrucDTO> getListCaTrucByDate(int date) {
@@ -100,5 +111,10 @@ public class CaTrucServiceImpl implements CaTrucService {
     @Override
     public List<CaTrucDTO> getListCaTrucByDayAnhNhanVien(int iddae, long idnv) {
         return toListDTO(caTrucRepository.getListCaTrucByDateAndIdNV(iddae,idnv));
+    }
+
+    @Override
+    public CaTrucTrongTuanDTO getCaTrucTrongTuanByDayAndCaTruc(int iddate, int idct) {
+        return toDTOCaTrucTrongTuan(caTrucRepository.getCaTrucTrongTuanByDayAndCaTruc(iddate,idct));
     }
 }

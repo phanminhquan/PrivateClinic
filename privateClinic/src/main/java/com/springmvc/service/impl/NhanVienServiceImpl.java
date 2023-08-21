@@ -179,4 +179,14 @@ public class NhanVienServiceImpl implements NhanVienService {
         return nhanVienRepository.GetAllListNhanVien(map);
     }
 
+    @Override
+    public List<NhanVienDTO> getListNhanVienByCaTrucTrongTuan(int id) {
+        List<NhanVien> list = nhanVienRepository.getListNhanVienByCaTrucTrongTuan(id);
+        List<NhanVienDTO> l = new ArrayList<>();
+        for(NhanVien n : list){
+            l.add(toDto(n));
+        }
+        return l;
+    }
+
 }
