@@ -2,16 +2,34 @@ package com.springmvc.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class TaiKhoanDTO {
     private Long id;
+    @NotEmpty(message = "{taikhoan.hoten.notNullMsg}")
+    @Size(min = 1, max = 50, message = "{taikhoan.hoten.size}")
+    @NotBlank(message = "{formspace}")
     private String name;
+    @NotEmpty(message = "{taikhoan.username.notNullMsg}")
+    @Size(min = 1, max = 50, message = "{taikhoan.username.size}")
+    @NotBlank(message = "{formspace}")
     private String username;
+    @NotEmpty(message = "{taikhoan.password.notNullMsg}")
+    @Size(min = 1, max = 250, message = "{taikhoan.password.size}")
+    @NotBlank(message = "{formspace}")
     private String password;
     private String avatar;
     private Boolean isActive;
     private String userRole;
+    @NotNull(message = "{taikhoan.manv.notNullMsg}")
     private Long maNv;
-     private String confirmPassword;
+    @NotEmpty(message = "{taikhoan.confirm.notNullMsg}")
+    @Size(min = 1, max = 250, message = "{nhanvien.hoten.size}")
+    @NotBlank(message = "{formspace}")
+    private String confirmPassword;
     private MultipartFile file;
 
     public MultipartFile getFile() {

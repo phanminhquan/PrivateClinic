@@ -4,34 +4,32 @@
  */
 package com.springmvc.pojo;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
 
 /**
- *
  * @author user
  */
 @Entity
 @Table(name = "nhan_vien")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "NhanVien.findAll", query = "SELECT n FROM NhanVien n"),
-    @NamedQuery(name = "NhanVien.findByMaNV", query = "SELECT n FROM NhanVien n WHERE n.maNV = :maNV"),
-    @NamedQuery(name = "NhanVien.findByHoTen", query = "SELECT n FROM NhanVien n WHERE n.hoTen = :hoTen"),
-    @NamedQuery(name = "NhanVien.findByEmail", query = "SELECT n FROM NhanVien n WHERE n.email = :email"),
-    @NamedQuery(name = "NhanVien.findByNgaySinh", query = "SELECT n FROM NhanVien n WHERE n.ngaySinh = :ngaySinh"),
-    @NamedQuery(name = "NhanVien.findByDiaChi", query = "SELECT n FROM NhanVien n WHERE n.diaChi = :diaChi"),
-    @NamedQuery(name = "NhanVien.findByDienThoai", query = "SELECT n FROM NhanVien n WHERE n.dienThoai = :dienThoai"),
-    @NamedQuery(name = "NhanVien.findByHinhAnh", query = "SELECT n FROM NhanVien n WHERE n.hinhAnh = :hinhAnh")})
+        @NamedQuery(name = "NhanVien.findAll", query = "SELECT n FROM NhanVien n"),
+        @NamedQuery(name = "NhanVien.findByMaNV", query = "SELECT n FROM NhanVien n WHERE n.maNV = :maNV"),
+        @NamedQuery(name = "NhanVien.findByHoTen", query = "SELECT n FROM NhanVien n WHERE n.hoTen = :hoTen"),
+        @NamedQuery(name = "NhanVien.findByEmail", query = "SELECT n FROM NhanVien n WHERE n.email = :email"),
+        @NamedQuery(name = "NhanVien.findByNgaySinh", query = "SELECT n FROM NhanVien n WHERE n.ngaySinh = :ngaySinh"),
+        @NamedQuery(name = "NhanVien.findByDiaChi", query = "SELECT n FROM NhanVien n WHERE n.diaChi = :diaChi"),
+        @NamedQuery(name = "NhanVien.findByDienThoai", query = "SELECT n FROM NhanVien n WHERE n.dienThoai = :dienThoai"),
+        @NamedQuery(name = "NhanVien.findByHinhAnh", query = "SELECT n FROM NhanVien n WHERE n.hinhAnh = :hinhAnh")})
 public class NhanVien implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,7 +43,8 @@ public class NhanVien implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "hoTen")
     private String hoTen;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    //@Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")
+//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -64,13 +63,13 @@ public class NhanVien implements Serializable {
     private String diaChi;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 11)
+    @Size(min = 1, max = 10)
     @Column(name = "dienThoai")
     private String dienThoai;
     @Size(max = 200)
     @Column(name = "hinhAnh")
     private String hinhAnh;
-    @OneToOne( mappedBy = "maNV")
+    @OneToOne(mappedBy = "maNV")
     private TaiKhoan taiKhoan;
     @JoinColumn(name = "IdUser", referencedColumnName = "Id")
     @ManyToOne
@@ -221,5 +220,5 @@ public class NhanVien implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.NhanVien[ maNV=" + maNV + " ]";
     }
-    
+
 }

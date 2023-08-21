@@ -2,9 +2,13 @@ package com.springmvc.dto;
 
 public class PhieuThuocDTO {
     private Long maPkThuoc;
+
     private Integer soLuong;
+
     private String cachDung;
+
     private Long maThuoc;
+
     private Long maPk;
 
     public Long getMaPkThuoc() {

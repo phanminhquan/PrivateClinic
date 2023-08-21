@@ -1,14 +1,13 @@
 package com.springmvc.dto;
 
-import com.springmvc.pojo.BenhNhan;
-
-import java.util.Date;
-
 public class PhieuKhamDTO {
     private Long maPk;
     private String ngayKham;
+
     private String trieuChung;
+
     private String chuanDoan;
+
     private Long maBn;
     private Boolean xacnhan;
 

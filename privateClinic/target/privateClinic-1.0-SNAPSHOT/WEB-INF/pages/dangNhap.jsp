@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/resources/static/css/login.css">
 </head>
 <body>
-<section style="background-color:aliceblue; height: 100% " >
+<section style="background-color:aliceblue; height: 100% ">
     <div class="container" style="background-color:aliceblue">
 
         <div class=" text-black">
@@ -27,7 +27,7 @@
                 <c:url value="/admin/login" var="action"></c:url>
                 <form style="width: 30rem;margin-left: 25%;margin-top: 10%;" method="post" action="${action}">
 
-                    <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; text-align: center">ĐĂNG NHẬP ADMIN</h3>
+                    <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; text-align: center">ĐĂNG NHẬP</h3>
 
                     <div class="form-outline mb-4">
                         <label class="form-label" for="form2Example18">Tài khoản</label>

@@ -17,24 +17,14 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Trang chủ
                     </a>
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccount"
-                       aria-expanded="false" aria-controls="collapseAccount">
+                    <a class="nav-link" href="/catruc">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar-days"></i></div>
-                        Appointment
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        Ca trực nhân viên
                     </a>
-                    <div class="collapse" id="collapseAccount" aria-labelledby="headingOne"
-                         data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="/catruc">Ca trực bác sĩ</a>
-                            <a class="nav-link" href="#">Lịch khám</a>
-                        </nav>
-                    </div>
-
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccount1"
                        aria-expanded="false" aria-controls="collapseAccount1">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Account
+                        Tài khoản
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     <div class="collapse" id="collapseAccount1" aria-labelledby="headingOne"
@@ -114,7 +104,7 @@
                     </a>
                     <a class="nav-link" href="/admin/dskham">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Xác nhận lịch khám <span class="badge bg-danger cart-counter" id="counter" >0</span>
+                        Xác nhận lịch khám <span class="badge bg-danger cart-counter" id="counter">0</span>
                     </a>
                     <a class="nav-link" href="/admin/dskhamhomnay">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>

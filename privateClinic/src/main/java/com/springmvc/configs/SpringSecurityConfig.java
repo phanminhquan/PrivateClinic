@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,24 +30,26 @@ import java.util.Properties;
         "com.springmvc.service"
 })
 @PropertySource("classpath:configs.properties")
-
+@Order(2)
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
     private Environment env;
 
-    @Value("${cloudinary.cloud_name}")
+
+    @Value("dexbjwfjg")
     private String cloudName;
-    @Value("${cloudinary.api_id}")
+    @Value("575344324738563")
     private String apiKey;
-    @Value("${cloudinary.api_secret}")
+    @Value("ibnB7XPQZBtyfTNsvr5KYTVwKzY")
     private String apiSecret;
+
     @Bean
-    public BCryptPasswordEncoder passwordEncoder()
-    {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public Cloudinary cloudinary() {
         Cloudinary cloudinary
@@ -70,7 +72,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().defaultSuccessUrl("/").failureUrl("/admin/login?error");
         http.logout().logoutSuccessUrl("/admin/login");
         http.exceptionHandling().accessDeniedPage("/admin/login?accessDenied");
-        http.authorizeRequests().antMatchers("/").hasAnyAuthority("ADMIN","DOCTOR","NURSE")
+        http.authorizeRequests().antMatchers("/").hasAnyAuthority("ADMIN", "DOCTOR", "NURSE")
                 .antMatchers("/admin/bacsi").hasAnyAuthority("ADMIN")
                 .antMatchers("/admin/add_bacsi").hasAnyAuthority("ADMIN")
                 .antMatchers("/admin/add_yta").hasAnyAuthority("ADMIN")
@@ -83,12 +85,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     }
+
     @Bean
-    SimpleDateFormat simpleDateFormat(){
-        return  new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat simpleDateFormat() {
+        return new SimpleDateFormat("yyyy-MM-dd");
     }
+
     @Bean
-    public JavaMailSenderImpl configureJavaMailSender(){
+    public JavaMailSenderImpl configureJavaMailSender() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
         javaMailSender.setHost("smtp.gmail.com");
         javaMailSender.setUsername("nhatnguyenn0802@gmail.com");
@@ -96,9 +100,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         javaMailSender.setPort(587);
         javaMailSender.setDefaultEncoding("UTF-8");
         Properties mailProp = new Properties();
-        mailProp.put("mail.smtp.starttls.enable",true);
-        mailProp.put("mail.smtp.ssl.trust","smtp.gmail.com");
+        mailProp.put("mail.smtp.starttls.enable", true);
+        mailProp.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         javaMailSender.setJavaMailProperties(mailProp);
         return javaMailSender;
     }
+
 }

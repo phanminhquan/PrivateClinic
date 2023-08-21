@@ -30,6 +30,7 @@
             <div class="align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
                 <c:url value="/admin/thuoc" var="action"/>
                 <form:form modelAttribute="thuoc" action="${action}" method="post" enctype="multipart/form-data">
+                    <form:errors path="*" element="div" cssClass="text-bg-danger"/>
                     <form:hidden path="maThuoc"/>
                     <form:hidden path="hinhAnh"/>
                     <div class="card-body">
