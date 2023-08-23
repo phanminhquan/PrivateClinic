@@ -21,7 +21,7 @@ import java.util.Map;
 public class ApiCaTrucController {
     @Autowired
     private CaTrucService caTrucService;
-    @PostMapping(value = "/api/catruc/add",produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/catruc/add",produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Map<String,String>> addNhanVien(@RequestBody Map<String ,String> map)
     {
         Map<String,String> res = new HashMap<>();

@@ -8,6 +8,7 @@ import com.springmvc.pojo.NhanVien;
 import com.springmvc.pojo.TaiKhoan;
 import com.springmvc.repository.TaiKhoanRepository;
 import com.springmvc.service.TaiKhoanService;
+import org.hibernate.mapping.TableOwner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.*;
@@ -154,6 +156,28 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     @Override
     public boolean authUser(String username, String password) {
         return this.taiKhoanRepository.authUser(username, password);
+    }
+
+    @Override
+    public TaiKhoanDTO register(Map<String,String> param, MultipartFile file) {
+        TaiKhoanDTO taiKhoanDTO = new TaiKhoanDTO();
+        taiKhoanDTO.setId(null);
+        taiKhoanDTO.setAvatar("");
+        taiKhoanDTO.setIsActive(true);
+        taiKhoanDTO.setUserRole("STAFF");
+        taiKhoanDTO.setName(param.get("name"));
+        taiKhoanDTO.setMaNv(10L);
+        taiKhoanDTO.setUsername(param.get("username"));
+        taiKhoanDTO.setPassword(param.get("password"));
+        taiKhoanDTO.setConfirmPassword(param.get("confirmPassword"));
+        taiKhoanDTO.setFile(file);
+        taiKhoanDTO = this.addTaiKhoan(taiKhoanDTO);
+        return taiKhoanDTO;
+    }
+
+    @Override
+    public Boolean checkUserName(String username) {
+        return taiKhoanRepository.checkUserName(username);
     }
 
 //    @Override

@@ -116,4 +116,18 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
         return taiKhoan;
     }
 
+    @Override
+    public Boolean checkUserName(String username) {
+        Session s = factory.getObject().getCurrentSession();
+        Query q = s.createQuery("from TaiKhoan ");
+        List<TaiKhoan> tk= q.getResultList();
+        for(TaiKhoan u : tk){
+            if (u.getUsername().equals(username)){
+                return false;
+            }
+
+        }
+        return true;
+    }
+
 }

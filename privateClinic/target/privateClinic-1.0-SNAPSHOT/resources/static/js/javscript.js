@@ -293,7 +293,7 @@ function setMaThuoc(id) {
 }
 
 function addToCaTruc(idnhanvien, idCatruc) {
-  fetch("/api/catruc/add", {
+  fetch("/catruc/add", {
     method: "post",
     body: JSON.stringify({
       idCaTruc: idCatruc,

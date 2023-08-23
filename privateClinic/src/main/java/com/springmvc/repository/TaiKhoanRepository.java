@@ -27,5 +27,6 @@ public interface TaiKhoanRepository {
     boolean authUser(String username, String password);
 
     TaiKhoan addUser(TaiKhoan taiKhoan);
+    Boolean checkUserName(String username);
 
 }

@@ -67,7 +67,7 @@ public class TaiKhoan implements Serializable {
     @Column(name = "user_role")
     private String userRole;
     @JoinColumn(name = "maNV", referencedColumnName = "maNV")
-    @OneToOne()
+    @OneToOne(cascade =CascadeType.ALL)
     private NhanVien maNV;
        @Transient
     private String confirmPassword;
