@@ -1,7 +1,9 @@
 package com.springmvc.service;
 
 import com.springmvc.dto.CaTrucDTO;
+import com.springmvc.dto.CaTrucTrongTuanDTO;
 import com.springmvc.pojo.CaTruc;
+import com.springmvc.pojo.CaTrucTrongTuan;
 
 
 import java.text.ParseException;
@@ -18,4 +20,5 @@ public interface CaTrucService {
     void delCaTruc(int id);
     CaTrucDTO getCaTrucById(int id);
     List<CaTrucDTO> getListCaTrucByDayAnhNhanVien(int iddae, long idnv);
+    CaTrucTrongTuanDTO getCaTrucTrongTuanByDayAndCaTruc(int iddate, int idct);
 }

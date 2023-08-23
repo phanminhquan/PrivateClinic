@@ -298,22 +298,22 @@ function setMaThuoc(id) {
 }
 
 function addToCaTruc(idnhanvien, idCatruc) {
-    fetch("/api/catruc/add", {
-        method: "post",
-        body: JSON.stringify({
-            idCaTruc: idCatruc,
-            idNhanVien: idnhanvien,
-        }),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-        .then((res) => res.json())
-        .then((data) => {
-            if (confirm(data["message"]) === true) {
-                location.reload();
-            }
-        });
+  fetch("/catruc/add", {
+    method: "post",
+    body: JSON.stringify({
+      idCaTruc: idCatruc,
+      idNhanVien: idnhanvien,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (confirm(data["message"]) === true) {
+        location.reload();
+      }
+    });
 }
 
 function acceptOrDenny(id, status) {

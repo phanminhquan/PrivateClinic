@@ -214,6 +214,15 @@ public class CaTrucRepositoryImpl implements CaTrucRepository {
     }
 
     @Override
+    public CaTrucTrongTuan getCaTrucTrongTuanByDayAndCaTruc(int dateid, int catruc) {
+        Session s = factory.getObject().getCurrentSession();
+        Query q = s.createQuery("from CaTrucTrongTuan c where c.idNgay.id = :idngay and c.idCaTruc.id = :idct");
+        q.setParameter("idngay",dateid);
+        q.setParameter("idct",catruc);
+        return (CaTrucTrongTuan) q.getResultList().get(0);
+    }
+
+    @Override
     public String addStaffToShift(long idNhanVien, int idCT) {
         Session s = factory.getObject().getCurrentSession();
         Query q = s.createQuery("select n.id from NhanvienCatruc n where n.idCT.id = :idCT and n.idNV.id = :idNV");

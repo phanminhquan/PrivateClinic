@@ -69,7 +69,7 @@ public class NhanVien implements Serializable {
     @Size(max = 200)
     @Column(name = "hinhAnh")
     private String hinhAnh;
-    @OneToOne(mappedBy = "maNV")
+    @OneToOne(mappedBy = "maNV",cascade = CascadeType.ALL)
     private TaiKhoan taiKhoan;
     @JoinColumn(name = "IdUser", referencedColumnName = "Id")
     @ManyToOne

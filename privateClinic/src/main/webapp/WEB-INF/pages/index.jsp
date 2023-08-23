@@ -182,7 +182,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -196,7 +196,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -210,7 +210,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -224,7 +224,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -238,7 +238,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -252,7 +252,7 @@
                                     ${d.gioTruc}h - ${d.gioKetThuc}
                                 </span>
                                     <div class="flex-grow-1 ps-4 border-start border-3">
-                                        <h4>Chủ nhật</h4>
+                                        <h4>Ca ${d.maCt}</h4>
                                     </div>
                                 </li>
                             </c:forEach>

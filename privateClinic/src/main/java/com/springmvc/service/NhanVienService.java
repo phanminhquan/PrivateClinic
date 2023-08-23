@@ -28,4 +28,5 @@ public interface NhanVienService {
     public List<Long> getAllMaNv();
     public List<String> getAllName();
     public List<Object[]> getAllListNhanVien(Map<String , String> map);
+    List<NhanVienDTO> getListNhanVienByCaTrucTrongTuan(int id);
 }

@@ -27,4 +27,5 @@ public interface CaTrucRepository {
     void delCaTruc(int id);
     CaTruc getCaTrucById(int id);
     List<CaTruc> getListCaTrucByDateAndIdNV(int dateId,long idnv);
+    CaTrucTrongTuan getCaTrucTrongTuanByDayAndCaTruc(int dateid,int catruc);
 }
