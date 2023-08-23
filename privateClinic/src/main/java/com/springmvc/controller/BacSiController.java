@@ -42,7 +42,7 @@ public class BacSiController {
     private NhanVienService nhanVienService;
 
 
-    @GetMapping("/admin/phieukham")
+    @GetMapping("/phieukham")
     public String getBenhNhan(Model model, @RequestParam(value = "kw", required = false) String kw, @RequestParam Map<String, String> params) {
         PhieuKhamDTO pk = new PhieuKhamDTO();
         pk.setMaBS(Util.maNV);
@@ -80,7 +80,7 @@ public class BacSiController {
     }
 
 
-    @PostMapping("/admin/phieukham")
+    @PostMapping("/phieukham")
     public String add(@ModelAttribute(value = "phieukham") @Valid PhieuKhamDTO t,
                       @ModelAttribute(value = "phieuthuoc") @Valid PhieuThuocDTO p,
                       BindingResult rs) throws ParseException {
@@ -88,10 +88,10 @@ public class BacSiController {
         if (!rs.hasErrors()) {
             if (t.getNgayKham() != null) {
                 phieuKhamService.addOrUpdatePhieu(t);
-                return "redirect:/admin/phieukham";
+                return "redirect:/phieukham";
             } else {
                 phieuThuocService.addPhieuThuoc(p);
-                return "redirect:/admin/phieukham";
+                return "redirect:/phieukham";
             }
         }
         return "phieukham";
@@ -104,7 +104,7 @@ public class BacSiController {
         String currentDateTime = dateFormatter.format(new Date());
 
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename*=UTF-8''" + currentDateTime +".pdf";
+        String headerValue = "attachment; filename*=UTF-8''" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
         response.addHeader("Content-Type", "application/pdf; charset=UTF-8");
         BenhNhanDTO bn = benhNhanService.getBNById(phieuKhamService.getPhieuKhamByID(Util.maPk).getMaBn());

@@ -1,6 +1,7 @@
 package com.springmvc.controller;
 
 import com.springmvc.components.JwtService;
+import com.springmvc.dto.TaiKhoanDTO;
 import com.springmvc.pojo.TaiKhoan;
 import com.springmvc.service.TaiKhoanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,14 +43,13 @@ public class ApiTaiKhoanController {
         return new ResponseEntity<>("SUCCESSFUL", HttpStatus.OK);
     }
 
-//    @PostMapping(path = "/api/users/",
-//            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
-//            produces = {MediaType.APPLICATION_JSON_VALUE})
-//    @CrossOrigin
-//    public ResponseEntity<TaiKhoanDTO> addUser(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
-//        TaiKhoanDTO user = this.userService.addUser(params, avatar);
-//        return new ResponseEntity<>(user, HttpStatus.CREATED);
-//    }
+    @PostMapping(path = "/api/users/")
+    @CrossOrigin
+    public ResponseEntity<TaiKhoanDTO> addUser(@RequestBody TaiKhoanDTO t) {
+            TaiKhoanDTO user = this.taiKhoanService.addUser(t);
+
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
 
     @GetMapping(path = "/api/current-user/", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin

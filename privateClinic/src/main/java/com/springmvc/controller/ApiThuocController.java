@@ -43,7 +43,7 @@ public class ApiThuocController {
         return new ResponseEntity<>(this.taiKhoanService.addTaiKhoan(taiKhoanDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/api/phieuthuoc")
+    @PostMapping("/phieuthuoc")
     public ResponseEntity<PhieuThuocDTO> addPhieu(@RequestBody PhieuThuocDTO p) {
         Util.maPk = p.getMaPk();
         return new ResponseEntity<>(this.phieuThuocService.addPhieuThuoc(p), HttpStatus.OK);

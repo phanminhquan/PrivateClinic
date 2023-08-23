@@ -48,10 +48,7 @@
                 <td style="text-align: center">${b.chuanDoan}</td>
                 <td style="text-align: center">${listTenbs[c.index]}</td>
                 <td>
-                        <%--                    <c:url value="/api/thuoc/${b.maThuoc}" var="apiDel"/>--%>
-                        <%--                    <a href="<c:url value="/admin/thuoc/${b.maThuoc}" />" class="btn "--%>
-                        <%--                       style="background-color: lightgray">Sửa</a>--%>
-                        <%--                    <button class="btn btn-danger" onclick="delPro('${apiDel}', ${b.maThuoc})">Xóa</button>--%>
+                    <a href="/admin/pheiukham/${b.maPk}" class="btn-info btn">Xem chi tiết</a>
                 </td>
             </tr>
         </c:forEach>

@@ -4,32 +4,30 @@
  */
 package com.springmvc.pojo;
 
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.Serializable;
-import java.util.Optional;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
- *
  * @author user
  */
 @Entity
 @Table(name = "tai_khoan")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TaiKhoan.findAll", query = "SELECT t FROM TaiKhoan t"),
-    @NamedQuery(name = "TaiKhoan.findById", query = "SELECT t FROM TaiKhoan t WHERE t.id = :id"),
-    @NamedQuery(name = "TaiKhoan.findByName", query = "SELECT t FROM TaiKhoan t WHERE t.name = :name"),
-    @NamedQuery(name = "TaiKhoan.findByUsername", query = "SELECT t FROM TaiKhoan t WHERE t.username = :username"),
-    @NamedQuery(name = "TaiKhoan.findByPassword", query = "SELECT t FROM TaiKhoan t WHERE t.password = :password"),
-    @NamedQuery(name = "TaiKhoan.findByAvatar", query = "SELECT t FROM TaiKhoan t WHERE t.avatar = :avatar"),
-    @NamedQuery(name = "TaiKhoan.findByIsActive", query = "SELECT t FROM TaiKhoan t WHERE t.isActive = :isActive"),
-    @NamedQuery(name = "TaiKhoan.findByUserRole", query = "SELECT t FROM TaiKhoan t WHERE t.userRole = :userRole")})
+        @NamedQuery(name = "TaiKhoan.findAll", query = "SELECT t FROM TaiKhoan t"),
+        @NamedQuery(name = "TaiKhoan.findById", query = "SELECT t FROM TaiKhoan t WHERE t.id = :id"),
+        @NamedQuery(name = "TaiKhoan.findByName", query = "SELECT t FROM TaiKhoan t WHERE t.name = :name"),
+        @NamedQuery(name = "TaiKhoan.findByUsername", query = "SELECT t FROM TaiKhoan t WHERE t.username = :username"),
+        @NamedQuery(name = "TaiKhoan.findByPassword", query = "SELECT t FROM TaiKhoan t WHERE t.password = :password"),
+        @NamedQuery(name = "TaiKhoan.findByAvatar", query = "SELECT t FROM TaiKhoan t WHERE t.avatar = :avatar"),
+        @NamedQuery(name = "TaiKhoan.findByIsActive", query = "SELECT t FROM TaiKhoan t WHERE t.isActive = :isActive"),
+        @NamedQuery(name = "TaiKhoan.findByUserRole", query = "SELECT t FROM TaiKhoan t WHERE t.userRole = :userRole")})
 public class TaiKhoan implements Serializable {
     public static final String ADMIN = "ROLE_ADMIN";
     public static final String STAFF = "ROLE_USER";
@@ -66,10 +64,11 @@ public class TaiKhoan implements Serializable {
     @Size(max = 6)
     @Column(name = "user_role")
     private String userRole;
+    @JsonIgnore
     @JoinColumn(name = "maNV", referencedColumnName = "maNV")
     @OneToOne()
     private NhanVien maNV;
-       @Transient
+    @Transient
     private String confirmPassword;
 
     public String getConfirmPassword() {
@@ -193,5 +192,5 @@ public class TaiKhoan implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.TaiKhoan[ id=" + id + " ]";
     }
-    
+
 }

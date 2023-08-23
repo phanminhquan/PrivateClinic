@@ -14,10 +14,8 @@
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <img src="${benhNhan.avatar}" alt="avatar"
-                             class="rounded-circle img-fluid" style="width: 150px;">
+                             class="rounded-circle img-fluid" style="width: 70px; height: 70px">
                         <h5 class="my-3">${benhNhan.hoTen}</h5>
-                        <p class="text-muted mb-1">Full Stack Developer</p>
-                        <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
                     </div>
                 </div>
                 <div class="card mb-4 mb-lg-0">

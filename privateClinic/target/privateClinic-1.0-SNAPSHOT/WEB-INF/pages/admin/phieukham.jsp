@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-md-6" style="margin-top: 20px">
             <div class="form-group">
-                <c:url value="/admin/phieukham" var="action"></c:url>
+                <c:url value="/phieukham" var="action"></c:url>
                 <form:form cssStyle=" width: 100%" method="post" modelAttribute="phieukham" action="${action}"
                            enctype="multipart/form-data">
                     <form:errors path="*" element="div" cssClass="text-bg-danger"/>
@@ -118,7 +118,7 @@
     <div class="row">
         <div class="col-md-6" style="margin-top: 20px">
             <div class="form-group">
-                <c:url value="/admin/phieukham" var="action"></c:url>
+                <c:url value="/phieukham" var="action"></c:url>
                 <form:form cssStyle=" width: 100%" modelAttribute="phieuthuoc" method="post" action="${action}"
                            enctype="multipart/form-data">
                     <div class="form-group">

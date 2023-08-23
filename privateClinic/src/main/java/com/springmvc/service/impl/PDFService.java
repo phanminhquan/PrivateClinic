@@ -25,19 +25,19 @@ public class PDFService {
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         fontTitle.setSize(18);
 
-        Paragraph paragraph = new Paragraph("PHIẾU THUỐC", fontTitle);
+        Paragraph paragraph = new Paragraph("PRESCRIPTION", fontTitle);
         paragraph.setAlignment(Paragraph.ALIGN_CENTER);
 
         Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA);
         fontParagraph.setSize(12);
 
-        Paragraph paragraph2 = new Paragraph("Họ tên: " + benhnhan.getHoTen(), fontParagraph);
+        Paragraph paragraph2 = new Paragraph("Name: " + benhnhan.getHoTen(), fontParagraph);
         paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
-        Paragraph paragraph5 = new Paragraph("Ngày Sinh: " + benhnhan.getNgaySinh(), fontParagraph);
+        Paragraph paragraph5 = new Paragraph("Date: " + benhnhan.getNgaySinh(), fontParagraph);
         paragraph5.setAlignment(Paragraph.ALIGN_LEFT);
-        Paragraph paragraph3 = new Paragraph("Số điện thoại: " + benhnhan.getDienThoai(), fontParagraph);
+        Paragraph paragraph3 = new Paragraph("Phone number: " + benhnhan.getDienThoai(), fontParagraph);
         paragraph3.setAlignment(Paragraph.ALIGN_LEFT);
-        Paragraph paragraph4 = new Paragraph("Chuẩn đoán: " + phieuKhamDTO.getChuanDoan(), fontParagraph);
+        Paragraph paragraph4 = new Paragraph("Diagnostic: " + phieuKhamDTO.getChuanDoan(), fontParagraph);
         paragraph4.setAlignment(Paragraph.ALIGN_LEFT);
 
 
@@ -49,13 +49,13 @@ public class PDFService {
         PdfPCell cell = new PdfPCell();
         cell.setPadding(5);
 
-        cell.setPhrase(new Phrase("Tên thuốc", fontParagraph));
+        cell.setPhrase(new Phrase("Drug name + Amount", fontParagraph));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Số lượng", fontParagraph));
+        cell.setPhrase(new Phrase("Quantity", fontParagraph));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Cách dùng", fontParagraph));
+        cell.setPhrase(new Phrase("User manual", fontParagraph));
         table.addCell(cell);
 
 

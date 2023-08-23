@@ -23,5 +23,5 @@ public interface TaiKhoanService extends UserDetailsService {
 
     boolean authUser(String username, String password);
 
-//    TaiKhoan addUser(Map<String, String> params, MultipartFile avatar);
+    TaiKhoanDTO addUser(TaiKhoanDTO taiKhoan);
 }

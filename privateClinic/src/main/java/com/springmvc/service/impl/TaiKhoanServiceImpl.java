@@ -156,6 +156,27 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
         return this.taiKhoanRepository.authUser(username, password);
     }
 
+    @Override
+    public TaiKhoanDTO addUser(TaiKhoanDTO taiKhoan) {
+        TaiKhoan t = new TaiKhoan();
+        t.setName(taiKhoan.getName());
+        t.setUsername(taiKhoan.getUsername());
+        t.setPassword(this.passwordEncoder.encode(taiKhoan.getPassword()));
+        t.setAvatar(taiKhoan.getAvatar());
+        t.setIsActive(true);
+        t.setUserRole("STAFF");
+        t.setMaNV(null);
+        try {
+            Map res = this.cloudinary.uploader().upload(taiKhoan.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+            t.setAvatar(res.get("secure_url").toString());
+        } catch (IOException ex) {
+            Logger.getLogger(TaiKhoanService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        t = taiKhoanRepository.addUser(t);
+
+        return toDto(t);
+    }
+
 //    @Override
 //    public TaiKhoan addUser(Map<String, String> params, MultipartFile avatar) {
 //        TaiKhoan t = new TaiKhoan();
