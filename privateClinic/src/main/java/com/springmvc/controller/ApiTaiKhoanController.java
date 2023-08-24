@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jmx.export.metadata.ManagedOperation;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,13 +47,6 @@ public class ApiTaiKhoanController {
         return new ResponseEntity<>("SUCCESSFUL", HttpStatus.OK);
     }
 
-    @PostMapping(path = "/api/users/")
-    @CrossOrigin
-    public ResponseEntity<TaiKhoanDTO> addUser(@RequestBody TaiKhoanDTO t) {
-            TaiKhoanDTO user = this.taiKhoanService.addUser(t);
-
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
-    }
 
     @GetMapping(path = "/api/current-user/", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
@@ -63,35 +55,34 @@ public class ApiTaiKhoanController {
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/register/",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/register/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @CrossOrigin
-    public ResponseEntity<Map<String,String>> register(@RequestParam("taikhoan") String params,@RequestPart("file") MultipartFile avatar){
-        Map<String,String> res = new HashMap<>();
-        params= params.substring(1, params.length()-1);
+    public ResponseEntity<Map<String, String>> register(@RequestParam("taikhoan") String params, @RequestPart("file") MultipartFile avatar) {
+        Map<String, String> res = new HashMap<>();
+        params = params.substring(1, params.length() - 1);
         String[] keyValuePairs = params.split(",");
-        Map<String,String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
 
-        for(String pair : keyValuePairs)
-        {
+        for (String pair : keyValuePairs) {
             String[] entry = pair.split(":");
-            map.put(entry[0].trim().substring(1,entry[0].length()-1), entry[1].trim().substring(1,entry[1].length()-1));
+            map.put(entry[0].trim().substring(1, entry[0].length() - 1), entry[1].trim().substring(1, entry[1].length() - 1));
         }
-        if(map.get("confirmPassword").equals(map.get("password"))){
-            TaiKhoanDTO t = taiKhoanService.register(map,avatar);
+        if (map.get("confirmPassword").equals(map.get("password"))) {
+            TaiKhoanDTO t = taiKhoanService.register(map, avatar);
             res.put("username", t.getUsername());
-            res.put("password",t.getPassword());
-            res.put("result","Ok");
-            return new ResponseEntity<>(res,HttpStatus.OK);
-        }
-        else {
-            res.put("result","Mật khẩu không trùng");
-            return new ResponseEntity<>(res,HttpStatus.OK);
+            res.put("password", t.getPassword());
+            res.put("result", "Ok");
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } else {
+            res.put("result", "Mật khẩu không trùng");
+            return new ResponseEntity<>(res, HttpStatus.OK);
         }
 
     }
+
     @PostMapping("/checkusername/")
-    public ResponseEntity<Boolean> checkusername(@RequestBody Map<String, String> req){
-        return new ResponseEntity<>(taiKhoanService.checkUserName(req.get("username")),HttpStatus.OK);
+    public ResponseEntity<Boolean> checkusername(@RequestBody Map<String, String> req) {
+        return new ResponseEntity<>(taiKhoanService.checkUserName(req.get("username")), HttpStatus.OK);
     }
 
 }

@@ -18,23 +18,32 @@ import java.util.Map;
 public class BenhNhanRepositoryImpl implements BenhNhanRepository {
     @Autowired
     private LocalSessionFactoryBean factory;
+
     @Override
     public BenhNhan getBenhNhanByID(long id) {
-        return factory.getObject().getCurrentSession().get(BenhNhan.class,id);
+        return factory.getObject().getCurrentSession().get(BenhNhan.class, id);
     }
 
     @Override
     public List<BenhNhan> SearchBN(String kw) {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("from BenhNhan where hoTen like :ten");
-        q.setParameter("ten","%" + kw.toUpperCase() + "%");
+        q.setParameter("ten", "%" + kw.toUpperCase() + "%");
         return q.getResultList();
     }
 
     @Override
-    public List<BenhNhan> getALL(Map<String,String> params) {
+    public List<BenhNhan> getALL(Map<String, String> params) {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("from BenhNhan");
         return q.getResultList();
+    }
+
+    @Override
+    public BenhNhan addBenhNhan(BenhNhan benhNhan) {
+        Session s = this.factory.getObject().getCurrentSession();
+        s.save(benhNhan);
+        benhNhan.setFile(null);
+        return benhNhan;
     }
 }

@@ -18,7 +18,10 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,12 +33,13 @@ public class CtDsKhamRepositoryImpl implements CtDsKhamRepository {
     LocalSessionFactoryBean factory;
     @Autowired
     private SimpleDateFormat f;
-        public void sendMail(String username,String email, String result) {
-            SimpleMailMessage newEmail = new SimpleMailMessage();
-            newEmail.setTo(email);
-            newEmail.setSubject("Xác nhận lịch khám");
-            newEmail.setText("Xin chào " + username);
-        }
+
+    public void sendMail(String username, String email, String result) {
+        SimpleMailMessage newEmail = new SimpleMailMessage();
+        newEmail.setTo(email);
+        newEmail.setSubject("Xác nhận lịch khám");
+        newEmail.setText("Xin chào " + username);
+    }
 
 
 //    public void sendMail(String from, String to,String subject,String content){
@@ -48,60 +52,58 @@ public class CtDsKhamRepositoryImpl implements CtDsKhamRepository {
 //    }
 
     @Override
-    public Map<String,String> AcceptOrdennyDanhSachKham(long id, Integer status) {
+    public Map<String, String> AcceptOrdennyDanhSachKham(long id, Integer status) {
         Session s = factory.getObject().getCurrentSession();
-        CtDsKham ct = s.get(CtDsKham.class,id);
-        Map<String,String> m = new HashMap<>();
-        if(status ==2){
+        CtDsKham ct = s.get(CtDsKham.class, id);
+        Map<String, String> m = new HashMap<>();
+        if (status == 2) {
             Query q = s.createQuery("from CtDsKham c where c.ngaykham = :date");
             q.setParameter("date", ct.getNgaykham());
             int soLichHen = q.getResultList().size();
-            if(soLichHen == 100){
-                m.put("status","0");
-            }
-            else {
+            if (soLichHen == 100) {
+                m.put("status", "0");
+            } else {
                 ct.setTrangthai(status);
                 s.update(ct);
                 String email = ct.getMaBN().getEmail();
-                m.put("status","1");
-                m.put("name" ,ct.getMaBN().getHoTen());
-                m.put("email",ct.getMaBN().getEmail());
+                m.put("status", "1");
+                m.put("name", ct.getMaBN().getHoTen());
+                m.put("email", ct.getMaBN().getEmail());
 
                 return m;
             }
-        }
-        else if(status == 3) {
+        } else if (status == 3) {
             ct.setTrangthai(status);
             s.update(ct);
-            m.put("status","2");
+            m.put("status", "2");
             return m;
         }
-        m.put("msg","lỗi");
+        m.put("msg", "lỗi");
         return m;
     }
 
     @Override
     public List<Object[]> getListCtDSKham(Map<String, String> params) {
-        Session s= factory.getObject().getCurrentSession();
+        Session s = factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
         Root rdsKham = q.from(CtDsKham.class);
         Root rBenhNhan = q.from(BenhNhan.class);
         Root rThoiGian = q.from(ThoiGian.class);
-        q.multiselect(rdsKham.get("maCTDS"),rBenhNhan.get("hoTen"),rThoiGian.get("maTG"),rdsKham.get("ngaykham"));
+        q.multiselect(rdsKham.get("maCTDS"), rBenhNhan.get("hoTen"), rThoiGian.get("maTG"), rdsKham.get("ngaykham"));
         List<Predicate> predicates = new ArrayList<>();
-        predicates.add(b.equal(rdsKham.get("maBN"),rBenhNhan.get("maBN")));
-        predicates.add(b.equal(rdsKham.get("maTG"),rThoiGian.get("maTG")));
+        predicates.add(b.equal(rdsKham.get("maBN"), rBenhNhan.get("maBN")));
+        predicates.add(b.equal(rdsKham.get("maTG"), rThoiGian.get("maTG")));
         String status = params.get("status");
-        if(status != null && !status.isEmpty()){
-            predicates.add(b.equal(rdsKham.get("trangthai"),Integer.parseInt(status)));
+        if (status != null && !status.isEmpty()) {
+            predicates.add(b.equal(rdsKham.get("trangthai"), Integer.parseInt(status)));
         }
         String name = params.get("hoTen");
-        if (name != null && !name.isEmpty()){
-            predicates.add(b.like(rBenhNhan.get("hoTen"),String.format("%%%s%%", name)));
+        if (name != null && !name.isEmpty()) {
+            predicates.add(b.like(rBenhNhan.get("hoTen"), String.format("%%%s%%", name)));
         }
         String date = params.get("date");
-        if (date != null && !date.isEmpty()){
+        if (date != null && !date.isEmpty()) {
             try {
                 predicates.add(b.equal(rdsKham.get("ngaykham"), f.parse(date)));
             } catch (ParseException ex) {
@@ -113,5 +115,18 @@ public class CtDsKhamRepositoryImpl implements CtDsKhamRepository {
 
         Query query = s.createQuery(q);
         return query.getResultList();
+    }
+
+    @Override
+    public CtDsKham addLichKham(CtDsKham ctDsKham) {
+        Session s = factory.getObject().getCurrentSession();
+        s.save(ctDsKham);
+        return ctDsKham;
+    }
+
+    @Override
+    public void DeleteLichKham(Long id) {
+        Session s = factory.getObject().getCurrentSession();
+        s.delete(s.get(CtDsKham.class, id));
     }
 }

@@ -4,44 +4,33 @@
  */
 package com.springmvc.pojo;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
 
 /**
- *
  * @author user
  */
 @Entity
 @Table(name = "benh_nhan")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BenhNhan.findAll", query = "SELECT b FROM BenhNhan b"),
-    @NamedQuery(name = "BenhNhan.findByMaBN", query = "SELECT b FROM BenhNhan b WHERE b.maBN = :maBN"),
-    @NamedQuery(name = "BenhNhan.findByHoTen", query = "SELECT b FROM BenhNhan b WHERE b.hoTen = :hoTen"),
-    @NamedQuery(name = "BenhNhan.findByDienThoai", query = "SELECT b FROM BenhNhan b WHERE b.dienThoai = :dienThoai"),
-    @NamedQuery(name = "BenhNhan.findByEmail", query = "SELECT b FROM BenhNhan b WHERE b.email = :email"),
-    @NamedQuery(name = "BenhNhan.findByNgaySinh", query = "SELECT b FROM BenhNhan b WHERE b.ngaySinh = :ngaySinh"),
-    @NamedQuery(name = "BenhNhan.findByGioiTinh", query = "SELECT b FROM BenhNhan b WHERE b.gioiTinh = :gioiTinh"),
-    @NamedQuery(name = "BenhNhan.findByDiaChi", query = "SELECT b FROM BenhNhan b WHERE b.diaChi = :diaChi"),
-    @NamedQuery(name = "BenhNhan.findByAvatar", query = "SELECT b FROM BenhNhan b WHERE b.avatar = :avatar")})
+        @NamedQuery(name = "BenhNhan.findAll", query = "SELECT b FROM BenhNhan b"),
+        @NamedQuery(name = "BenhNhan.findByMaBN", query = "SELECT b FROM BenhNhan b WHERE b.maBN = :maBN"),
+        @NamedQuery(name = "BenhNhan.findByHoTen", query = "SELECT b FROM BenhNhan b WHERE b.hoTen = :hoTen"),
+        @NamedQuery(name = "BenhNhan.findByDienThoai", query = "SELECT b FROM BenhNhan b WHERE b.dienThoai = :dienThoai"),
+        @NamedQuery(name = "BenhNhan.findByEmail", query = "SELECT b FROM BenhNhan b WHERE b.email = :email"),
+        @NamedQuery(name = "BenhNhan.findByNgaySinh", query = "SELECT b FROM BenhNhan b WHERE b.ngaySinh = :ngaySinh"),
+        @NamedQuery(name = "BenhNhan.findByGioiTinh", query = "SELECT b FROM BenhNhan b WHERE b.gioiTinh = :gioiTinh"),
+        @NamedQuery(name = "BenhNhan.findByDiaChi", query = "SELECT b FROM BenhNhan b WHERE b.diaChi = :diaChi"),
+        @NamedQuery(name = "BenhNhan.findByAvatar", query = "SELECT b FROM BenhNhan b WHERE b.avatar = :avatar")})
 public class BenhNhan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -90,8 +79,32 @@ public class BenhNhan implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "maBN")
     private Set<CtDsKham> ctDsKhamSet;
 
+    public TaiKhoan getIdTk() {
+        return idTk;
+    }
+
+    public void setIdTk(TaiKhoan idTk) {
+        this.idTk = idTk;
+    }
+
+    @JoinColumn(name = "maTK", referencedColumnName = "id")
+    @ManyToOne
+    private TaiKhoan idTk;
+    @Transient
+    private MultipartFile file;
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+
     public BenhNhan() {
     }
+
 
     public BenhNhan(Long maBN) {
         this.maBN = maBN;
@@ -214,5 +227,5 @@ public class BenhNhan implements Serializable {
     public String toString() {
         return "com.springmvc.pojo.BenhNhan[ maBN=" + maBN + " ]";
     }
-    
+
 }

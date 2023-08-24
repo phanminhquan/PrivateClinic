@@ -1,5 +1,7 @@
 package com.springmvc.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Date;
 
 public class BenhNhanDTO {
@@ -11,6 +13,27 @@ public class BenhNhanDTO {
     private Boolean gioiTinh;
     private String diaChi;
     private String avatar;
+
+    private Long idTk;
+
+    public Long getIdTk() {
+        return idTk;
+    }
+
+    private MultipartFile file;
+
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+    public void setIdTk(Long idTk) {
+        this.idTk = idTk;
+    }
 
     public Long getMaBn() {
         return this.maBn;

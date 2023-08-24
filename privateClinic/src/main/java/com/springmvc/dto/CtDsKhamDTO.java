@@ -1,11 +1,22 @@
 package com.springmvc.dto;
 
+import java.util.Date;
+
 public class CtDsKhamDTO {
     private Long maCtds;
     private Long maBn;
 
     private Long maTg;
     private Integer trangthai;
+    private Date NgayKham;
+
+    public Date getNgayKham() {
+        return NgayKham;
+    }
+
+    public void setNgayKham(Date ngayKham) {
+        NgayKham = ngayKham;
+    }
 
     public Long getMaCtds() {
         return this.maCtds;

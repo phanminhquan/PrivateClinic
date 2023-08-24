@@ -8,7 +8,9 @@ import java.util.Map;
 public interface BenhNhanRepository {
     BenhNhan getBenhNhanByID(long id);
 
-    List<BenhNhan> SearchBN (String kw);
+    List<BenhNhan> SearchBN(String kw);
 
-    List<BenhNhan> getALL (Map<String,String> params);
+    List<BenhNhan> getALL(Map<String, String> params);
+
+    BenhNhan addBenhNhan(BenhNhan benhNhan);
 }

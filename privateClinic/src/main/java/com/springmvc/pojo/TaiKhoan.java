@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author user
@@ -66,8 +67,12 @@ public class TaiKhoan implements Serializable {
     private String userRole;
     @JsonIgnore
     @JoinColumn(name = "maNV", referencedColumnName = "maNV")
-    @OneToOne(cascade =CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private NhanVien maNV;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTk")
+    private Set<BenhNhan> benhNhanSet;
     @Transient
     private String confirmPassword;
 

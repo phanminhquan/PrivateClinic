@@ -24,8 +24,10 @@ public interface TaiKhoanService extends UserDetailsService {
     TaiKhoan getTaiKhoanByUsername(String user);
 
     boolean authUser(String username, String password);
-    TaiKhoanDTO register(Map<String,String> params, MultipartFile file);
+
+    TaiKhoanDTO register(Map<String, String> params, MultipartFile file);
+
     Boolean checkUserName(String username);
 
-    TaiKhoanDTO addUser(TaiKhoanDTO taiKhoan);
+//    TaiKhoanDTO addUser(TaiKhoanDTO taiKhoan);
 }
