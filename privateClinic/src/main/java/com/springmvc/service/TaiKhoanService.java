@@ -21,13 +21,14 @@ public interface TaiKhoanService extends UserDetailsService {
 
     List<TaiKhoanDTO> searchTaiKhoan(String kw);
 
-    TaiKhoan getTaiKhoanByUsername(String user);
+    TaiKhoanDTO getTaiKhoanByUsername(String user);
 
     boolean authUser(String username, String password);
 
     TaiKhoanDTO register(Map<String, String> params, MultipartFile file);
 
     Boolean checkUserName(String username);
+    Boolean loginWithGmail(TaiKhoanDTO taiKhoanDTO);
 
 //    TaiKhoanDTO addUser(TaiKhoanDTO taiKhoan);
 }

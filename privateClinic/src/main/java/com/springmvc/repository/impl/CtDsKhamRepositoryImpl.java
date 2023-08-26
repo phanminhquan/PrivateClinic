@@ -2,6 +2,7 @@ package com.springmvc.repository.impl;
 
 import com.springmvc.pojo.BenhNhan;
 import com.springmvc.pojo.CtDsKham;
+import com.springmvc.pojo.TaiKhoan;
 import com.springmvc.pojo.ThoiGian;
 import com.springmvc.repository.CtDsKhamRepository;
 import org.hibernate.Query;
@@ -18,10 +19,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,15 +39,6 @@ public class CtDsKhamRepositoryImpl implements CtDsKhamRepository {
         newEmail.setText("Xin chào " + username);
     }
 
-
-//    public void sendMail(String from, String to,String subject,String content){
-//        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-//        simpleMailMessage.setFrom(from);
-//        simpleMailMessage.setTo(to);
-//        simpleMailMessage.setSubject(subject);
-//        simpleMailMessage.setText(content);
-//        javaMailSender.send(simpleMailMessage);
-//    }
 
     @Override
     public Map<String, String> AcceptOrdennyDanhSachKham(long id, Integer status) {
@@ -128,5 +117,61 @@ public class CtDsKhamRepositoryImpl implements CtDsKhamRepository {
     public void DeleteLichKham(Long id) {
         Session s = factory.getObject().getCurrentSession();
         s.delete(s.get(CtDsKham.class, id));
+    }
+
+    @Override
+    public List<Object[]> getListHistoryByUser(Long idtk,Map<String,String> params) {
+        Session s = factory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        Root lichHen = q.from(CtDsKham.class);
+        Root taiKhoan = q.from(TaiKhoan.class);
+        Root benhNhan = q.from(BenhNhan.class);
+        Root thoiGian = q.from(ThoiGian.class);
+        String now = params.get("now");
+        q.multiselect(lichHen.get("maCTDS"),lichHen.get("trangthai"),lichHen.get("ngaykham"),thoiGian.get("gio"));
+        List<Predicate> predicates = new ArrayList<>();
+        predicates.add(b.equal(lichHen.get("maBN"),benhNhan.get("maBN")));
+        predicates.add(b.equal(taiKhoan.get("id"),benhNhan.get("idTk")));
+        predicates.add(b.equal(lichHen.get("maTG"),thoiGian.get("maTG")));
+        if(now.equals("true"))
+            predicates.add(b.greaterThanOrEqualTo(lichHen.get("ngaykham"), new Date()));
+        else
+            predicates.add(b.lessThan(lichHen.get("ngaykham"), new Date()));
+        predicates.add(b.equal(taiKhoan.get("id"), idtk));
+        String maLichHen = params.get("malichhen");
+        if(maLichHen != null && !maLichHen.isEmpty()){
+            Long id = Long.parseLong(maLichHen);
+            predicates.add(b.equal(lichHen.get("maCTDS"),id));
+        }
+        String fd = params.get("fromDate");
+        if (fd != null && !fd.isEmpty()) {
+            try {
+                predicates.add(b.greaterThanOrEqualTo(lichHen.get("ngaykham"), f.parse(fd)));
+            } catch (ParseException ex) {
+                Logger.getLogger(CtDsKhamRepositoryImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        String td = params.get("toDate");
+        if (td != null && !td.isEmpty()) {
+            try {
+                predicates.add(b.lessThanOrEqualTo(lichHen.get("ngaykham"), f.parse(td)));
+            } catch (ParseException ex) {
+                Logger.getLogger(CtDsKhamRepositoryImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        q.where(predicates.toArray(Predicate[]::new));
+
+        Query query = s.createQuery(q);
+        return query.getResultList();
+    }
+
+    @Override
+    public void huyLichHen(Long id) {
+        Session s = factory.getObject().getCurrentSession();
+        CtDsKham c = s.get(CtDsKham.class,id);
+        c.setTrangthai(3);
+        s.update(c);
     }
 }

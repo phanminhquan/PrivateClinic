@@ -17,4 +17,7 @@ public interface CtDsKhamRepository {
     CtDsKham addLichKham(CtDsKham ctDsKham);
 
     void DeleteLichKham(Long id);
+    List<Object[]> getListHistoryByUser(Long idtk,Map<String,String> params);
+    void huyLichHen(Long id);
+
 }

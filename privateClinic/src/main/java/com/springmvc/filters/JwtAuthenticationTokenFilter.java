@@ -1,6 +1,7 @@
 package com.springmvc.filters;
 
 import com.springmvc.components.JwtService;
+import com.springmvc.dto.TaiKhoanDTO;
 import com.springmvc.pojo.TaiKhoan;
 import com.springmvc.service.TaiKhoanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthentication
         String authToken = httpRequest.getHeader(TOKEN_HEADER);
         if (jwtService.validateTokenLogin(authToken)) {
             String username = jwtService.getUsernameFromToken(authToken);
-            TaiKhoan user = taiKhoanService.getTaiKhoanByUsername(username);
+            TaiKhoanDTO user = taiKhoanService.getTaiKhoanByUsername(username);
             if (user != null) {
                 boolean enabled = true;
                 boolean accountNonExpired = true;

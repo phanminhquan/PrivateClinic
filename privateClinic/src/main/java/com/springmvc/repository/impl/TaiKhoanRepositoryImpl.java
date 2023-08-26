@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -128,6 +129,26 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
 
         }
         return true;
+    }
+
+    @Override
+    public Boolean loginByEmail(TaiKhoan taiKhoan) {
+        Session s = factory.getObject().getCurrentSession();
+        List<TaiKhoan> list = s.createQuery("from TaiKhoan ").getResultList();
+        Boolean isContain = false;
+        List<String> listName = new ArrayList<>();
+        for(TaiKhoan t: list){
+            if(t.getUsername().trim().equals(taiKhoan.getUsername().trim()));
+            {
+                isContain = true;
+                break;
+            }
+        }
+        if (!isContain){
+            s.save(taiKhoan);
+            return true;
+        }
+        return false;
     }
 
 }

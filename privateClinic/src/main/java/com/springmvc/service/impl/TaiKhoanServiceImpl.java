@@ -148,9 +148,9 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     }
 
     @Override
-    public TaiKhoan getTaiKhoanByUsername(String user) {
+    public TaiKhoanDTO getTaiKhoanByUsername(String user) {
         TaiKhoan tk = taiKhoanRepository.getTkByUsername(user);
-        return tk;
+        return toDto1(tk);
     }
 
     @Override
@@ -178,6 +178,28 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     @Override
     public Boolean checkUserName(String username) {
         return taiKhoanRepository.checkUserName(username);
+    }
+
+    @Override
+    public Boolean loginWithGmail(TaiKhoanDTO taiKhoanDTO) {
+        Boolean isContain = false;
+        List<TaiKhoanDTO> list = new ArrayList<>();
+        List<String> listname = new ArrayList<>();
+        List<String> listName = new ArrayList<>();
+        for(TaiKhoanDTO t: list){
+            if(t.getUsername().trim().equals(taiKhoanDTO.getUsername().trim()));
+            {
+                isContain = true;
+                break;
+            }
+        }
+        if (!isContain){
+
+            this.addTaiKhoan(taiKhoanDTO);
+            return true;
+        }
+
+        return true;
     }
 
 //    @Override

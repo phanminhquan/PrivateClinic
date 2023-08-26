@@ -4,6 +4,8 @@
  */
 package com.springmvc.pojo;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,9 +40,11 @@ public class CtDsKham implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date ngaykham;
     @JoinColumn(name = "maBN", referencedColumnName = "maBN")
+
     @ManyToOne(optional = false)
     private BenhNhan maBN;
     @JoinColumn(name = "maTG", referencedColumnName = "maTG")
+
     @ManyToOne(optional = false)
     private ThoiGian maTG;
 

@@ -50,8 +50,8 @@ public class ApiTaiKhoanController {
 
     @GetMapping(path = "/api/current-user/", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
-    public ResponseEntity<TaiKhoan> details(Principal user) {
-        TaiKhoan u = this.taiKhoanService.getTaiKhoanByUsername(user.getName());
+    public ResponseEntity<TaiKhoanDTO> details(Principal user) {
+        TaiKhoanDTO u = this.taiKhoanService.getTaiKhoanByUsername(user.getName());
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
 
@@ -84,5 +84,14 @@ public class ApiTaiKhoanController {
     public ResponseEntity<Boolean> checkusername(@RequestBody Map<String, String> req) {
         return new ResponseEntity<>(taiKhoanService.checkUserName(req.get("username")), HttpStatus.OK);
     }
+
+//    @PostMapping
+//    public ResponseEntity<TaiKhoanDTO> loginWithGmail(@RequestBody TaiKhoanDTO taiKhoanDTO){
+//        if(taiKhoanService.loginWithGmail(taiKhoanDTO)){
+//            String token = this.jwtService.generateTokenLogin(taiKhoanDTO.getUsername());
+//
+//            return new ResponseEntity<>(token, HttpStatus.OK);
+//        }
+//    }
 
 }

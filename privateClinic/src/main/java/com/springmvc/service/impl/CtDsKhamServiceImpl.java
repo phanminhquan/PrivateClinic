@@ -83,6 +83,16 @@ public class CtDsKhamServiceImpl implements CtDsKhamService {
         ctDsKhamRepository.DeleteLichKham(id);
     }
 
+    @Override
+    public List<Object[]> getListHistoryByUser(Long id,Map<String,String> params) {
+        return ctDsKhamRepository.getListHistoryByUser(id,params);
+    }
+
+    @Override
+    public void huyLichHen(Long id) {
+        ctDsKhamRepository.huyLichHen(id);
+    }
+
 //    @Override
 //    public CtDsKhamDTO create(CtDsKhamDTO ctDsKhamDTO) {
 //        CtDsKham ct = toEntity(ctDsKhamDTO);

@@ -1,6 +1,7 @@
 package com.springmvc.controller;
 
 
+import com.springmvc.dto.CtDsKhamDTO;
 import com.springmvc.service.CtDsKhamService;
 import com.springmvc.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.HttpMethod;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -61,5 +64,16 @@ public class ApiCTDSKham {
         }
         res.put("res",result);
         return new ResponseEntity<>(res,HttpStatus.OK);
+    }
+    @GetMapping("/api/listhistory/{id}")
+    @CrossOrigin
+    public ResponseEntity<List<Object[]>> getListHistory(@PathVariable("id") long id,@RequestParam Map<String,String> params){
+        return  new ResponseEntity<>(ctDsKhamService.getListHistoryByUser(id,params),HttpStatus.OK);
+    }
+    @PatchMapping("/api/denny/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @CrossOrigin
+    public void denny(@PathVariable("id") Long id){
+        ctDsKhamService.huyLichHen(id);
     }
 }
