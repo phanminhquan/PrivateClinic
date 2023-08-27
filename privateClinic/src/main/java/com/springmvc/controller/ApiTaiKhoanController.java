@@ -85,13 +85,21 @@ public class ApiTaiKhoanController {
         return new ResponseEntity<>(taiKhoanService.checkUserName(req.get("username")), HttpStatus.OK);
     }
 
-//    @PostMapping
-//    public ResponseEntity<TaiKhoanDTO> loginWithGmail(@RequestBody TaiKhoanDTO taiKhoanDTO){
-//        if(taiKhoanService.loginWithGmail(taiKhoanDTO)){
-//            String token = this.jwtService.generateTokenLogin(taiKhoanDTO.getUsername());
-//
-//            return new ResponseEntity<>(token, HttpStatus.OK);
-//        }
-//    }
+
+    @PostMapping("/loginemail")
+    @CrossOrigin
+    public ResponseEntity<String> loginWithGmail(@RequestBody Map<String,String> map) {
+        TaiKhoanDTO taiKhoanDTO = new TaiKhoanDTO();
+        taiKhoanDTO.setName(map.get("name"));
+        taiKhoanDTO.setUsername(map.get("username"));
+        taiKhoanDTO.setPassword(map.get("password"));
+        taiKhoanDTO.setConfirmPassword(map.get("confirmPassword"));
+        taiKhoanDTO.setAvatar(map.get("avatar"));
+        taiKhoanDTO.setIsActive(true);
+        taiKhoanDTO.setUserRole("STAFF");
+        Boolean c =  taiKhoanService.loginWithGmail(taiKhoanDTO);
+        String token = this.jwtService.generateTokenLogin(taiKhoanDTO.getUsername());
+        return new ResponseEntity<>(token, HttpStatus.OK);
+    }
 
 }

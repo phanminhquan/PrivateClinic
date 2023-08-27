@@ -183,23 +183,24 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     @Override
     public Boolean loginWithGmail(TaiKhoanDTO taiKhoanDTO) {
         Boolean isContain = false;
-        List<TaiKhoanDTO> list = new ArrayList<>();
-        List<String> listname = new ArrayList<>();
-        List<String> listName = new ArrayList<>();
+        List<TaiKhoanDTO> list = toTKDTOList(taiKhoanRepository.getAllTK());
+        List<String> lsName = new ArrayList<>();
         for(TaiKhoanDTO t: list){
-            if(t.getUsername().trim().equals(taiKhoanDTO.getUsername().trim()));
-            {
-                isContain = true;
+            if(t.getUsername().trim().equals(taiKhoanDTO.getUsername().trim())){
+                isContain =true;
                 break;
             }
-        }
-        if (!isContain){
 
-            this.addTaiKhoan(taiKhoanDTO);
+        }
+
+        if (!isContain){
+            TaiKhoan taiKhoan = new TaiKhoan();
+            taiKhoan = toEntity(taiKhoanDTO);
+            taiKhoan = taiKhoanRepository.addTaiKhoan(taiKhoan);
             return true;
         }
 
-        return true;
+        return false;
     }
 
 //    @Override
