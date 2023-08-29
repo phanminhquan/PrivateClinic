@@ -12,9 +12,8 @@ import com.springmvc.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-
 import java.text.ParseException;
+import java.util.*;
 
 @Service
 public class PhieuKhamServiceImpl implements PhieuKhamService {
@@ -49,14 +48,16 @@ public class PhieuKhamServiceImpl implements PhieuKhamService {
     public PhieuKham toEntity(PhieuKhamDTO phieuKham) throws ParseException {
         PhieuKham p = new PhieuKham();
         p.setMaPK(phieuKham.getMaPk());
-
-        String year = phieuKham.getNgayKham().substring(0, 4);
-        String month = phieuKham.getNgayKham().substring(5, 7);
-        String date = phieuKham.getNgayKham().substring(8, 10);
-        String createDate = date.concat("/").concat(month).concat("/").concat(year);
-        Date d = Utils.dateParse(createDate);
-
-        p.setNgayKham(d);
+        if (phieuKham.getNgayKham().equals(null) && !phieuKham.getNgayKham().isEmpty()) {
+            String year = phieuKham.getNgayKham().substring(0, 4);
+            String month = phieuKham.getNgayKham().substring(5, 7);
+            String date = phieuKham.getNgayKham().substring(8, 10);
+            String createDate = date.concat("/").concat(month).concat("/").concat(year);
+            Date d = Utils.dateParse(createDate);
+            p.setNgayKham(d);
+        } else {
+            p.setNgayKham(new Date());
+        }
         p.setTrieuChung(phieuKham.getTrieuChung());
         p.setChuanDoan(phieuKham.getChuanDoan());
         p.setXacnhan(phieuKham.getXacnhan());
@@ -113,7 +114,7 @@ public class PhieuKhamServiceImpl implements PhieuKhamService {
     }
 
     @Override
-    public List<Object[]> getListObjUI(Map<String,String>map) {
+    public List<Object[]> getListObjUI(Map<String, String> map) {
         return phieuKhamRepository.listObjPayUI(map);
     }
 

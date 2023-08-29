@@ -73,31 +73,33 @@
                 <input class="form-control me-2" type="text" name="kw" placeholder="Tìm tên bệnh nhân..."/>
                 <button class="btn btn-primary" type="submit">Search</button>
             </form>
-            <table class="table table-hover" style="border-collapse: collapse; border: 1px solid lightgray">
-                <thead>
-                <tr style="margin-left: 10px">
-                    <th style="width: 70px; text-align: center">Mã số</th>
-                    <th style="width: 150px; text-align: center">Họ và tên</th>
-                    <th style="width: 120px; text-align: center">Giới Tính</th>
-                    <th style="width: 110px; text-align: center"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${benhnhan}" var="b">
-                    <tr>
-                        <td style="text-align: center">${b.maBn}</td>
-                        <td style="text-align: center">${b.hoTen}</td>
-                        <td style="text-align: center">${b.gioiTinh}</td>
-                        <td>
-                                <%-- <c:url value="/api/nhanvien/${b.maNv}" var="apiDel" />--%>
-                            <a class="btn" onclick="setMaBN(${b.maBn})" id="${b.maBn}"
-                               style="background-color: lightgray">thêm</a>
-                                <%-- <button class="btn btn-danger" onclick="delPro('${apiDel}', ${b.maNv})">Xóa</button>--%>
-                        </td>
+            <div style="max-height: 20rem; overflow-y: scroll;">
+                <table class="table table-hover" style="border-collapse: collapse; border: 1px solid lightgray">
+                    <thead>
+                    <tr style="margin-left: 10px">
+                        <th style="width: 70px; text-align: center">Mã số</th>
+                        <th style="width: 150px; text-align: center">Họ và tên</th>
+                        <th style="width: 120px; text-align: center">Giới Tính</th>
+                        <th style="width: 110px; text-align: center"></th>
                     </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${benhnhan}" var="b">
+                        <tr>
+                            <td style="text-align: center">${b.maBn}</td>
+                            <td style="text-align: center">${b.hoTen}</td>
+                            <td style="text-align: center">${b.gioiTinh}</td>
+                            <td>
+                                    <%-- <c:url value="/api/nhanvien/${b.maNv}" var="apiDel" />--%>
+                                <a class="btn" onclick="setMaBN(${b.maBn})" id="${b.maBn}"
+                                   style="background-color: lightgray">thêm</a>
+                                    <%-- <button class="btn btn-danger" onclick="delPro('${apiDel}', ${b.maNv})">Xóa</button>--%>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -175,36 +177,38 @@
                 </tbody>
             </table>
             <form class="d-flex">
-                <input class="form-control me-2" type="text" name="kw" placeholder="Tìm tên thuốc..."/>
+                <input class="form-control me-2" type="text" name="thuoc" placeholder="Tìm tên thuốc..."/>
                 <button class="btn btn-primary" type="submit">Search</button>
             </form>
-            <table class="table table-hover" style="border-collapse: collapse; border: 1px solid lightgray">
-                <thead>
-                <tr style="margin-left: 10px">
-                    <th style="width: 70px; text-align: center">Mã số</th>
-                    <th style="width: 200px; text-align: center">Tên thuốc</th>
-                    <th style="width: 250px; text-align: center">Mô tả</th>
-                    <th style="width: 100px; text-align: center">Trạng thái</th>
-                    <th style="width: 110px; text-align: center"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${thuoc}" var="b">
-                    <tr>
-                        <td style="text-align: center">${b.maThuoc}</td>
-                        <td style="text-align: center">${b.tenThuoc}</td>
-                        <td style="text-align: center">${b.moTa}</td>
-                        <td style="text-align: center">${b.isActive}</td>
-                        <td>
-                                <%-- <c:url value="/api/thuoc/${b.maThuoc}" var="apiDel" />--%>
-                            <a class="btn" onclick="setMaThuoc(${b.maThuoc})" id="${b.maThuoc}"
-                               style="background-color: lightgray">thêm</a>
-                                <%-- <button class="btn btn-danger" onclick="delPro('${apiDel}', ${b.maThuoc})">Xóa</button>--%>
-                        </td>
+            <div style="max-height: 20rem; overflow-y: scroll;">
+                <table class="table table-hover" style="border-collapse: collapse; border: 1px solid lightgray">
+                    <thead>
+                    <tr style="margin-left: 10px">
+                        <th style="width: 70px; text-align: center">Mã số</th>
+                        <th style="width: 200px; text-align: center">Tên thuốc</th>
+                        <th style="width: 250px; text-align: center">Mô tả</th>
+                        <th style="width: 100px; text-align: center">Trạng thái</th>
+                        <th style="width: 110px; text-align: center"></th>
                     </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${thuoc}" var="b">
+                        <tr>
+                            <td style="text-align: center">${b.maThuoc}</td>
+                            <td style="text-align: center">${b.tenThuoc}</td>
+                            <td style="text-align: center">${b.moTa}</td>
+                            <td style="text-align: center">${b.isActive}</td>
+                            <td>
+                                    <%-- <c:url value="/api/thuoc/${b.maThuoc}" var="apiDel" />--%>
+                                <a class="btn" onclick="setMaThuoc(${b.maThuoc})" id="${b.maThuoc}"
+                                   style="background-color: lightgray">thêm</a>
+                                    <%-- <button class="btn btn-danger" onclick="delPro('${apiDel}', ${b.maThuoc})">Xóa</button>--%>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -248,10 +252,16 @@
         <div class="col-md-6" style="margin-top: 20px">
         </div>
     </div>
-    <a class="btn btn-danger" href="/admin/pdf">In phiếu thuốc</a>
+    <form action="/admin/pdf">
+        <button id="printPhieu" class="btn btn-danger">In phiếu thuốc</button>
+    </form>
 </section>
 
 <%--<script src="/resources/static/js/javscript.js"></script>--%>
 
-<script></script>
+<%--<script>--%>
+<%--    $("#themthuocToDbSubmitBtn").on('click', () => {--%>
+<%--        $("#printPhieu").attr("disabled", null);--%>
+<%--    })--%>
+<%--</script>--%>
 </section>

@@ -43,7 +43,9 @@ public class BacSiController {
 
 
     @GetMapping("/phieukham")
-    public String getBenhNhan(Model model, @RequestParam(value = "kw", required = false) String kw, @RequestParam Map<String, String> params) {
+    public String getBenhNhan(Model model, @RequestParam(value = "kw", required = false) String kw,
+                              @RequestParam(value = "thuoc", required = false) String thuoc,
+                              @RequestParam Map<String, String> params) {
         PhieuKhamDTO pk = new PhieuKhamDTO();
         pk.setMaBS(Util.maNV);
         model.addAttribute("phieukham", pk);
@@ -65,10 +67,14 @@ public class BacSiController {
 
         if (kw != null) {
             model.addAttribute("benhnhan", benhNhanService.SearchBN(kw));
-            model.addAttribute("thuoc", thuocService.searchThuoc(kw));
+        } else {
+            model.addAttribute("benhnhan", benhNhanService.getALL(params));
+        }
+        if (thuoc != null) {
+
+            model.addAttribute("thuoc", thuocService.searchThuoc(thuoc));
         } else {
             model.addAttribute("thuoc", thuocService.getListThuoc(params));
-            model.addAttribute("benhnhan", benhNhanService.getALL(params));
         }
         return "phieukham";
     }

@@ -298,22 +298,22 @@ function setMaThuoc(id) {
 }
 
 function addToCaTruc(idnhanvien, idCatruc) {
-  fetch("/catruc/add", {
-    method: "post",
-    body: JSON.stringify({
-      idCaTruc: idCatruc,
-      idNhanVien: idnhanvien,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (confirm(data["message"]) === true) {
-        location.reload();
-      }
-    });
+    fetch("/catruc/add", {
+        method: "post",
+        body: JSON.stringify({
+            idCaTruc: idCatruc,
+            idNhanVien: idnhanvien,
+        }),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            if (confirm(data["message"]) === true) {
+                location.reload();
+            }
+        });
 }
 
 function acceptOrDenny(id, status) {
@@ -426,7 +426,6 @@ function pay(id) {
             <td style="text-align: center">${thuoc.soLuong}</td>
             <td style="text-align: center">${thuoc.cachDung}</td>
             <td style="text-align: center">${thuoc.maPk}</td>
-            <td style="text-align: center"><a href="" class="btn" style="background-color: lightgray">Sửa</a></td>
         </tr>
           `);
 
