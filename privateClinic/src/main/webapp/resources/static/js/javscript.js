@@ -243,7 +243,7 @@ function delCaTruc(id) {
 
 function delStaffFromShift(id) {
     if (confirm("Bạn chắc chắn xóa không?") === true) {
-        fetch(`/api/catruc/${id}`, {
+        fetch(`/catruc/${id}`, {
             method: "delete",
         }).then((res) => {
             location.reload();
@@ -252,7 +252,7 @@ function delStaffFromShift(id) {
 }
 
 function delCaTrucTRongTuan(idCaTruc, idNgay) {
-    fetch("/api/catructrongtuan", {
+    fetch("/catructrongtuan", {
         method: "delete",
         body: JSON.stringify({
             idCaTruc: idCaTruc,
@@ -317,7 +317,7 @@ function addToCaTruc(idnhanvien, idCatruc) {
 }
 
 function acceptOrDenny(id, status) {
-    fetch("/api/lichkham/acceptOrDenny", {
+    fetch("/lichkham/acceptOrDenny", {
         method: "post",
         body: JSON.stringify({
             id: id,

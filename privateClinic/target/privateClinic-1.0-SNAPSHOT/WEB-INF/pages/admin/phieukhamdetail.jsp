@@ -115,9 +115,6 @@
                 </div>
             </div>
         </div>
-        <div>
-            <button class="btn btn-success" onclick="pay(${phieuKham.maPk})">Thanh toán</button>
-        </div>
     </div>
 
 </section>

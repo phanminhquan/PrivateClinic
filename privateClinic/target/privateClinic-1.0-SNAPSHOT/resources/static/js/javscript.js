@@ -243,7 +243,7 @@ function delCaTruc(id) {
 
 function delStaffFromShift(id) {
     if (confirm("Bạn chắc chắn xóa không?") === true) {
-        fetch(`/api/catruc/${id}`, {
+        fetch(`/catruc/${id}`, {
             method: "delete",
         }).then((res) => {
             location.reload();
@@ -252,7 +252,7 @@ function delStaffFromShift(id) {
 }
 
 function delCaTrucTRongTuan(idCaTruc, idNgay) {
-    fetch("/api/catructrongtuan", {
+    fetch("/catructrongtuan", {
         method: "delete",
         body: JSON.stringify({
             idCaTruc: idCaTruc,
@@ -298,26 +298,26 @@ function setMaThuoc(id) {
 }
 
 function addToCaTruc(idnhanvien, idCatruc) {
-  fetch("/catruc/add", {
-    method: "post",
-    body: JSON.stringify({
-      idCaTruc: idCatruc,
-      idNhanVien: idnhanvien,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (confirm(data["message"]) === true) {
-        location.reload();
-      }
-    });
+    fetch("/catruc/add", {
+        method: "post",
+        body: JSON.stringify({
+            idCaTruc: idCatruc,
+            idNhanVien: idnhanvien,
+        }),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            if (confirm(data["message"]) === true) {
+                location.reload();
+            }
+        });
 }
 
 function acceptOrDenny(id, status) {
-    fetch("/api/lichkham/acceptOrDenny", {
+    fetch("/lichkham/acceptOrDenny", {
         method: "post",
         body: JSON.stringify({
             id: id,
@@ -426,7 +426,6 @@ function pay(id) {
             <td style="text-align: center">${thuoc.soLuong}</td>
             <td style="text-align: center">${thuoc.cachDung}</td>
             <td style="text-align: center">${thuoc.maPk}</td>
-            <td style="text-align: center"><a href="" class="btn" style="background-color: lightgray">Sửa</a></td>
         </tr>
           `);
 

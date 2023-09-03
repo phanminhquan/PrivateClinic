@@ -31,6 +31,11 @@
                             ${error}
                     </div>
                 </c:if>
+                <c:if test="${errorUsername != null}">
+                    <div class="alert alert-danger">
+                            ${errorUsername}
+                    </div>
+                </c:if>
                 <c:if test="${duplicateErro != null}">
                     <div class="alert alert-danger">
                             ${duplicateErro}
@@ -68,7 +73,6 @@
                         <form:select class="form-select" id="userRole" name="userRole" path="userRole">
                             <option value="DOCTOR">Bác sĩ</option>
                             <option value="NURSE">Y tá</option>
-                            <option value="STAFF">Bệnh nhân</option>
                         </form:select>
                     </div>
                     <div class="form-group" style="margin-top: 15px">

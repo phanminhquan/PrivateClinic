@@ -79,7 +79,26 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/admin/yta",
                         "/admin/add_thuoc",
                         "/admin/thuoc",
-                        "/admin/register").hasAnyAuthority("ADMIN");
+                        "/admin/register",
+                        "/catruc",
+                        "/catruc/{iddate}/{id}",
+                        "/catruc/edit/{id}",
+                        "/admin/addcatruc/{id}",
+                        "/admin/catruc/addct",
+                        "/admin/addcatruc",
+                        "/catruc/nhanvien").hasAnyAuthority("ADMIN")
+                .antMatchers("/phieukham",
+                        "/admin/benhnhan/{id}",
+                        "/admin/pdf",
+                        "/lichsukham").hasAnyAuthority("DOCTOR")
+                .antMatchers("/admin/dskham",
+                        "/admin/dskhamhomnay",
+                        "/api/ctdskham/havenotaccepted",
+                        "/mail",
+                        "/lichkham/acceptOrDenny",
+                        "/api/listhistory/{id}",
+                        "/api/denny/{id}",
+                        "/admin/pay").hasAnyAuthority("NURSE");
 
         http.csrf().disable();
 

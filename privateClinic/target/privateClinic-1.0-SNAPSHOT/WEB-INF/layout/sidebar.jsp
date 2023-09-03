@@ -60,15 +60,6 @@
                             <a class="nav-link" href="/admin/yta">Danh sách y tá</a>
                         </nav>
                     </div>
-                    <a class="nav-link" href="#">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-                        Bệnh nhân
-                    </a>
-                    <a class="nav-link" href="#">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
-                        Hóa dơn
-                    </a>
-
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccount5"
                        aria-expanded="false" aria-controls="collapseAccount">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-tablets"></i></div>
@@ -145,7 +136,7 @@
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccount7"
                        aria-expanded="false" aria-controls="collapseAccount">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar-days"></i></div>
-                        Appointment
+                        Doctor Service
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     <div class="collapse" id="collapseAccount7" aria-labelledby="headingOne"

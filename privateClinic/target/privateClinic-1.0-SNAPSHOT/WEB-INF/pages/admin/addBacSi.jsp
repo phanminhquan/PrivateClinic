@@ -48,7 +48,7 @@
                             <div class="col-md-6" style="margin-top: 20px">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <form:input type="text" name="email" class="form-control" placeholder="Nhập Email"
+                                    <form:input type="email" name="email" class="form-control" placeholder="Nhập Email"
                                                 path="email"/>
                                 </div>
                             </div>

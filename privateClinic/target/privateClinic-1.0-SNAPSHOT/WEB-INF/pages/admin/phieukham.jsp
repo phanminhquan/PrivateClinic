@@ -222,7 +222,6 @@
                     <th style="width: 100px; text-align: center">Số lượng</th>
                     <th style="width: 200px; text-align: center">Cách dùng</th>
                     <th style="width: 100px; text-align: center">Mã phiếu</th>
-                    <th style="width: 60px; text-align: center"></th>
                 </tr>
                 </thead>
                 <tbody id="themthuocTBody">
