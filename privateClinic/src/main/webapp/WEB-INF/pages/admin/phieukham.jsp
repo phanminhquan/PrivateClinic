@@ -147,35 +147,37 @@
         </div>
 
         <div class="col-md-6" style="margin-top: 20px">
-            <table class="table table-hover" style="border-collapse: collapse; border: 1px solid lightgray">
-                <thead>
-                <tr style="margin-left: 10px">
-                    <th style="width: 70px; text-align: center">Mã số</th>
-                    <th style="width: 200px; text-align: center">Bệnh nhân</th>
-                    <th style="width: 250px; text-align: center">Ngày khám</th>
-                    <th style="width: 100px; text-align: center">Triệu chứng</th>
-                    <th style="width: 100px; text-align: center">Chuẩn đoán</th>
-                    <th style="width: 110px; text-align: center"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${phieukhambenh}" var="b" varStatus="c">
-                    <tr>
-                        <td style="text-align: center">${b.maPk}</td>
-                        <td style="text-align: center">${listTen[c.index]}</td>
-                        <td style="text-align: center">${b.ngayKham}</td>
-                        <td style="text-align: center">${b.trieuChung}</td>
-                        <td style="text-align: center">${b.chuanDoan}</td>
-                        <td>
-                                <%-- <c:url value="/api/thuoc/${b.maThuoc}" var="apiDel" />--%>
-                            <a class="btn" onclick="setMaPK(${b.maPk})" id="${b.maPk}"
-                               style="background-color: lightgray">thêm</a>
-                                <%-- <button class="btn btn-danger" onclick="delPro('${apiDel}', ${b.maThuoc})">Xóa</button>--%>
-                        </td>
+            <div style="max-height: 7rem; overflow-y: scroll;">
+                <table class="table table-hover" style="border-collapse: collapse; border: 1px solid lightgray">
+                    <thead>
+                    <tr style="margin-left: 10px">
+                        <th style="width: 70px; text-align: center">Mã số</th>
+                        <th style="width: 200px; text-align: center">Bệnh nhân</th>
+                        <th style="width: 250px; text-align: center">Ngày khám</th>
+                        <th style="width: 100px; text-align: center">Triệu chứng</th>
+                        <th style="width: 100px; text-align: center">Chuẩn đoán</th>
+                        <th style="width: 110px; text-align: center"></th>
                     </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${phieukhambenh}" var="b" varStatus="c">
+                        <tr>
+                            <td style="text-align: center">${b.maPk}</td>
+                            <td style="text-align: center">${listTen[c.index]}</td>
+                            <td style="text-align: center">${b.ngayKham}</td>
+                            <td style="text-align: center">${b.trieuChung}</td>
+                            <td style="text-align: center">${b.chuanDoan}</td>
+                            <td>
+                                    <%-- <c:url value="/api/thuoc/${b.maThuoc}" var="apiDel" />--%>
+                                <a class="btn" onclick="setMaPK(${b.maPk})" id="${b.maPk}"
+                                   style="background-color: lightgray">thêm</a>
+                                    <%-- <button class="btn btn-danger" onclick="delPro('${apiDel}', ${b.maThuoc})">Xóa</button>--%>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
             <form class="d-flex">
                 <input class="form-control me-2" type="text" name="thuoc" placeholder="Tìm tên thuốc..."/>
                 <button class="btn btn-primary" type="submit">Search</button>

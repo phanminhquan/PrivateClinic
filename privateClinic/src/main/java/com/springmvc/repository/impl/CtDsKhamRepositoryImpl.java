@@ -120,7 +120,7 @@ public class CtDsKhamRepositoryImpl implements CtDsKhamRepository {
     }
 
     @Override
-    public List<Object[]> getListHistoryByUser(Long idtk,Map<String,String> params) {
+    public List<Object[]> getListHistoryByUser(Long idtk, Map<String, String> params) {
         Session s = factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
@@ -129,20 +129,21 @@ public class CtDsKhamRepositoryImpl implements CtDsKhamRepository {
         Root benhNhan = q.from(BenhNhan.class);
         Root thoiGian = q.from(ThoiGian.class);
         String now = params.get("now");
-        q.multiselect(lichHen.get("maCTDS"),lichHen.get("trangthai"),lichHen.get("ngaykham"),thoiGian.get("gio"));
+        q.multiselect(lichHen.get("maCTDS"), lichHen.get("trangthai"), lichHen.get("ngaykham"), thoiGian.get("gio"));
         List<Predicate> predicates = new ArrayList<>();
-        predicates.add(b.equal(lichHen.get("maBN"),benhNhan.get("maBN")));
-        predicates.add(b.equal(taiKhoan.get("id"),benhNhan.get("idTk")));
-        predicates.add(b.equal(lichHen.get("maTG"),thoiGian.get("maTG")));
-        if(now.equals("true"))
+        predicates.add(b.equal(lichHen.get("maBN"), benhNhan.get("maBN")));
+        predicates.add(b.equal(taiKhoan.get("id"), benhNhan.get("idTk")));
+        predicates.add(b.equal(lichHen.get("maTG"), thoiGian.get("maTG")));
+        
+        if (now.equals("true"))
             predicates.add(b.greaterThanOrEqualTo(lichHen.get("ngaykham"), new Date()));
         else
             predicates.add(b.lessThan(lichHen.get("ngaykham"), new Date()));
         predicates.add(b.equal(taiKhoan.get("id"), idtk));
         String maLichHen = params.get("malichhen");
-        if(maLichHen != null && !maLichHen.isEmpty()){
+        if (maLichHen != null && !maLichHen.isEmpty()) {
             Long id = Long.parseLong(maLichHen);
-            predicates.add(b.equal(lichHen.get("maCTDS"),id));
+            predicates.add(b.equal(lichHen.get("maCTDS"), id));
         }
         String fd = params.get("fromDate");
         if (fd != null && !fd.isEmpty()) {
@@ -170,7 +171,7 @@ public class CtDsKhamRepositoryImpl implements CtDsKhamRepository {
     @Override
     public void huyLichHen(Long id) {
         Session s = factory.getObject().getCurrentSession();
-        CtDsKham c = s.get(CtDsKham.class,id);
+        CtDsKham c = s.get(CtDsKham.class, id);
         c.setTrangthai(3);
         s.update(c);
     }

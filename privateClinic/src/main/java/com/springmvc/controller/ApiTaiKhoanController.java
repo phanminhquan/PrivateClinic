@@ -38,7 +38,7 @@ public class ApiTaiKhoanController {
             return new ResponseEntity<>(token, HttpStatus.OK);
         }
 
-        return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("error", HttpStatus.OK);
     }
 
     @GetMapping("/api/test/")
@@ -88,7 +88,7 @@ public class ApiTaiKhoanController {
 
     @PostMapping("/loginemail")
     @CrossOrigin
-    public ResponseEntity<String> loginWithGmail(@RequestBody Map<String,String> map) {
+    public ResponseEntity<String> loginWithGmail(@RequestBody Map<String, String> map) {
         TaiKhoanDTO taiKhoanDTO = new TaiKhoanDTO();
         taiKhoanDTO.setName(map.get("name"));
         taiKhoanDTO.setUsername(map.get("username"));
@@ -97,7 +97,7 @@ public class ApiTaiKhoanController {
         taiKhoanDTO.setAvatar(map.get("avatar"));
         taiKhoanDTO.setIsActive(true);
         taiKhoanDTO.setUserRole("STAFF");
-        Boolean c =  taiKhoanService.loginWithGmail(taiKhoanDTO);
+        Boolean c = taiKhoanService.loginWithGmail(taiKhoanDTO);
         String token = this.jwtService.generateTokenLogin(taiKhoanDTO.getUsername());
         return new ResponseEntity<>(token, HttpStatus.OK);
     }

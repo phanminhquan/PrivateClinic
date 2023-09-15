@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -101,12 +102,19 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("from TaiKhoan where username = :user");
         q.setParameter("user", u);
-        return (TaiKhoan) q.getSingleResult();
+        try {
+            return (TaiKhoan) q.getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
+
     }
 
     @Override
     public boolean authUser(String username, String password) {
         TaiKhoan tk = this.getTkByUsername(username);
+        if (tk == null)
+            return false;
         return this.passEncoder.matches(password, tk.getPassword());
     }
 
@@ -121,9 +129,9 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
     public Boolean checkUserName(String username) {
         Session s = factory.getObject().getCurrentSession();
         Query q = s.createQuery("from TaiKhoan ");
-        List<TaiKhoan> tk= q.getResultList();
-        for(TaiKhoan u : tk){
-            if (u.getUsername().equals(username)){
+        List<TaiKhoan> tk = q.getResultList();
+        for (TaiKhoan u : tk) {
+            if (u.getUsername().equals(username)) {
                 return false;
             }
 
@@ -137,14 +145,14 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
         List<TaiKhoan> list = s.createQuery("from TaiKhoan ").getResultList();
         Boolean isContain = false;
         List<String> listName = new ArrayList<>();
-        for(TaiKhoan t: list){
-            if(t.getUsername().trim().equals(taiKhoan.getUsername().trim()));
+        for (TaiKhoan t : list) {
+            if (t.getUsername().trim().equals(taiKhoan.getUsername().trim())) ;
             {
                 isContain = true;
                 break;
             }
         }
-        if (!isContain){
+        if (!isContain) {
             s.save(taiKhoan);
             return true;
         }

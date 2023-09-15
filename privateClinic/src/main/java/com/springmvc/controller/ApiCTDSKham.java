@@ -19,6 +19,7 @@ public class ApiCTDSKham {
     @Autowired
     EmailService emailService;
 
+
     @GetMapping("/api/ctdskham/havenotaccepted")
     ResponseEntity<Map<String, Integer>> getlistHaveNotAccepted() {
         Map<String, Integer> res = new HashMap<>();
@@ -55,7 +56,6 @@ public class ApiCTDSKham {
                 res.put("username", username);
                 res.put("email", map.get("email").toString());
                 res.put("id", Integer.toString(id));
-
                 break;
             case 2:
                 result = "Hủy lịch khám thành công";
